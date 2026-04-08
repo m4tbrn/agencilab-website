@@ -114,6 +114,9 @@ export default function Method() {
           <div className="grid items-center lg:grid-cols-[1fr_auto]">
             <div className="p-6 sm:p-8 lg:p-10">
               <div className="mb-3 flex items-center gap-3">
+                <span className="inline-block rounded-full bg-gold-400 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-navy-950">
+                  Bonus
+                </span>
                 <Image
                   src="/images/alicia.jpg"
                   alt="Alic.ia"
@@ -122,9 +125,6 @@ export default function Method() {
                   className="h-12 w-12 rounded-full object-cover lg:hidden"
                   unoptimized
                 />
-                <span className="inline-block rounded-full bg-gold-400 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-navy-950">
-                  Bonus
-                </span>
               </div>
               <h3 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl">
                 Livre tes services en <span className="gradient-text">2h par jour</span>
@@ -143,7 +143,7 @@ export default function Method() {
                 <span className="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-xs font-medium text-white/60">SEO</span>
               </div>
             </div>
-            <div className="flex items-center justify-center p-6 lg:p-8">
+            <div className="hidden items-center justify-center p-6 lg:flex lg:p-8">
               <Image
                 src="/images/alicia.jpg"
                 alt="Alic.ia — Intelligence artificielle Agencilab"

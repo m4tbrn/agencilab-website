@@ -16,13 +16,13 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-6 text-sm text-white/30">
             <a
-              href="#"
+              href="/mentions-legales"
               className="hover:text-white/60 transition-colors tracking-tight"
             >
               Mentions légales
             </a>
             <a
-              href="#"
+              href="/politique-de-confidentialite"
               className="hover:text-white/60 transition-colors tracking-tight"
             >
               Politique de confidentialité

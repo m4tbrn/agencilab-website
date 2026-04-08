@@ -71,7 +71,6 @@ export default function BricksMethod() {
         {/* Bricks stack with connecting line */}
         <div className="relative mx-auto max-w-2xl">
           {/* Vertical connecting line */}
-          <div className="absolute left-[27px] top-[44px] bottom-[44px] w-[2px] bg-gradient-to-b from-accent-400/40 via-accent-400/20 to-accent-400/40 sm:left-[29px]" />
 
           <div className="relative space-y-4">
             {bricks.map((brick, i) => (
@@ -84,7 +83,7 @@ export default function BricksMethod() {
                 className="relative flex items-start gap-4 rounded-2xl border border-navy-950/5 bg-white p-4 transition-all duration-300 hover:shadow-lg hover:shadow-navy-950/5 sm:gap-5 sm:p-6"
               >
                 {/* Number circle with ring — sits on the line */}
-                <div className="relative z-10 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-navy-950 text-sm font-bold text-accent-400 ring-4 ring-white">
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-navy-950 text-sm font-bold text-accent-400">
                   {brick.number}
                 </div>
                 <div className="flex-1">
@@ -100,14 +99,6 @@ export default function BricksMethod() {
                     {brick.description}
                   </p>
                 </div>
-                {/* Arrow connector to next brick */}
-                {i < bricks.length - 1 && (
-                  <div className="absolute -bottom-4 left-[22px] z-10 flex h-8 w-8 items-center justify-center sm:left-[24px]">
-                    <svg className="h-4 w-4 text-accent-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                )}
               </motion.div>
             ))}
           </div>
