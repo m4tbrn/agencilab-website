@@ -73,42 +73,30 @@ export default function IncomeComparison() {
               <text x="640" y="325" fill="rgba(255,255,255,0.35)" fontSize="11" textAnchor="middle">M6</text>
 
               {/* === SALARIÉ LINE === flat ~2000€ with small prime bump */}
-              <motion.path
+              <path
                 d="M80 180 L173 180 L266 180 L360 180 L380 172 L400 180 L453 180 L546 180 L640 178"
                 stroke="rgba(255,255,255,0.35)"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 2, delay: 0.2, ease: "easeOut" }}
               />
 
               {/* === STARTUP LINE === negative then zigzag */}
-              <motion.path
+              <path
                 d="M80 280 L120 295 L173 310 L220 308 L266 295 L310 270 L360 250 L400 270 L453 220 L500 245 L546 200 L590 220 L640 190"
                 stroke="rgba(239,68,68,0.5)"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 2, delay: 0.4, ease: "easeOut" }}
               />
 
               {/* === GROWTH MARKETER LINE === premiers revenus M1.5, 3500€ à M4 */}
-              <motion.path
+              <path
                 d="M80 280 L220 280 L220 250 L310 250 L310 210 L400 210 L400 150 L453 150 L453 80 L546 80 L640 75"
                 stroke="#015FFF"
                 strokeWidth="3.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 2, delay: 0.6, ease: "easeOut" }}
               />
               {/* Growth Marketing area fill */}
               <path

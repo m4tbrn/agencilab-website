@@ -13,6 +13,23 @@ export const metadata: Metadata = {
   title: "Agencilab — Apprends une activité très rentable et crée ton deuxième salaire",
   description:
     "Agencilab accompagne les salariés à se créer un complément de revenus de 1 500 à 3 000€/mois grâce à une activité très rentable, sans quitter leur emploi. +900 personnes accompagnées.",
+  keywords: [
+    "growth marketing",
+    "deuxième salaire",
+    "complément de revenus",
+    "marketing digital",
+    "reconversion professionnelle",
+    "agencilab",
+    "formation marketing",
+    "revenus complémentaires",
+    "freelance marketing",
+  ],
+  authors: [{ name: "Agencilab" }],
+  creator: "Agencilab",
+  metadataBase: new URL("https://agencilab.com"),
+  alternates: {
+    canonical: "https://agencilab.com",
+  },
   openGraph: {
     title: "Agencilab — Apprends une activité très rentable et crée ton deuxième salaire",
     description:
@@ -20,6 +37,26 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: "https://agencilab.com",
+    siteName: "Agencilab",
+    images: [
+      {
+        url: "/images/hero-group.jpg",
+        width: 1200,
+        height: 630,
+        alt: "La communauté Agencilab",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agencilab — Crée ton deuxième salaire",
+    description:
+      "Rejoins +900 salariés qui génèrent 1 500 à 3 000€/mois grâce au Growth Marketing.",
+    images: ["/images/hero-group.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
