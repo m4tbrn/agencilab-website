@@ -8,7 +8,7 @@ const CTA_LINK = "#rejoindre";
 const navLinks: { label: string; href: string; badge?: string }[] = [
   { label: "L'activité", href: "#solution" },
   { label: "Agencilab", href: "#competences" },
-  { label: "Témoignages", href: "#ils-temoignent" },
+  { label: "Témoignages", href: "#temoignages" },
   { label: "FAQ", href: "#faq" },
   { label: "Mon livre", href: "#", badge: "Bientôt disponible" },
 ];

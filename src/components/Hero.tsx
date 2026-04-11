@@ -147,6 +147,9 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-20 mx-auto mt-6 max-w-4xl sm:mb-[-80px]"
         >
+          <p className="mb-4 text-center text-xl text-white/60 sm:text-2xl" style={{ fontFamily: "var(--font-caveat)" }}>
+            Regarde cette vidéo, elle t&apos;explique tout 👇
+          </p>
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
             <div
               id="vidalytics_embed_BOKinTlwRUDuZ4BM"

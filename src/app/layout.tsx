@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Inter_Tight } from "next/font/google";
+import { Inter_Tight, Caveat } from "next/font/google";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -10,6 +10,11 @@ const interTight = Inter_Tight({
   display: "swap",
 });
 
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Agencilab — Apprends une activité très rentable et crée ton deuxième salaire",
@@ -68,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${interTight.variable} antialiased`}>
+    <html lang="fr" className={`${interTight.variable} ${caveat.variable} antialiased`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async />

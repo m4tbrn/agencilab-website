@@ -36,7 +36,7 @@ const steps = [
 
 export default function Method() {
   return (
-    <section className="relative py-16 lg:py-24" id="methode">
+    <section className="relative overflow-hidden py-16 lg:py-24" id="methode">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-navy-700/10 rounded-full blur-[120px]" />
       </div>
