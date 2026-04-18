@@ -1,10 +1,29 @@
-"use client";
-
+import { headers } from "next/headers";
 import Image from "next/image";
+
+export const metadata = {
+  title: "File d'attente - Agencilab",
+  description: "Les places sont actuellement completes. Tu es sur la file d'attente prioritaire Agencilab.",
+  robots: { index: false, follow: false },
+};
 
 const WA_LINK = "https://wa.me/message/KNWJCZPNZ467D1";
 
-export default function FileAttentePage() {
+function getQueuePosition(ip: string): number {
+  let hash = 0;
+  for (let i = 0; i < ip.length; i++) {
+    hash = (hash * 31 + ip.charCodeAt(i)) | 0;
+  }
+  return 17 + (Math.abs(hash) % 22); // 17 à 38
+}
+
+export default async function FileAttentePage() {
+  const headersList = await headers();
+  const ip =
+    headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headersList.get("x-real-ip") ||
+    "unknown";
+  const position = getQueuePosition(ip);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -22,11 +41,19 @@ export default function FileAttentePage() {
         </div>
 
         {/* Statut */}
-        <h1 className="mb-8 text-center text-xl font-bold tracking-tight sm:text-2xl">
+        <h1 className="text-center text-2xl font-bold tracking-tight sm:text-3xl">
           Toutes les places sont prises !
-          <br />
-          Mais tu peux encore décrocher ton rendez-vous
         </h1>
+
+        <p className="mt-3 mb-3 text-center">
+          <span className="inline-block rounded-xl border-2 border-accent-400/30 bg-accent-400/10 px-4 py-2.5 text-xl font-extrabold tracking-tight sm:px-6 sm:py-3 sm:text-3xl" style={{ boxShadow: "0 0 30px rgba(1, 95, 255, 0.2)" }}>
+            Tu es <span className="text-accent-400">{position} ème </span>dans la file d&apos;attente
+          </span>
+        </p>
+
+        <p className="mb-8 text-center text-xl font-bold tracking-tight sm:text-2xl">
+          Mais tu peux encore décrocher ton rendez-vous, lis les prochaines étapes :
+        </p>
 
         {/* Barre de chargement */}
         <div className="mb-10 rounded-xl border-2 border-white/10 bg-white/[0.03] p-5">
