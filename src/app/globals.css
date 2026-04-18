@@ -194,6 +194,18 @@ body {
   transform: translateX(4px);
 }
 
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Bar glow pulse */
+@keyframes barGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 122, 0, 0.5), 0 0 60px rgba(255, 122, 0, 0.2); }
+  50% { box-shadow: 0 0 50px rgba(255, 122, 0, 0.8), 0 0 100px rgba(255, 122, 0, 0.4); }
+}
+
 /* Selection */
 ::selection {
   background: rgba(255, 122, 0, 0.3);

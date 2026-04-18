@@ -22,10 +22,10 @@ function getRandomItem<T>(arr: T[]): T {
 }
 
 const messages = [
-  "vient de prendre rendez-vous 🔥",
-  (min: number) => `a pris rendez-vous il y a ${min} min`,
-  "vient de réserver un appel",
-  (min: number) => `a pris rendez-vous il y a ${min} min`,
+  "vient de déposer sa candidature 🔥",
+  (min: number) => `a déposé sa candidature il y a ${min} min`,
+  "vient de déposer sa candidature",
+  (min: number) => `a déposé sa candidature il y a ${min} min`,
 ];
 
 export default function SocialNotif() {
