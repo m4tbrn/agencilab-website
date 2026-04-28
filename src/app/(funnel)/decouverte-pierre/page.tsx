@@ -96,16 +96,14 @@ export default function DecouvertePierre() {
               <h2 className="mb-5 text-center text-[1.125rem] font-bold tracking-tight text-white md:text-[1.25rem]">
                 👇🏼 Choisis ton créneau
               </h2>
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-navy-900/60">
-                <iframe
-                  src={ICLOSED_URL}
-                  title={ICLOSED_TITLE}
-                  scrolling="no"
-                  loading="eager"
-                  className="block h-[1100px] w-full border-0 md:h-[720px]"
-                  allow="camera; microphone"
-                />
-              </div>
+              <iframe
+                src={ICLOSED_URL}
+                title={ICLOSED_TITLE}
+                scrolling="no"
+                loading="eager"
+                className="block h-[1100px] w-full border-0 md:h-[720px]"
+                allow="camera; microphone"
+              />
             </div>
           </div>
         </section>
