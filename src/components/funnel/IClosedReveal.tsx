@@ -25,7 +25,24 @@ export default function IClosedReveal({
   const [reservations, setReservations] = useState<number | null>(null);
 
   useEffect(() => {
-    const endTime = Date.now() + delayMs;
+    if (typeof window === "undefined") return;
+
+    // Scope la clé par URL iClosed pour ne pas mélanger plusieurs funnels
+    const storageKey = `iclosed_reveal_endtime:${url}`;
+
+    let endTime: number;
+    const stored = window.localStorage.getItem(storageKey);
+    const parsed = stored ? Number(stored) : NaN;
+
+    if (Number.isFinite(parsed) && parsed > Date.now()) {
+      // Reprend là où on s'était arrêté
+      endTime = parsed;
+    } else {
+      // Premier passage (ou ancien chrono déjà expiré) : démarre/reset
+      endTime = Date.now() + delayMs;
+      window.localStorage.setItem(storageKey, String(endTime));
+    }
+
     const tick = () => {
       const remaining = endTime - Date.now();
       if (remaining <= 0) {
@@ -37,7 +54,7 @@ export default function IClosedReveal({
     tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [delayMs]);
+  }, [delayMs, url]);
 
   useEffect(() => {
     if (!revealed) return;
