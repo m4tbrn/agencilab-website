@@ -2,15 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const COOLDOWN_MS = 1500; // évite les déclenchements multiples lors d'un même mouvement
+
 export default function ExitIntentPopup() {
   const [isOpen, setIsOpen] = useState(false);
-  const fired = useRef(false);
+  const isOpenRef = useRef(false);
+  const lastFiredRef = useRef(0);
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
 
   useEffect(() => {
     const onLeave = (e: MouseEvent) => {
-      if (fired.current) return;
+      // Ignore si déjà ouverte ou si on est dans le cooldown
+      if (isOpenRef.current) return;
+      if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
+      // Sortie par le haut du viewport
       if (e.clientY <= 0 && e.relatedTarget === null) {
-        fired.current = true;
+        lastFiredRef.current = Date.now();
         setIsOpen(true);
       }
     };
