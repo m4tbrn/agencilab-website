@@ -53,6 +53,29 @@ export default function DecouvertePierre() {
 
             {/* Hero */}
             <div className="text-center">
+              {/* Photo Pierre */}
+              <div className="mx-auto mb-5 flex justify-center">
+                <div className="relative">
+                  <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-accent-400/30 shadow-[0_0_40px_rgba(1,95,255,0.25)] sm:h-32 sm:w-32">
+                    <Image
+                      src="/images/team/pierre-helias.png"
+                      alt="Pierre — Équipe Agencilab"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  {/* Indicateur en ligne */}
+                  <div className="absolute bottom-1 right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-navy-950 bg-[#10b981] sm:h-6 sm:w-6">
+                    <span className="block h-1.5 w-1.5 rounded-full bg-white" />
+                  </div>
+                </div>
+              </div>
+
+              <p className="mb-1 text-[0.8125rem] font-medium tracking-tight text-white/50">
+                Pierre · Équipe d&apos;Agencilab
+              </p>
+
               <div
                 className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent-400/30 bg-accent-400/10 px-5 py-2 text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-accent-400"
                 style={{ boxShadow: "0 0 30px rgba(1, 95, 255, 0.15)" }}
