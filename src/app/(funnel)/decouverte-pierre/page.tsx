@@ -31,7 +31,7 @@ export default function DecouvertePierre() {
         </div>
 
         <section className="relative z-10 py-10 md:py-16">
-          <div className="mx-auto max-w-[920px] px-6">
+          <div className="mx-auto max-w-[1200px] px-6">
             {/* Logo */}
             <div className="mb-8 flex justify-center">
               <Image
@@ -92,7 +92,7 @@ export default function DecouvertePierre() {
             </div>
 
 {/* iClosed widget */}
-            <div className="mx-auto mt-10 max-w-[760px]">
+            <div className="mt-10">
               <h2 className="mb-5 text-center text-[1.125rem] font-bold tracking-tight text-white md:text-[1.25rem]">
                 👇🏼 Choisis ton créneau
               </h2>
@@ -102,7 +102,7 @@ export default function DecouvertePierre() {
                   title={ICLOSED_TITLE}
                   scrolling="no"
                   loading="eager"
-                  className="block h-[1100px] w-full border-0 md:h-[680px]"
+                  className="block h-[1100px] w-full border-0 md:h-[720px]"
                   allow="camera; microphone"
                 />
               </div>
