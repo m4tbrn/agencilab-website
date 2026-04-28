@@ -1,7 +1,11 @@
+import BackLink from "@/components/BackLink";
+
 export default function PolitiqueDeConfidentialite() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-32 text-white/70">
-      <a href="/" className="mb-8 inline-flex items-center gap-2 text-sm text-accent-400 hover:underline">← Retour au site</a>
+      <div className="mb-8">
+        <BackLink />
+      </div>
       <h1 className="mb-10 text-3xl font-bold text-white">Politique de confidentialité</h1>
 
       <div className="space-y-8 text-sm leading-relaxed">
@@ -117,7 +121,7 @@ export default function PolitiqueDeConfidentialite() {
       </div>
 
       <div className="mt-16">
-        <a href="/" className="text-sm text-accent-400 hover:underline">← Retour au site</a>
+        <BackLink className="text-sm text-accent-400 hover:underline" />
       </div>
     </div>
   );

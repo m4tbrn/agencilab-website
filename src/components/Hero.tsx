@@ -59,7 +59,11 @@ export default function Hero() {
               </h1>
 
               <p className="mb-8 max-w-md text-base leading-relaxed tracking-tight text-white/50">
-                Sans quitter ton emploi. Sans diplôme. En 45 minutes par jour.
+                Sans diplôme.
+                <br />
+                En 45 minutes par jour.
+                <br />
+                En parallèle de ton emploi.
               </p>
 
               {/* CTA */}
