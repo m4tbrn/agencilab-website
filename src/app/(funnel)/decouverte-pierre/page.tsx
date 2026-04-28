@@ -1,0 +1,138 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
+import FunnelFooter from "@/components/funnel/FunnelFooter";
+
+export const metadata: Metadata = {
+  title: "Appel découverte avec Pierre — Agencilab",
+  description:
+    "Premier échange de 15 minutes avec un membre de l'équipe de Louis pour faire connaissance et voir si Agencilab peut t'aider.",
+  robots: { index: false, follow: false },
+};
+
+const ICLOSED_URL =
+  "https://app.iclosed.io/e/fit-mass-formation/decouverte-agencilab";
+const ICLOSED_TITLE = "Appel avec Pierre d'Agencilab (15min)";
+
+const bullets = [
+  "On apprend à te connaître (ta situation, tes objectifs, tes contraintes)",
+  "On répond à toutes tes questions sur Agencilab",
+  "On évalue ensemble si l'accompagnement est fait pour toi",
+];
+
+export default function DecouvertePierre() {
+  return (
+    <>
+      <main className="relative flex-1 overflow-hidden">
+        {/* Background gradient orbs */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/4 top-1/4 h-[600px] w-[600px] rounded-full bg-navy-700/20 blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-navy-600/15 blur-[100px]" />
+        </div>
+
+        {/* Grid lines */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[20%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
+          <div className="absolute left-[50%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.03] to-transparent" />
+          <div className="absolute left-[80%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
+        </div>
+
+        <section className="relative z-10 py-10 md:py-16">
+          <div className="mx-auto max-w-[920px] px-6">
+            {/* Logo */}
+            <div className="mb-8 flex justify-center">
+              <Image
+                src="/images/logo-white.png"
+                alt="Agencilab"
+                width={140}
+                height={36}
+                className="h-7 w-auto opacity-80"
+                priority
+              />
+            </div>
+
+            {/* Hero */}
+            <div className="text-center">
+              <div
+                className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent-400/30 bg-accent-400/10 px-5 py-2 text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-accent-400"
+                style={{ boxShadow: "0 0 30px rgba(1, 95, 255, 0.15)" }}
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-400" />
+                </span>
+                Appel découverte · 15 min
+              </div>
+
+              <h1 className="mb-4 text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold leading-[1.15] tracking-tight text-white">
+                Réserve ton appel avec{" "}
+                <span className="gradient-text">Pierre</span>
+              </h1>
+
+              <p className="mx-auto mb-3 max-w-xl text-[1rem] leading-[1.5] text-white/70 md:text-[1.0625rem]">
+                Cet appel n&apos;est pas l&apos;appel de candidature officiel
+                pour rejoindre Agencilab. C&apos;est un premier échange avec un
+                membre de l&apos;équipe de Louis pour faire connaissance et
+                voir si Agencilab peut réellement t&apos;aider.
+              </p>
+            </div>
+
+            {/* Programme — bullets */}
+            <div className="glass-card mx-auto mt-10 max-w-[640px] rounded-2xl p-6 md:p-8">
+              <p className="mb-5 text-center text-[1rem] font-bold tracking-tight text-white md:text-[1.0625rem]">
+                Au programme pendant ces 15 minutes :
+              </p>
+              <ul className="flex flex-col gap-3">
+                {bullets.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 text-[0.9375rem] leading-[1.45] text-white/80"
+                  >
+                    <CheckCircle
+                      size={20}
+                      weight="fill"
+                      className="mt-0.5 shrink-0 text-gold-400"
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Note importante */}
+              <div className="mt-6 rounded-xl border border-gold-400/20 bg-gold-400/5 p-4">
+                <p className="text-[0.875rem] leading-[1.5] text-white/70">
+                  <strong className="text-gold-400">Important :</strong> à la
+                  fin de cet appel, si on voit que tu as un vrai intérêt et
+                  que ton profil correspond, on te programmera ton appel de
+                  candidature officiel avec un conseiller senior.
+                </p>
+              </div>
+            </div>
+
+            {/* iClosed widget */}
+            <div className="mx-auto mt-10 max-w-[760px]">
+              <h2 className="mb-5 text-center text-[1.125rem] font-bold tracking-tight text-white md:text-[1.25rem]">
+                👇🏼 Choisis ton créneau
+              </h2>
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-navy-900/60">
+                <iframe
+                  src={ICLOSED_URL}
+                  title={ICLOSED_TITLE}
+                  scrolling="no"
+                  loading="eager"
+                  className="block h-[1100px] w-full border-0 md:h-[680px]"
+                  allow="camera; microphone"
+                />
+              </div>
+              <p className="mt-4 text-center text-[0.8125rem] text-white/40">
+                Pas de pression, pas de blabla. Juste un échange honnête.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <FunnelFooter />
+    </>
+  );
+}
