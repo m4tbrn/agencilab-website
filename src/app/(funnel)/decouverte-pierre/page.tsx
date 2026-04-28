@@ -3,10 +3,34 @@ import Image from "next/image";
 import FunnelFooter from "@/components/funnel/FunnelFooter";
 
 export const metadata: Metadata = {
-  title: "Appel découverte avec Pierre — Agencilab",
+  title: "Réserve ton appel avec Pierre",
   description:
     "Premier échange de 15 minutes avec Pierre pour faire connaissance et voir si Agencilab peut t'aider.",
   robots: { index: false, follow: false },
+  openGraph: {
+    title: "Réserve ton appel avec Pierre",
+    description:
+      "Premier échange de 15 minutes avec Pierre pour faire connaissance et voir si Agencilab peut t'aider.",
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Agencilab",
+    url: "https://agencilab.com/decouverte-pierre",
+    images: [
+      {
+        url: "/images/team/pierre-helias.png",
+        width: 1282,
+        height: 1282,
+        alt: "Pierre — Équipe Agencilab",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Réserve ton appel avec Pierre",
+    description:
+      "Premier échange de 15 minutes avec Pierre pour faire connaissance et voir si Agencilab peut t'aider.",
+    images: ["/images/team/pierre-helias.png"],
+  },
 };
 
 const ICLOSED_URL =
