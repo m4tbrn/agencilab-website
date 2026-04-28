@@ -58,11 +58,16 @@ export default function IClosedReveal({
 
   useEffect(() => {
     if (!revealed) return;
+    const MAX_RESERVATIONS = 27;
     setReservations(11 + Math.floor(Math.random() * 10));
     const scheduleBump = () => {
       const delay = 180000 + Math.random() * 240000;
       return setTimeout(() => {
-        setReservations((c) => (c === null ? c : c + 1));
+        setReservations((c) => {
+          if (c === null) return c;
+          if (c >= MAX_RESERVATIONS) return c;
+          return c + 1;
+        });
         timeout = scheduleBump();
       }, delay);
     };
