@@ -117,7 +117,7 @@ export default function CoursContent({
             </div>
 
             <p className="mt-3 text-[0.8125rem] text-white/50">
-              <strong className="text-white">+900&nbsp;salariés</strong> l&apos;ont déjà suivi&nbsp;🇫🇷
+              <strong className="text-white">+900&nbsp;salariés</strong>{" "}l&apos;ont déjà suivi&nbsp;🇫🇷
             </p>
 
             {/* Bullets — ce que tu vas apprendre */}

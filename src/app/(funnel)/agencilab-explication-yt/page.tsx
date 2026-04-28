@@ -7,9 +7,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-// TODO: remplacer "BOKinTlwRUDuZ4BM" par l'ID Vidalytics de la VSL d'explication YouTube
-// (pour l'instant on utilise la VSL de la home par défaut)
-const VSL_ID = "BOKinTlwRUDuZ4BM";
+const VSL_ID = "xPVms50Et1ABNkA6";
 
 export default function AgencilabExplicationYt() {
   return (
