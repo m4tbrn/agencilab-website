@@ -1,24 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import FunnelFooter from "@/components/funnel/FunnelFooter";
 
 export const metadata: Metadata = {
   title: "Appel découverte avec Pierre — Agencilab",
   description:
-    "Premier échange de 15 minutes avec un membre de l'équipe de Louis pour faire connaissance et voir si Agencilab peut t'aider.",
+    "Premier échange de 15 minutes avec Pierre pour faire connaissance et voir si Agencilab peut t'aider.",
   robots: { index: false, follow: false },
 };
 
 const ICLOSED_URL =
   "https://app.iclosed.io/e/fit-mass-formation/decouverte-agencilab";
 const ICLOSED_TITLE = "Appel avec Pierre d'Agencilab (15min)";
-
-const bullets = [
-  "On apprend à te connaître (ta situation, tes objectifs, tes contraintes)",
-  "On répond à toutes tes questions sur Agencilab",
-  "On évalue ensemble si l'accompagnement est fait pour toi",
-];
 
 export default function DecouvertePierre() {
   return (
@@ -93,46 +86,12 @@ export default function DecouvertePierre() {
               </h1>
 
               <p className="mx-auto mb-3 max-w-xl text-[1rem] leading-[1.5] text-white/70 md:text-[1.0625rem]">
-                Cet appel n&apos;est pas l&apos;appel de candidature officiel
-                pour rejoindre Agencilab. C&apos;est un premier échange avec un
-                membre de l&apos;équipe de Louis pour faire connaissance et
-                voir si Agencilab peut réellement t&apos;aider.
+                C&apos;est un premier échange pour faire connaissance et voir
+                si Agencilab peut réellement t&apos;aider.
               </p>
             </div>
 
-            {/* Programme — bullets */}
-            <div className="glass-card mx-auto mt-10 max-w-[640px] rounded-2xl p-6 md:p-8">
-              <p className="mb-5 text-center text-[1rem] font-bold tracking-tight text-white md:text-[1.0625rem]">
-                Au programme pendant ces 15 minutes :
-              </p>
-              <ul className="flex flex-col gap-3">
-                {bullets.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2.5 text-[0.9375rem] leading-[1.45] text-white/80"
-                  >
-                    <CheckCircle
-                      size={20}
-                      weight="fill"
-                      className="mt-0.5 shrink-0 text-gold-400"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Note importante */}
-              <div className="mt-6 rounded-xl border border-gold-400/20 bg-gold-400/5 p-4">
-                <p className="text-[0.875rem] leading-[1.5] text-white/70">
-                  <strong className="text-gold-400">Important :</strong> à la
-                  fin de cet appel, si on voit que tu as un vrai intérêt et
-                  que ton profil correspond, on te programmera ton appel de
-                  candidature officiel avec un conseiller senior.
-                </p>
-              </div>
-            </div>
-
-            {/* iClosed widget */}
+{/* iClosed widget */}
             <div className="mx-auto mt-10 max-w-[760px]">
               <h2 className="mb-5 text-center text-[1.125rem] font-bold tracking-tight text-white md:text-[1.25rem]">
                 👇🏼 Choisis ton créneau
@@ -147,9 +106,6 @@ export default function DecouvertePierre() {
                   allow="camera; microphone"
                 />
               </div>
-              <p className="mt-4 text-center text-[0.8125rem] text-white/40">
-                Pas de pression, pas de blabla. Juste un échange honnête.
-              </p>
             </div>
           </div>
         </section>
