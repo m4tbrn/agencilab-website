@@ -122,7 +122,7 @@ export default function ExitIntentPopupVSL() {
           href={PIERRE_URL}
           className="block w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-[0.9375rem] font-semibold tracking-tight text-white/80 transition-all hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
         >
-          Je suis pressé, mais je veux bien en savoir durant un appel de 15 min
+          Je suis pressé, mais je veux bien en savoir plus durant un appel de 15 min
         </a>
         <p className="mt-2 text-[0.75rem] text-white/40">
           15 min avec Pierre · 100% gratuit
