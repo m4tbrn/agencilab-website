@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 const ICLOSED_URL =
-  "https://app.iclosed.io/e/fit-mass-formation/decouverte-agencilab";
+  "https://app.iclosed.io/e/fit-mass-formation/decouverte-pierre";
 const ICLOSED_TITLE = "Appel avec Pierre d'Agencilab (15min)";
 
 export default function DecouvertePierre() {
