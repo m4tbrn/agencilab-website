@@ -60,7 +60,7 @@ export default function ExplicationContent({
             {/* Anti-bullets */}
             <ul className="mb-6 flex flex-col items-center gap-x-5 gap-y-1.5 text-[0.9375rem] text-white/60 sm:flex-row sm:flex-wrap sm:justify-center">
               {[
-                "Sans école à 50 000 €",
+                "Sans expérience préalable",
                 "Sans quitter ton emploi",
                 "Sans diplôme",
               ].map((item) => (

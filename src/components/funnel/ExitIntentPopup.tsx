@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const COOLDOWN_MS = 1500; // évite les déclenchements multiples lors d'un même mouvement
 
@@ -55,17 +56,23 @@ export default function ExitIntentPopup() {
           </svg>
         </button>
 
-        <div
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] text-gold-400"
-          style={{ boxShadow: "0 4px 16px rgba(255, 122, 0, 0.25)" }}
-        >
-          <span className="h-2 w-2 rounded-full bg-gold-400" />
-          Attends !
+        {/* Chat triste dans un cercle */}
+        <div className="mb-5 flex justify-center">
+          <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-white/10 bg-navy-800 sm:h-32 sm:w-32">
+            <Image
+              src="/images/chat-triste.png"
+              alt=""
+              fill
+              className="object-cover"
+              sizes="128px"
+              priority
+            />
+          </div>
         </div>
 
         <h3 className="mb-3 text-[1.5rem] font-bold leading-[1.2] text-white md:text-[1.75rem]">
-          Le documentaire est{" "}
-          <span className="gradient-text">100% gratuit</span>
+          Attends&nbsp;! Tu nous quittes{" "}
+          <span className="gradient-text">déjà&nbsp;?</span>
         </h3>
         <p className="mb-6 text-[0.9375rem] leading-[1.5] text-white/60">
           Ne pars pas sans découvrir comment générer +3 500€/mois en parallèle de ton emploi grâce à une activité méconnue.

@@ -62,7 +62,7 @@ export default function TallyPopup({
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-200 ${
+      className={`fixed inset-0 z-[100] overflow-y-auto transition-opacity duration-200 ${
         isOpen
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
@@ -77,7 +77,7 @@ export default function TallyPopup({
       <button
         type="button"
         onClick={() => setIsOpen(false)}
-        className="absolute top-5 left-5 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+        className="fixed top-5 left-5 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
         aria-label="Fermer"
       >
         <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
@@ -90,7 +90,19 @@ export default function TallyPopup({
         </svg>
       </button>
 
-      <div className="relative z-10 w-full max-w-[720px] mx-auto px-4 md:px-6">
+      <div className="relative z-10 w-full max-w-[720px] mx-auto px-4 md:px-6 py-16 md:py-20">
+        {/* Indicateur durée — réduit la friction d'engagement */}
+        <div className="mb-5 flex justify-center">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-accent-400/30 bg-accent-400/10 px-5 py-2.5 text-[0.9375rem] font-semibold text-accent-400 backdrop-blur-sm md:text-[1.0625rem] md:px-6 md:py-3">
+            <span className="text-lg md:text-xl">⏱</span>
+            <span>
+              <span className="font-bold">15 sec</span>{" "}
+              <span className="text-white/70">·</span>{" "}
+              <span className="text-white/70">Quelques questions rapides</span>
+            </span>
+          </div>
+        </div>
+
         <iframe
           data-tally-src={tallySrc}
           loading="eager"

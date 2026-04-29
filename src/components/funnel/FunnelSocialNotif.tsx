@@ -66,6 +66,10 @@ export default function FunnelSocialNotif() {
         const loc = rand(LOCATIONS);
         setData({ name: rand(FIRST_NAMES), city: loc.city, code: loc.code });
         setVisible(true);
+        // Notifie les autres composants (LiveViewers) qu'un opt-in vient de tomber
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("agencilab:opt-in"));
+        }
         hideTimeoutRef.current = setTimeout(() => {
           setVisible(false);
           schedule();
@@ -88,6 +92,9 @@ export default function FunnelSocialNotif() {
       const loc = rand(LOCATIONS);
       setData({ name: rand(FIRST_NAMES), city: loc.city, code: loc.code });
       setVisible(true);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("agencilab:opt-in"));
+      }
       hideTimeoutRef.current = setTimeout(() => {
         setVisible(false);
       }, 10000);

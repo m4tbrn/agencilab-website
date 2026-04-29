@@ -4,6 +4,7 @@ import FunnelFooter from "./FunnelFooter";
 import TallyPopup from "./TallyPopup";
 import ExitIntentPopup from "./ExitIntentPopup";
 import FunnelSocialNotif from "./FunnelSocialNotif";
+import LiveViewers from "./LiveViewers";
 
 export default function CoursContent({
   tallySrc,
@@ -42,12 +43,28 @@ export default function CoursContent({
               />
             </div>
 
-            {/* Pre-headline — Documentaire exclusif Louis Esquier */}
-            <p className="mb-4 text-[1rem] font-semibold tracking-tight text-white/80 md:text-[1.125rem]">
-              Documentaire exclusif de Louis Esquier,{" "}
-              <span className="font-bold text-white">+270 000 abonnés</span>{" "}
-              sur YouTube
-            </p>
+            {/* Pre-headline — preuve sociale (texte + visages) */}
+            <div className="mb-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-3">
+              <div className="flex -space-x-2">
+                {[
+                  { src: "/images/visages/marina.jpg", name: "Marina" },
+                  { src: "/images/visages/yohann.jpg", name: "Yohann" },
+                  { src: "/images/visages/barthelemy.jpg", name: "Barthélémy" },
+                  { src: "/images/visages/stephanie.jpg", name: "Stéphanie" },
+                  { src: "/images/visages/clement.jpg", name: "Clément" },
+                ].map((face, i) => (
+                  <div
+                    key={i}
+                    className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-navy-950"
+                  >
+                    <Image src={face.src} alt={face.name} fill className="object-cover" sizes="28px" />
+                  </div>
+                ))}
+              </div>
+              <p className="text-[1rem] font-semibold tracking-tight text-white/80 md:text-[1.125rem]">
+                <span className="font-bold text-white">+ de 1&nbsp;000&nbsp;salariés</span>{" "}vivent déjà de cette activité&nbsp;🇫🇷
+              </p>
+            </div>
 
             {/* Headline */}
             <h1 className="mb-4 text-[clamp(2rem,5vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-white">
@@ -60,7 +77,7 @@ export default function CoursContent({
             {/* Anti-bullets */}
             <ul className="mb-6 flex flex-col items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-white/70 sm:flex-row sm:flex-wrap sm:justify-center">
               {[
-                "Sans école à 50 000 €",
+                "Sans expérience préalable",
                 "Sans quitter ton emploi",
                 "Sans diplôme",
               ].map((item) => (
@@ -85,6 +102,10 @@ export default function CoursContent({
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-br from-navy-950/30 to-navy-950/50" />
+              {/* Live badge overlay (style YouTube/Twitch) */}
+              <div className="absolute left-3 top-3 z-10">
+                <LiveViewers variant="overlay" />
+              </div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-400/95 shadow-2xl transition-transform hover:scale-110">
                   <svg className="ml-1 h-8 w-8 text-navy-950" fill="currentColor" viewBox="0 0 24 24">
@@ -105,9 +126,33 @@ export default function CoursContent({
               </a>
             </div>
 
-            <p className="mt-3 text-[0.8125rem] text-white/50">
-              <strong className="text-white">+ de 1&nbsp;000&nbsp;salariés</strong>{" "}vivent déjà de cette activité&nbsp;🇫🇷
-            </p>
+            {/* Faces row — preuve sociale visuelle */}
+            <div className="mt-5 flex flex-col items-center gap-2">
+              <div className="flex -space-x-2.5">
+                {[
+                  { src: "/images/visages/marina.jpg", name: "Marina" },
+                  { src: "/images/visages/yohann.jpg", name: "Yohann" },
+                  { src: "/images/visages/barthelemy.jpg", name: "Barthélémy" },
+                  { src: "/images/visages/stephanie.jpg", name: "Stéphanie" },
+                  { src: "/images/visages/julien.jpg", name: "Julien" },
+                  { src: "/images/visages/damien.jpg", name: "Damien" },
+                  { src: "/images/visages/clement.jpg", name: "Clément" },
+                ].map((face, i) => (
+                  <div
+                    key={i}
+                    className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-navy-950"
+                  >
+                    <Image src={face.src} alt={face.name} fill className="object-cover" sizes="36px" />
+                  </div>
+                ))}
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-navy-950 bg-accent-400/10 text-[9px] font-bold text-accent-400">
+                  +1k
+                </div>
+              </div>
+              <p className="text-[0.75rem] tracking-tight text-white/40">
+                Ils ont déjà sauté le pas
+              </p>
+            </div>
 
             {/* Bullets — ce que tu vas apprendre */}
             <div className="glass-card mx-auto mt-12 max-w-[560px] rounded-2xl p-6 text-left md:p-8">
