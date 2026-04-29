@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "live_viewers_count";
-const FRESH_WINDOW_MS = 90 * 1000; // si l'écriture date de < 90s, on garde la valeur
+// Fenêtre de fraîcheur étendue : tant que moins de 30 min, on garde la valeur
+// stockée pour rester COHÉRENT entre /decouvrir-yt et /agencilab-explication-yt.
+// (sinon le visiteur voit "34" sur la page 1 et "27" sur la page 2 = incohérent)
+const FRESH_WINDOW_MS = 30 * 60 * 1000;
 
 type StoredViewers = { count: number; ts: number };
 

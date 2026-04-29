@@ -79,27 +79,6 @@ export default function RootLayout({
         <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async />
         <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" data-cta-widget="GuibSlbXxsLW" async />
 
-        {/* Metricool tracker */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"5bac3f2627723e43b4b1eed3e610b5b9"})});`,
-          }}
-        />
-
-        {/* Hotjar Tracking Code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:6459200,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
-          }}
-        />
-
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{

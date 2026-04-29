@@ -191,6 +191,34 @@ body {
   to { --border-angle: 360deg; }
 }
 
+/* Video glow wrapper — halo blanc qui pulse autour du cadre vidéo */
+.video-glow-wrapper {
+  position: relative;
+  border-radius: 1rem;
+  animation: videoGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes videoGlowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      0 0 30px rgba(255, 255, 255, 0.15),
+      0 0 60px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.4),
+      0 0 50px rgba(255, 255, 255, 0.35),
+      0 0 100px rgba(255, 255, 255, 0.15);
+  }
+}
+
+@media (max-width: 640px) {
+  .video-glow-wrapper {
+    animation-duration: 4s;
+  }
+}
+
 /* Arrow hover animation */
 .cta-button svg {
   transition: transform 0.3s ease;

@@ -43,26 +43,31 @@ export default function CoursContent({
               />
             </div>
 
-            {/* Pre-headline — preuve sociale (texte + visages) */}
-            <div className="mb-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-3">
-              <div className="flex -space-x-2">
-                {[
-                  { src: "/images/visages/marina.jpg", name: "Marina" },
-                  { src: "/images/visages/yohann.jpg", name: "Yohann" },
-                  { src: "/images/visages/barthelemy.jpg", name: "Barthélémy" },
-                  { src: "/images/visages/stephanie.jpg", name: "Stéphanie" },
-                  { src: "/images/visages/clement.jpg", name: "Clément" },
-                ].map((face, i) => (
-                  <div
-                    key={i}
-                    className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-navy-950"
-                  >
-                    <Image src={face.src} alt={face.name} fill className="object-cover" sizes="28px" />
-                  </div>
-                ))}
+            {/* Pre-headline — Documentaire privé + price anchoring */}
+            <div className="mb-5 flex flex-col items-center gap-2">
+              <div
+                className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400 backdrop-blur-sm md:text-[0.8125rem]"
+                style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.15)" }}
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                  />
+                </svg>
+                Documentaire privé
               </div>
-              <p className="text-[1rem] font-semibold tracking-tight text-white/80 md:text-[1.125rem]">
-                <span className="font-bold text-white">+ de 1&nbsp;000&nbsp;salariés</span>{" "}vivent déjà de cette activité&nbsp;🇫🇷
+              <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
+                <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
+                <span className="text-white/40">→</span>{" "}
+                <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
               </p>
             </div>
 
@@ -88,29 +93,31 @@ export default function CoursContent({
               ))}
             </ul>
 
-            {/* Photo cliquable */}
+            {/* Photo cliquable avec halo lumineux rotatif */}
             <a
               href="#capture"
               aria-label="Accéder au documentaire"
-              className="relative mx-auto mb-5 mt-3 block aspect-[16/9] max-w-[760px] cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-navy-900/60 transition-transform hover:scale-[1.01]"
+              className="video-glow-wrapper mx-auto mb-5 mt-3 block aspect-[16/9] max-w-[760px] cursor-pointer rounded-2xl transition-transform hover:scale-[1.01]"
             >
-              <Image
-                src="/images/img-vsl-louis.webp"
-                alt="Louis Esquier — Documentaire Agencilab"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-navy-950/30 to-navy-950/50" />
-              {/* Live badge overlay (style YouTube/Twitch) */}
-              <div className="absolute left-3 top-3 z-10">
-                <LiveViewers variant="overlay" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-400/95 shadow-2xl transition-transform hover:scale-110">
-                  <svg className="ml-1 h-8 w-8 text-navy-950" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-900/60">
+                <Image
+                  src="/images/img-optin-3.png"
+                  alt="Louis Esquier — Documentaire Agencilab"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-navy-950/20 to-navy-950/40" />
+                {/* Live badge overlay (style YouTube/Twitch) */}
+                <div className="absolute left-3 top-3 z-10">
+                  <LiveViewers variant="overlay" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-2xl transition-transform hover:scale-110">
+                    <svg className="ml-0.5 h-7 w-7 text-navy-950" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </a>
@@ -119,10 +126,10 @@ export default function CoursContent({
             <div className="flex justify-center">
               <a
                 href="#capture"
-                className="cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 px-10 py-4 text-base font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30"
+                className="cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 px-10 py-4 text-base font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30 sm:py-5 sm:text-lg"
               >
-                Accéder au Documentaire (OFFERT)
-                <ArrowRight size={18} weight="bold" />
+                Accéder au Documentaire privé
+                <ArrowRight size={20} weight="bold" />
               </a>
             </div>
 
@@ -149,8 +156,8 @@ export default function CoursContent({
                   +1k
                 </div>
               </div>
-              <p className="text-[0.75rem] tracking-tight text-white/40">
-                Ils ont déjà sauté le pas
+              <p className="text-[0.875rem] tracking-tight text-white/60">
+                <span className="font-bold text-white">+ de 1&nbsp;000&nbsp;salariés</span>{" "}vivent déjà de cette activité&nbsp;🇫🇷
               </p>
             </div>
 

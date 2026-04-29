@@ -69,10 +69,20 @@ export default function TallyPopup({
       }`}
       aria-hidden={!isOpen}
     >
+      {/* Background — même DA que l'opt-in (navy + orbs + grid) */}
       <div
-        className="absolute inset-0 bg-[#1a1a1a]"
+        className="absolute inset-0 bg-navy-950"
         onClick={() => setIsOpen(false)}
       />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/4 top-1/4 h-[600px] w-[600px] rounded-full bg-navy-700/20 blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-navy-600/15 blur-[100px]" />
+      </div>
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[20%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
+        <div className="absolute left-[50%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.03] to-transparent" />
+        <div className="absolute left-[80%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
+      </div>
 
       <button
         type="button"
