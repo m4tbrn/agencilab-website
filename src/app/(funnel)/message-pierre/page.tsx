@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import FunnelFooter from "@/components/funnel/FunnelFooter";
+import MessagePierreCTA, {
+  MessageTemplate,
+} from "@/components/funnel/MessagePierreCTA";
 
 export const metadata: Metadata = {
   title: "Envoie un message à Pierre — Agencilab",
@@ -33,8 +35,6 @@ export const metadata: Metadata = {
     images: ["/images/team/pierre-helias.png"],
   },
 };
-
-const WHATSAPP_PIERRE = "https://wa.me/33777786388";
 
 export default function MessagePierre() {
   return (
@@ -147,6 +147,7 @@ export default function MessagePierre() {
                       rapidement&nbsp;: prénom, âge, et explique ta situation
                       actuelle (ton job, ce que tu cherches, où tu en es).
                     </p>
+                    <MessageTemplate />
                   </div>
                 </li>
 
@@ -166,21 +167,8 @@ export default function MessagePierre() {
               </ol>
             </div>
 
-            {/* CTA WhatsApp */}
-            <div className="mt-8 flex flex-col items-center">
-              <a
-                href={WHATSAPP_PIERRE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex w-full max-w-md items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-8 py-4 text-[1rem] font-bold tracking-tight text-white shadow-[0_8px_30px_rgba(37,211,102,0.35)] transition-all hover:bg-[#1fb858] hover:shadow-[0_12px_40px_rgba(37,211,102,0.5)] md:text-[1.0625rem]"
-              >
-                <WhatsappLogo size={22} weight="fill" className="shrink-0" />
-                Envoyer un message à Pierre
-              </a>
-              <p className="mt-3 text-[0.8125rem] text-white/50">
-                Réponse sous 24h · 100% gratuit
-              </p>
-            </div>
+            {/* Modèle à copier + CTA WhatsApp pré-rempli */}
+            <MessagePierreCTA />
           </div>
         </section>
       </main>
