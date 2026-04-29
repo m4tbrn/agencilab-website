@@ -137,16 +137,20 @@ export default function MessagePierre() {
                   </div>
                 </li>
 
-                <li className="flex items-start gap-4">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-400/15 text-[1rem] font-bold text-accent-400">
-                    2
-                  </span>
-                  <div className="flex-1 pt-1">
-                    <p className="text-[0.9375rem] leading-[1.5] text-white md:text-[1rem]">
-                      <strong className="font-semibold">Présente-toi</strong>{" "}
-                      rapidement&nbsp;: prénom, âge, et explique ta situation
-                      actuelle (ton job, ce que tu cherches, où tu en es).
-                    </p>
+                <li>
+                  <div className="flex items-start gap-4">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-400/15 text-[1rem] font-bold text-accent-400">
+                      2
+                    </span>
+                    <div className="flex-1 pt-1">
+                      <p className="text-[0.9375rem] leading-[1.5] text-white md:text-[1rem]">
+                        <strong className="font-semibold">Présente-toi</strong>{" "}
+                        rapidement&nbsp;: prénom, âge, et explique ta situation
+                        actuelle (ton job, ce que tu cherches, où tu en es).
+                      </p>
+                    </div>
+                  </div>
+                  <div className="sm:ml-[52px]">
                     <MessageTemplate />
                   </div>
                 </li>
