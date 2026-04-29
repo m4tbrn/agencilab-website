@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const VSL_ID = "xPVms50Et1ABNkA6";
 
-export default function AgencilabExplicationYt() {
+export default function ExplicationYt() {
   return (
     <ExplicationContent
       vslId={VSL_ID}

@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function AgencilabConfirmationYt() {
+export default function ConfirmationYt() {
   return <ConfirmationContent vslId="ddsqsE6mNeMIKQGV" />;
 }

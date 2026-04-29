@@ -128,7 +128,7 @@ export default function CoursContent({
                 href="#capture"
                 className="cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 px-10 py-4 text-base font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30 sm:py-5 sm:text-lg"
               >
-                Accéder au Documentaire privé
+                Accéder au Documentaire privé (GRATUIT)
                 <ArrowRight size={20} weight="bold" />
               </a>
             </div>
