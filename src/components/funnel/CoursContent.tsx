@@ -28,10 +28,10 @@ export default function CoursContent({
           <div className="absolute left-[80%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
         </div>
 
-        <section className="relative z-10 py-10 md:py-16">
+        <section className="relative z-10 pt-4 pb-10 md:pt-6 md:pb-16">
           <div className="mx-auto max-w-[920px] px-6 text-center">
             {/* Logo Agencilab */}
-            <div className="mb-6 flex justify-center">
+            <div className="mb-4 flex justify-center">
               <Image
                 src="/images/logo-white.png"
                 alt="Agencilab"
@@ -42,20 +42,9 @@ export default function CoursContent({
               />
             </div>
 
-            {/* Badge accessible débutants */}
-            <div
-              className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-accent-400/30 bg-accent-400/10 px-5 py-2 text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-accent-400"
-              style={{
-                boxShadow: "0 0 30px rgba(1, 95, 255, 0.15)",
-              }}
-            >
-              <CheckCircle size={14} weight="fill" />
-              Accessible même aux débutants
-            </div>
-
-            {/* Pre-headline */}
-            <p className="mb-3 text-[0.875rem] font-semibold tracking-tight text-white/60 md:text-[0.9375rem]">
-              Documentaire exclusif de Louis Esquier{" "}
+            {/* Pre-headline — Documentaire exclusif Louis Esquier */}
+            <p className="mb-4 text-[1rem] font-semibold tracking-tight text-white/80 md:text-[1.125rem]">
+              Documentaire exclusif de Louis Esquier,{" "}
               <span className="font-bold text-white">+270 000 abonnés</span>{" "}
               sur YouTube
             </p>
