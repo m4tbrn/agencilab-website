@@ -50,41 +50,66 @@ export default function CoursContent({
               />
             </div>
 
-            {/* Pre-headline — Documentaire privé + price anchoring */}
+            {/* Pre-headline — varie selon la source de trafic */}
             <div className="mb-5 flex flex-col items-center gap-2">
-              <div
-                className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400 backdrop-blur-sm md:text-[0.8125rem]"
-                style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.15)" }}
-              >
-                <svg
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                  />
-                </svg>
-                Documentaire privé
-              </div>
               {source === "meta" ? (
-                <p className="text-[0.8125rem] tracking-tight text-white/60 md:text-[0.875rem]">
-                  Documentaire exclusif de{" "}
-                  <span className="font-bold text-white">Louis Esquier</span>
-                  <span className="text-white/40">,</span>{" "}
-                  <span className="font-bold text-white">+270&nbsp;000 abonnés</span>{" "}
-                  sur YouTube
-                </p>
+                <div
+                  className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-sm"
+                  style={{ boxShadow: "0 0 30px rgba(1, 95, 255, 0.12)" }}
+                >
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/10">
+                    <Image
+                      src="/images/team/louis-esquier.png"
+                      alt="Louis Esquier"
+                      fill
+                      className="object-cover"
+                      sizes="40px"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start text-left">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[0.8125rem] font-bold tracking-tight text-white md:text-[0.875rem]">
+                        Documentaire exclusif de Louis Esquier
+                      </span>
+                      <CheckCircle
+                        size={15}
+                        weight="fill"
+                        className="shrink-0 text-[#015FFF]"
+                        aria-label="Compte certifié"
+                      />
+                    </div>
+                    <span className="text-[0.75rem] tracking-tight text-white/60 md:text-[0.8125rem]">
+                      +270&nbsp;000 abonnés sur YouTube
+                    </span>
+                  </div>
+                </div>
               ) : (
-                <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
-                  <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
-                  <span className="text-white/40">→</span>{" "}
-                  <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
-                </p>
+                <>
+                  <div
+                    className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400 backdrop-blur-sm md:text-[0.8125rem]"
+                    style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.15)" }}
+                  >
+                    <svg
+                      className="h-3.5 w-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                      />
+                    </svg>
+                    Documentaire privé
+                  </div>
+                  <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
+                    <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
+                    <span className="text-white/40">→</span>{" "}
+                    <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
+                  </p>
+                </>
               )}
             </div>
 
