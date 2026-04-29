@@ -59,7 +59,7 @@ export default function CoursContent({
                 >
                   <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/10">
                     <Image
-                      src="/images/team/louis-esquier.png"
+                      src="/images/team/louis-esquier.jpg"
                       alt="Louis Esquier"
                       fill
                       className="object-cover"
