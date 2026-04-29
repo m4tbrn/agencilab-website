@@ -5,6 +5,7 @@ import TallyPopup from "./TallyPopup";
 import ExitIntentPopup from "./ExitIntentPopup";
 import FunnelSocialNotif from "./FunnelSocialNotif";
 import LiveViewers from "./LiveViewers";
+import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export default function CoursContent({
   tallySrc,
@@ -57,27 +58,37 @@ export default function CoursContent({
                   className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-sm"
                   style={{ boxShadow: "0 0 30px rgba(1, 95, 255, 0.12)" }}
                 >
-                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/10">
-                    <Image
-                      src="/images/team/louis-esquier.jpg"
-                      alt="Louis Esquier"
-                      fill
-                      className="object-cover"
-                      sizes="40px"
-                    />
-                  </div>
-                  <div className="flex flex-col items-start text-left">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[0.8125rem] font-bold tracking-tight text-white md:text-[0.875rem]">
-                        Documentaire exclusif de Louis Esquier
-                      </span>
-                      <CheckCircle
-                        size={15}
-                        weight="fill"
-                        className="shrink-0 text-[#015FFF]"
-                        aria-label="Compte certifié"
+                  <div className="relative shrink-0">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-white/10">
+                      <Image
+                        src="/images/team/louis-esquier.jpg"
+                        alt="Louis Esquier"
+                        fill
+                        className="object-cover"
+                        sizes="40px"
                       />
                     </div>
+                    <span
+                      className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#015FFF] ring-2 ring-navy-950"
+                      aria-label="Compte certifié"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="h-2.5 w-2.5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-[0.8125rem] font-bold tracking-tight text-white md:text-[0.875rem]">
+                      Documentaire exclusif de Louis Esquier
+                    </span>
                     <span className="text-[0.75rem] tracking-tight text-white/60 md:text-[0.8125rem]">
                       +270&nbsp;000 abonnés sur YouTube
                     </span>
@@ -118,9 +129,9 @@ export default function CoursContent({
               {source === "meta" ? (
                 <>
                   Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">+2 000€ de Revenus Complémentaires</span>{" "}
+                  <span className="gradient-text">3&apos;500€ de Revenus Complémentaires</span>{" "}
                   grâce à cette{" "}
-                  <span className="gradient-text">activité méconnue</span>{" "}?
+                  <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
                 </>
               ) : (
                 <>
@@ -131,14 +142,6 @@ export default function CoursContent({
                 </>
               )}
             </h1>
-
-            {/* Sub-headline Meta — promesse de contenu de la vidéo */}
-            {source === "meta" && (
-              <p className="mx-auto mb-6 max-w-2xl text-[1rem] leading-[1.5] text-white/70 md:text-[1.0625rem]">
-                Ce que c&apos;est, à quoi ressemblent tes journées, ce que ça
-                rapporte, si c&apos;est fait pour toi.
-              </p>
-            )}
 
             {/* Anti-bullets */}
             <ul className="mb-6 flex flex-col items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-white/70 sm:flex-row sm:flex-wrap sm:justify-center">
@@ -189,7 +192,7 @@ export default function CoursContent({
                 href="#capture"
                 className="cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 px-10 py-4 text-base font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30 sm:py-5 sm:text-lg"
               >
-                Accéder au Documentaire privé (GRATUIT)
+                Accéder au Documentaire (GRATUIT)
                 <ArrowRight size={20} weight="bold" />
               </a>
             </div>
@@ -256,6 +259,7 @@ export default function CoursContent({
       <TallyPopup tallySrc={tallySrc} title={tallyTitle} />
       <ExitIntentPopup />
       <FunnelSocialNotif />
+      {source === "meta" && <MetaPixelEvent event="PageView" />}
     </>
   );
 }

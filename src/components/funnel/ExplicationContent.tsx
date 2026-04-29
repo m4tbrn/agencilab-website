@@ -1,19 +1,22 @@
 import Image from "next/image";
-import { X } from "@phosphor-icons/react/dist/ssr";
 import VidalyticsEmbed from "./VidalyticsEmbed";
 import IClosedReveal from "./IClosedReveal";
 import FunnelFooter from "./FunnelFooter";
 import LiveViewers from "./LiveViewers";
 import ExitIntentPopupVSL from "./ExitIntentPopupVSL";
+import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export default function ExplicationContent({
   vslId,
   iClosedUrl,
   iClosedTitle,
+  source = "yt",
 }: {
   vslId: string;
   iClosedUrl: string;
   iClosedTitle: string;
+  /** Source de trafic — "meta" ajoute une sub-headline curiosité sous la H1 */
+  source?: "yt" | "meta";
 }) {
   return (
     <>
@@ -50,27 +53,32 @@ export default function ExplicationContent({
               />
             </div>
 
-            {/* Headline */}
+            {/* Headline — DOIT rester identique à celle de la page opt-in du même funnel (scent match) */}
             <h1 className="mx-auto mb-5 max-w-[860px] text-center text-[clamp(1.75rem,4.5vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-white">
-              Comment gagner{" "}
-              <span className="gradient-text">+3 500 €/mois</span>{" "}
-              à côté de ton travail grâce à une{" "}
-              <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
+              {source === "meta" ? (
+                <>
+                  Comment des Français comme toi se créent{" "}
+                  <span className="gradient-text">3&apos;500€ de Revenus Complémentaires</span>{" "}
+                  grâce à cette{" "}
+                  <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
+                </>
+              ) : (
+                <>
+                  Comment gagner{" "}
+                  <span className="gradient-text">+3 500 €/mois</span>{" "}
+                  à côté de ton travail grâce à une{" "}
+                  <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
+                </>
+              )}
             </h1>
 
-            {/* Anti-bullets */}
-            <ul className="mb-6 flex flex-col items-center gap-x-5 gap-y-1.5 text-[0.9375rem] text-white/60 sm:flex-row sm:flex-wrap sm:justify-center">
-              {[
-                "Sans expérience préalable",
-                "Sans quitter ton emploi",
-                "Sans diplôme",
-              ].map((item) => (
-                <li key={item} className="inline-flex items-center gap-2 whitespace-nowrap">
-                  <X size={16} weight="bold" className="shrink-0 text-[#ef4444]" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Sub-headline Meta — promesse de contenu de la vidéo */}
+            {source === "meta" && (
+              <p className="mx-auto mb-6 max-w-2xl text-center text-[1rem] leading-[1.5] text-white/70 md:text-[1.0625rem]">
+                Ce que c&apos;est, à quoi ressemblent tes journées, ce que ça
+                rapporte, si c&apos;est fait pour toi.
+              </p>
+            )}
 
             <LiveViewers />
 
@@ -93,6 +101,7 @@ export default function ExplicationContent({
 
       <FunnelFooter />
       <ExitIntentPopupVSL />
+      {source === "meta" && <MetaPixelEvent event="Lead" />}
     </>
   );
 }

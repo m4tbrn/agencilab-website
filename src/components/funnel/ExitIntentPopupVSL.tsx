@@ -34,6 +34,7 @@ export default function ExitIntentPopupVSL() {
     return () => window.removeEventListener("agencilab:iclosed-revealed", onRevealed);
   }, []);
 
+  // Desktop : sortie de la souris par le haut du viewport
   useEffect(() => {
     const onLeave = (e: MouseEvent) => {
       if (disabledRef.current) return;
@@ -46,6 +47,29 @@ export default function ExitIntentPopupVSL() {
     };
     document.addEventListener("mouseout", onLeave);
     return () => document.removeEventListener("mouseout", onLeave);
+  }, []);
+
+  // Mobile : interception du bouton retour (back-button trap)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (!isTouch) return;
+
+    let fired = false;
+    history.pushState({ exitTrap: true }, "");
+
+    const onPopState = () => {
+      if (fired) return;
+      if (disabledRef.current) return;
+      if (isOpenRef.current) return;
+      if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
+      fired = true;
+      lastFiredRef.current = Date.now();
+      setIsOpen(true);
+      // Pas de re-push : prochaine pression "retour" laisse partir l'user
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   useEffect(() => {

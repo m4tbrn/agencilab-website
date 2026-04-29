@@ -79,7 +79,7 @@ export default function RootLayout({
         <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async />
         <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" data-cta-widget="GuibSlbXxsLW" async />
 
-        {/* Meta Pixel Code */}
+        {/* Meta Pixel Code — base seulement (pas de PageView auto, voir CoursContent pour le PageView capture) */}
         <script
           dangerouslySetInnerHTML={{
             __html: `!function(f,b,e,v,n,t,s)
@@ -90,19 +90,10 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '866353391210411');
-fbq('track', 'PageView');`,
+fbq('init', '866353391210411');`,
           }}
         />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=866353391210411&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
+
       </head>
       <body className="min-h-screen overflow-x-hidden">
         {children}

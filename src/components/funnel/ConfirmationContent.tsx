@@ -5,11 +5,15 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import FunnelFooter from "./FunnelFooter";
 import VidalyticsEmbed from "./VidalyticsEmbed";
+import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export default function ConfirmationContent({
   vslId,
+  source = "yt",
 }: {
   vslId?: string;
+  /** Source de trafic — fire les events Meta Pixel uniquement si "meta" */
+  source?: "yt" | "meta";
 }) {
   return (
     <>
@@ -184,6 +188,7 @@ export default function ConfirmationContent({
       </main>
 
       <FunnelFooter />
+      {source === "meta" && <MetaPixelEvent event="CompleteRegistration" />}
     </>
   );
 }

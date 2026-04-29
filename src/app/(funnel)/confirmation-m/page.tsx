@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function ConfirmationMeta() {
-  return <ConfirmationContent vslId="ddsqsE6mNeMIKQGV" />;
+export default function ConfirmationM() {
+  return <ConfirmationContent vslId="ddsqsE6mNeMIKQGV" source="meta" />;
 }

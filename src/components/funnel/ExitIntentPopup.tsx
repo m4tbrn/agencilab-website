@@ -14,12 +14,11 @@ export default function ExitIntentPopup() {
     isOpenRef.current = isOpen;
   }, [isOpen]);
 
+  // Desktop : sortie de la souris par le haut du viewport
   useEffect(() => {
     const onLeave = (e: MouseEvent) => {
-      // Ignore si déjà ouverte ou si on est dans le cooldown
       if (isOpenRef.current) return;
       if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
-      // Sortie par le haut du viewport
       if (e.clientY <= 0 && e.relatedTarget === null) {
         lastFiredRef.current = Date.now();
         setIsOpen(true);
@@ -27,6 +26,28 @@ export default function ExitIntentPopup() {
     };
     document.addEventListener("mouseout", onLeave);
     return () => document.removeEventListener("mouseout", onLeave);
+  }, []);
+
+  // Mobile : interception du bouton retour (back-button trap)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (!isTouch) return;
+
+    let fired = false;
+    history.pushState({ exitTrap: true }, "");
+
+    const onPopState = () => {
+      if (fired) return;
+      if (isOpenRef.current) return;
+      if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
+      fired = true;
+      lastFiredRef.current = Date.now();
+      setIsOpen(true);
+      // Pas de re-push : si l'user re-tape "retour" après avoir fermé le popup, il part normalement
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   useEffect(() => {

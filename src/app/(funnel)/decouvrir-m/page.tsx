@@ -8,12 +8,11 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-// TODO: créer un Tally distinct pour Meta (séparer les leads YT/Meta)
 const TALLY_SRC =
-  "https://tally.so/embed/mebzVQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
-const TALLY_TITLE = "Agencilab - Capture - Meta Principal";
+  "https://tally.so/embed/w4ZOZ5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+const TALLY_TITLE = "Formulaire de capture - VSL Agencilab - Facebook Ads";
 
-export default function DecouvrirMeta() {
+export default function DecouvrirM() {
   return (
     <CoursContent tallySrc={TALLY_SRC} tallyTitle={TALLY_TITLE} source="meta" />
   );

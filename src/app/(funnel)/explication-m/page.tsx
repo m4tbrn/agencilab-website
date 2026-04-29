@@ -7,19 +7,19 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const VSL_ID = "xPVms50Et1ABNkA6";
+const VSL_ID = "Uxp5zq5g68vM57AS";
 
-// TODO: créer une URL iClosed distincte pour Meta (séparer les RDV YT/Meta)
 const ICLOSED_URL =
-  "https://app.iclosed.io/e/fit-mass-formation/agencilab-meta-principal";
-const ICLOSED_TITLE = "(P) Réserve ton appel avec l'équipe de Louis";
+  "https://app.iclosed.io/e/fit-mass-formation/agencilab-neo";
+const ICLOSED_TITLE = "(N) Réserve ton appel avec l'équipe de Louis";
 
-export default function ExplicationMeta() {
+export default function ExplicationM() {
   return (
     <ExplicationContent
       vslId={VSL_ID}
       iClosedUrl={ICLOSED_URL}
       iClosedTitle={ICLOSED_TITLE}
+      source="meta"
     />
   );
 }
