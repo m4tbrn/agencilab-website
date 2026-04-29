@@ -115,18 +115,16 @@ export default function DecouvertePierre() {
               </p>
             </div>
 
-{/* iClosed widget */}
+            {/* iClosed widget (auto-resize via widget.js chargé dans layout) */}
             <div className="mt-10">
               <h2 className="mb-5 text-center text-[1.125rem] font-bold tracking-tight text-white md:text-[1.25rem]">
                 👇🏼 Choisis ton créneau
               </h2>
-              <iframe
-                src={ICLOSED_URL}
-                title={ICLOSED_TITLE}
-                scrolling="no"
-                loading="eager"
-                className="block h-[1100px] w-full border-0 md:h-[720px]"
-                allow="camera; microphone"
+              <div
+                className="iclosed-widget w-full"
+                data-url={ICLOSED_URL}
+                data-title={ICLOSED_TITLE}
+                style={{ width: "100%" }}
               />
             </div>
           </div>

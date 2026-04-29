@@ -11,34 +11,165 @@ function formatTime(ms: number) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
+// Bootstrap du helper Vidalytics (idempotent)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ensureVidalyticsHelper(): (id: string) => Promise<any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const w = window as any;
+  if (typeof w.getVidalyticsPlayer === "function") return w.getVidalyticsPlayer;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (function (v: any, a: string, p: string, i: string) {
+    v.getVidalyticsPlayer = (n: string) => {
+      v[a] = v[a] || {};
+      v[a][p] = v[a][p] || {};
+      const d = (v[a][p][n] = v[a][p][n] || {});
+      return new Promise((resolve) => {
+        if (d[i]) return resolve(d[i]);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let t: any;
+        Object.defineProperty(d, i, {
+          get: () => t,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          set(val: any) {
+            t = val;
+            resolve(val);
+          },
+        });
+      });
+    };
+  })(w, "_vidalytics", "embeds", "player");
+
+  return w.getVidalyticsPlayer;
+}
+
 export default function IClosedReveal({
   url,
   title,
   delayMs = DEFAULT_DELAY_MS,
+  vslId,
+  revealAfterSeconds,
 }: {
   url: string;
   title: string;
+  /** Wall-clock fallback (utilisé si pas de vslId) */
   delayMs?: number;
+  /** ID Vidalytics — active la sync VSL via la vraie API */
+  vslId?: string;
+  /** Reveal après X secondes de visionnage (default = delayMs / 1000) */
+  revealAfterSeconds?: number;
 }) {
   const [remainingMs, setRemainingMs] = useState(delayMs);
   const [revealed, setRevealed] = useState(false);
   const [reservations, setReservations] = useState<number | null>(null);
 
+  // ===== MODE 1 : Sync avec la VSL Vidalytics (vraie API) =====
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (!vslId) return;
 
-    // Scope la clé par URL iClosed pour ne pas mélanger plusieurs funnels
-    const storageKey = `iclosed_reveal_endtime:${url}`;
+    const targetSec = revealAfterSeconds ?? delayMs / 1000;
+    const accumKey = `vsl_watch_time:${vslId}`;
+    const revealedKey = `vsl_revealed:${vslId}`;
+    const EMBED_ID = `vidalytics_embed_${vslId}`;
 
+    if (window.localStorage.getItem(revealedKey) === "true") {
+      setRevealed(true);
+      return;
+    }
+
+    let accumulatedMs = Number(window.localStorage.getItem(accumKey) || 0);
+    if (!Number.isFinite(accumulatedMs) || accumulatedMs < 0) accumulatedMs = 0;
+
+    if (accumulatedMs >= targetSec * 1000) {
+      setRevealed(true);
+      window.localStorage.setItem(revealedKey, "true");
+      return;
+    }
+
+    setRemainingMs(targetSec * 1000 - accumulatedMs);
+
+    let isPlaying = false;
+    let lastTickAt = Date.now();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let playerRef: any = null;
+
+    const onPlay = () => {
+      console.log("[VSL Sync] ▶ play");
+      isPlaying = true;
+      lastTickAt = Date.now();
+    };
+    const onPause = () => {
+      console.log("[VSL Sync] ⏸ pause/ended");
+      isPlaying = false;
+    };
+
+    // Récupère le player via la vraie API Vidalytics
+    const getPlayer = ensureVidalyticsHelper();
+    getPlayer(EMBED_ID)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((player: any) => {
+        if (!player) {
+          console.warn("[VSL Sync] Player non disponible");
+          return;
+        }
+        playerRef = player;
+        console.log("[VSL Sync] ✓ Player ready, binding events");
+        player.on("play", onPlay);
+        player.on("pause", onPause);
+        player.on("ended", onPause);
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .catch((e: any) => console.warn("[VSL Sync] getVidalyticsPlayer failed", e));
+
+    // Tick d'accumulation
+    const interval = setInterval(() => {
+      if (!isPlaying) {
+        lastTickAt = Date.now();
+        return;
+      }
+      const now = Date.now();
+      const delta = now - lastTickAt;
+      lastTickAt = now;
+      accumulatedMs += delta;
+      window.localStorage.setItem(accumKey, String(accumulatedMs));
+
+      const remaining = Math.max(0, targetSec * 1000 - accumulatedMs);
+      setRemainingMs(remaining);
+
+      if (accumulatedMs >= targetSec * 1000) {
+        setRevealed(true);
+        window.localStorage.setItem(revealedKey, "true");
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      if (playerRef) {
+        try {
+          playerRef.off?.("play", onPlay);
+          playerRef.off?.("pause", onPause);
+          playerRef.off?.("ended", onPause);
+        } catch (e) {
+          console.warn("[VSL Sync] off failed", e);
+        }
+      }
+    };
+  }, [vslId, revealAfterSeconds, delayMs]);
+
+  // ===== MODE 2 : Wall-clock fallback (si pas de vslId) =====
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (vslId) return;
+
+    const storageKey = `iclosed_reveal_v2:${url}`;
     let endTime: number;
     const stored = window.localStorage.getItem(storageKey);
     const parsed = stored ? Number(stored) : NaN;
 
     if (Number.isFinite(parsed) && parsed > Date.now()) {
-      // Reprend là où on s'était arrêté
       endTime = parsed;
     } else {
-      // Premier passage (ou ancien chrono déjà expiré) : démarre/reset
       endTime = Date.now() + delayMs;
       window.localStorage.setItem(storageKey, String(endTime));
     }
@@ -54,8 +185,41 @@ export default function IClosedReveal({
     tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [delayMs, url]);
+  }, [delayMs, url, vslId]);
 
+  // Quand le bloc iClosed apparaît :
+  // 1) signal global pour couper l'ExitIntent popup (utilisateur engagé)
+  // 2) intercepte les messages `scrollIntoView` qu'iClosed envoie à widget.js
+  //    quand l'iframe grandit — sans ça, le widget fait un window.scrollTo
+  //    smooth qui jette le user en bas de page à chaque step.
+  // Le MutationObserver de widget.js (chargé dans layout.tsx) détecte
+  // la nouvelle `.iclosed-widget` div automatiquement, pas besoin de réinjecter.
+  useEffect(() => {
+    if (!revealed) return;
+    if (typeof window === "undefined") return;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).__agencilabIClosedRevealed = true;
+    window.dispatchEvent(new CustomEvent("agencilab:iclosed-revealed"));
+
+    const ICLOSED_ORIGINS = [
+      "https://app.iclosed.io",
+      "https://stage.iclosed.io",
+      "https://dev.iclosed.io",
+    ];
+    const blockAutoScroll = (event: MessageEvent) => {
+      if (!ICLOSED_ORIGINS.includes(event.origin)) return;
+      if (event?.data?.type === "scrollIntoView") {
+        event.stopImmediatePropagation();
+      }
+    };
+    window.addEventListener("message", blockAutoScroll);
+    return () => {
+      window.removeEventListener("message", blockAutoScroll);
+    };
+  }, [revealed]);
+
+  // Compteur de réservations
   useEffect(() => {
     if (!revealed) return;
     const MAX_RESERVATIONS = 27;
@@ -125,13 +289,11 @@ export default function IClosedReveal({
             👇🏼 Il te suffit de choisir un créneau juste ici 👇🏼
           </p>
 
-          <iframe
-            src={url}
-            title={title}
-            scrolling="no"
-            loading="eager"
-            className="w-full h-[1100px] md:h-[680px] border-0 block"
-            allow="camera; microphone"
+          <div
+            className="iclosed-widget w-full"
+            data-url={url}
+            data-title={title}
+            style={{ width: "100%" }}
           />
         </div>
       </div>
@@ -140,7 +302,7 @@ export default function IClosedReveal({
 
   return (
     <p className="text-center text-[1.125rem] md:text-[1.25rem] text-white mt-10 leading-[1.4] font-medium">
-      Reste bien jusqu&apos;à la fin, une surprise apparaitra ici dans{" "}
+      Reste bien jusqu&apos;à la fin, une surprise apparaîtra ici dans{" "}
       <span
         className="text-[#015FFF] tabular-nums text-[1.375rem] md:text-[1.5rem]"
         style={{ fontWeight: 800 }}

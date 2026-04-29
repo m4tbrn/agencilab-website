@@ -4,6 +4,7 @@ import VidalyticsEmbed from "./VidalyticsEmbed";
 import IClosedReveal from "./IClosedReveal";
 import FunnelFooter from "./FunnelFooter";
 import LiveViewers from "./LiveViewers";
+import ExitIntentPopupVSL from "./ExitIntentPopupVSL";
 
 export default function ExplicationContent({
   vslId,
@@ -80,12 +81,18 @@ export default function ExplicationContent({
               </div>
             </div>
 
-            <IClosedReveal url={iClosedUrl} title={iClosedTitle} />
+            <IClosedReveal
+              url={iClosedUrl}
+              title={iClosedTitle}
+              vslId={vslId}
+              revealAfterSeconds={18 * 60}
+            />
           </div>
         </section>
       </main>
 
       <FunnelFooter />
+      <ExitIntentPopupVSL />
     </>
   );
 }
