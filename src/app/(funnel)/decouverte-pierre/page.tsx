@@ -109,9 +109,18 @@ export default function DecouvertePierre() {
                 <span className="gradient-text">Pierre</span>
               </h1>
 
-              <p className="mx-auto mb-3 max-w-xl text-[1rem] leading-[1.5] text-white/70 md:text-[1.0625rem]">
-                C&apos;est un premier échange pour faire connaissance et voir
-                si Agencilab peut réellement t&apos;aider.
+              <p className="mx-auto mb-4 max-w-2xl text-[0.9375rem] leading-[1.55] text-white/80 md:text-[1rem]">
+                <strong className="font-semibold text-white">
+                  Cet appel n&apos;est pas l&apos;appel de candidature officiel
+                  pour rejoindre Agencilab.
+                </strong>
+              </p>
+              <p className="mx-auto mb-3 max-w-2xl text-[0.9375rem] leading-[1.55] text-white/70 md:text-[1rem]">
+                C&apos;est un premier échange avec Pierre, membre de
+                l&apos;équipe de Louis pour faire connaissance, comprendre où
+                tu en es aujourd&apos;hui, et voir ensemble si Agencilab peut
+                réellement t&apos;aider à te créer un deuxième salaire en
+                parallèle de ton emploi.
               </p>
             </div>
 

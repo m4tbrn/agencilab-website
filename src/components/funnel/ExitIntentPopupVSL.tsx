@@ -63,7 +63,7 @@ export default function ExitIntentPopupVSL() {
         className="absolute inset-0 bg-black/85 backdrop-blur-sm"
         onClick={() => setIsOpen(false)}
       />
-      <div className="relative z-10 w-full max-w-[560px] rounded-3xl border border-white/10 bg-navy-900/95 p-8 text-center shadow-2xl backdrop-blur-xl md:p-10">
+      <div className="relative z-10 w-full max-w-[560px] rounded-3xl border border-white/10 bg-navy-900/95 p-8 text-center shadow-2xl backdrop-blur-xl md:max-w-[720px] md:p-10">
         <button
           type="button"
           onClick={() => setIsOpen(false)}
@@ -90,7 +90,7 @@ export default function ExitIntentPopupVSL() {
         </div>
 
         {/* Headline */}
-        <h3 className="mb-3 text-[1.5rem] font-bold leading-[1.2] text-white md:text-[1.75rem]">
+        <h3 className="mb-3 text-[1.5rem] font-bold leading-[1.2] text-white md:whitespace-nowrap md:text-[1.75rem]">
           Stop&nbsp;! Tu vas manquer{" "}
           <span className="gradient-text">la meilleure partie</span>
         </h3>
@@ -98,8 +98,8 @@ export default function ExitIntentPopupVSL() {
         {/* Body */}
         <p className="mb-7 text-[0.9375rem] leading-[1.55] text-white/70 md:text-[1rem]">
           Le passage le plus important arrive dans quelques minutes. C&apos;est
-          là que Louis révèle la méthode complète pour démarrer dès cette
-          semaine. Reste encore un peu, ça vaut le coup.
+          là que je révèle la méthode complète pour démarrer cette activité et
+          gagner +3&apos;500€/mois dans 90j. Reste encore un peu, ça vaut le coup.
         </p>
 
         {/* CTA principal — rester */}
@@ -122,7 +122,7 @@ export default function ExitIntentPopupVSL() {
           href={PIERRE_URL}
           className="block w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-[0.9375rem] font-semibold tracking-tight text-white/80 transition-all hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
         >
-          Je suis pressé, je veux un appel découverte
+          Je suis pressé, mais je veux bien en savoir durant un appel de 15 min
         </a>
         <p className="mt-2 text-[0.75rem] text-white/40">
           15 min avec Pierre · 100% gratuit
