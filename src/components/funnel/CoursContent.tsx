@@ -115,11 +115,30 @@ export default function CoursContent({
 
             {/* Headline */}
             <h1 className="mb-4 text-[clamp(2rem,5vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-white">
-              Comment gagner{" "}
-              <span className="gradient-text">+3 500 €/mois</span>{" "}
-              à côté de ton travail grâce à une{" "}
-              <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
+              {source === "meta" ? (
+                <>
+                  Comment des Français comme toi se créent{" "}
+                  <span className="gradient-text">+2 000€ de Revenus Complémentaires</span>{" "}
+                  grâce à cette{" "}
+                  <span className="gradient-text">activité méconnue</span>{" "}?
+                </>
+              ) : (
+                <>
+                  Comment gagner{" "}
+                  <span className="gradient-text">+3 500 €/mois</span>{" "}
+                  à côté de ton travail grâce à une{" "}
+                  <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
+                </>
+              )}
             </h1>
+
+            {/* Sub-headline Meta — promesse de contenu de la vidéo */}
+            {source === "meta" && (
+              <p className="mx-auto mb-6 max-w-2xl text-[1rem] leading-[1.5] text-white/70 md:text-[1.0625rem]">
+                Ce que c&apos;est, à quoi ressemblent tes journées, ce que ça
+                rapporte, si c&apos;est fait pour toi.
+              </p>
+            )}
 
             {/* Anti-bullets */}
             <ul className="mb-6 flex flex-col items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-white/70 sm:flex-row sm:flex-wrap sm:justify-center">
