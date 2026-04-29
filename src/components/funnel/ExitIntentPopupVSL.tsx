@@ -122,7 +122,7 @@ export default function ExitIntentPopupVSL() {
           href={PIERRE_URL}
           className="block w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-[0.9375rem] font-semibold tracking-tight text-white/80 transition-all hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
         >
-          Je suis pressé, je préfère envoyer un message à Pierre
+          Je suis pressé, je préfère envoyer un message à l&apos;équipe d&apos;Agencilab
         </a>
         <p className="mt-2 text-[0.75rem] text-white/40">
           Réponse sous 24h · 100% gratuit
