@@ -9,9 +9,16 @@ import LiveViewers from "./LiveViewers";
 export default function CoursContent({
   tallySrc,
   tallyTitle,
+  source = "yt",
 }: {
   tallySrc: string;
   tallyTitle: string;
+  /**
+   * Source de trafic — pilote la pre-headline :
+   * - "yt"   : preuve sociale produit ("Gratuit si tu viens de YouTube")
+   * - "meta" : autorité Louis ("Documentaire exclusif de Louis Esquier, +270k abonnés sur YouTube")
+   */
+  source?: "yt" | "meta";
 }) {
   return (
     <>
@@ -64,11 +71,21 @@ export default function CoursContent({
                 </svg>
                 Documentaire privé
               </div>
-              <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
-                <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
-                <span className="text-white/40">→</span>{" "}
-                <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
-              </p>
+              {source === "meta" ? (
+                <p className="text-[0.8125rem] tracking-tight text-white/60 md:text-[0.875rem]">
+                  Documentaire exclusif de{" "}
+                  <span className="font-bold text-white">Louis Esquier</span>
+                  <span className="text-white/40">,</span>{" "}
+                  <span className="font-bold text-white">+270&nbsp;000 abonnés</span>{" "}
+                  sur YouTube
+                </p>
+              ) : (
+                <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
+                  <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
+                  <span className="text-white/40">→</span>{" "}
+                  <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
+                </p>
+              )}
             </div>
 
             {/* Headline */}
