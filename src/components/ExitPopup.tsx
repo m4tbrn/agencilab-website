@@ -1,24 +1,63 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+
+const COOLDOWN_MS = 1500;
+// Lien direct WhatsApp Pierre — bypass /message-pierre pour shortcut maximal
+const PIERRE_WA = "https://wa.me/33684080455";
 
 export default function ExitPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const isOpenRef = useRef(false);
+  const dismissedRef = useRef(false);
+  const lastFiredRef = useRef(0);
 
   useEffect(() => {
-    if (dismissed) return;
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
+  useEffect(() => {
+    dismissedRef.current = dismissed;
+  }, [dismissed]);
 
+  // Desktop : sortie de la souris par le haut du viewport
+  useEffect(() => {
+    if (dismissed) return;
     const handleMouseLeave = (e: MouseEvent) => {
+      if (isOpenRef.current) return;
+      if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
       if (e.clientY <= 0) {
+        lastFiredRef.current = Date.now();
         setIsOpen(true);
       }
     };
-
     document.addEventListener("mouseleave", handleMouseLeave);
     return () => document.removeEventListener("mouseleave", handleMouseLeave);
   }, [dismissed]);
+
+  // Mobile : interception du bouton retour (back-button trap)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (!isTouch) return;
+
+    let fired = false;
+    history.pushState({ exitTrap: true }, "");
+
+    const onPopState = () => {
+      if (fired) return;
+      if (dismissedRef.current) return;
+      if (isOpenRef.current) return;
+      if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
+      fired = true;
+      lastFiredRef.current = Date.now();
+      setIsOpen(true);
+      // Pas de re-push : prochaine pression "retour" laisse partir l'user
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -89,12 +128,19 @@ export default function ExitPopup() {
             </svg>
           </a>
 
-          <button
+          {/* CTA secondaire — WhatsApp Pierre fast-lane */}
+          <a
+            href={PIERRE_WA}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={close}
-            className="mt-4 block w-full text-sm text-white/30 transition-colors hover:text-white/50"
+            className="mt-3 block w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-[0.9375rem] font-semibold tracking-tight text-white/80 transition-all hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
           >
-            Non, gagner 1 500 à 3 500€ en plus ne m&apos;intéresse pas
-          </button>
+            Je suis pressé, je préfère envoyer un message à l&apos;équipe d&apos;Agencilab
+          </a>
+          <p className="mt-2 text-[0.75rem] text-white/40">
+            Réponse sous 24h · 100% gratuit
+          </p>
         </div>
       </div>
 

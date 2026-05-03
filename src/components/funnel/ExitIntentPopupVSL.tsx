@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const COOLDOWN_MS = 1500;
-const PIERRE_URL = "/message-pierre";
+// Lien direct WhatsApp avec le numéro de Pierre — bypass /message-pierre
+// pour shortcut maximal sur l'exit intent (l'utilisateur veut partir : un clic = WA ouvert)
+const PIERRE_URL = "https://wa.me/33684080455";
 
 export default function ExitIntentPopupVSL() {
   const [isOpen, setIsOpen] = useState(false);
@@ -141,9 +143,11 @@ export default function ExitIntentPopupVSL() {
           </svg>
         </a>
 
-        {/* CTA secondaire — pressé */}
+        {/* CTA secondaire — pressé (lien direct WhatsApp Pierre) */}
         <a
           href={PIERRE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="block w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-[0.9375rem] font-semibold tracking-tight text-white/80 transition-all hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
         >
           Je suis pressé, je préfère envoyer un message à l&apos;équipe d&apos;Agencilab

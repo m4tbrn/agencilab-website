@@ -49,6 +49,8 @@ export default function IClosedReveal({
   delayMs = DEFAULT_DELAY_MS,
   vslId,
   revealAfterSeconds,
+  giftMessage,
+  revealImmediately = false,
 }: {
   url: string;
   title: string;
@@ -58,14 +60,19 @@ export default function IClosedReveal({
   vslId?: string;
   /** Reveal après X secondes de visionnage (default = delayMs / 1000) */
   revealAfterSeconds?: number;
+  /** Message de cadeau exclusif affiché en callout doré au-dessus du calendrier (si présent) */
+  giftMessage?: string;
+  /** Bypass timer/sync VSL — affiche le calendrier directement (audiences chaudes) */
+  revealImmediately?: boolean;
 }) {
   const [remainingMs, setRemainingMs] = useState(delayMs);
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(revealImmediately);
   const [reservations, setReservations] = useState<number | null>(null);
 
   // ===== MODE 1 : Sync avec la VSL Vidalytics (vraie API) =====
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (revealImmediately) return;
     if (!vslId) return;
 
     const targetSec = revealAfterSeconds ?? delayMs / 1000;
@@ -160,6 +167,7 @@ export default function IClosedReveal({
   // ===== MODE 2 : Wall-clock fallback (si pas de vslId) =====
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (revealImmediately) return;
     if (vslId) return;
 
     const storageKey = `iclosed_reveal_v2:${url}`;
@@ -188,7 +196,8 @@ export default function IClosedReveal({
   }, [delayMs, url, vslId]);
 
   // Quand le bloc iClosed apparaît :
-  // 1) signal global pour couper l'ExitIntent popup (utilisateur engagé)
+  // 1) signal global pour couper l'ExitIntent popup (UNIQUEMENT sur un vrai reveal,
+  //    pas sur un revealImmediately où l'user n'a pas démontré d'engagement)
   // 2) intercepte les messages `scrollIntoView` qu'iClosed envoie à widget.js
   //    quand l'iframe grandit — sans ça, le widget fait un window.scrollTo
   //    smooth qui jette le user en bas de page à chaque step.
@@ -198,9 +207,15 @@ export default function IClosedReveal({
     if (!revealed) return;
     if (typeof window === "undefined") return;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).__agencilabIClosedRevealed = true;
-    window.dispatchEvent(new CustomEvent("agencilab:iclosed-revealed"));
+    // Signal "user engagé" : seulement si le reveal vient d'un vrai parcours
+    // (timer écoulé / VSL regardée). Sur revealImmediately (pages warm où le
+    // calendrier s'affiche d'office), l'exit popup doit rester actif puisque
+    // l'user n'a démontré aucun engagement.
+    if (!revealImmediately) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__agencilabIClosedRevealed = true;
+      window.dispatchEvent(new CustomEvent("agencilab:iclosed-revealed"));
+    }
 
     const ICLOSED_ORIGINS = [
       "https://app.iclosed.io",
@@ -217,7 +232,7 @@ export default function IClosedReveal({
     return () => {
       window.removeEventListener("message", blockAutoScroll);
     };
-  }, [revealed]);
+  }, [revealed, revealImmediately]);
 
   // Compteur de réservations
   useEffect(() => {
@@ -284,6 +299,19 @@ export default function IClosedReveal({
               <strong className="text-[#ef4444]">plusieurs milliers d&apos;euros</strong>.
             </p>
           </div>
+
+          {giftMessage && (
+            <div
+              className="max-w-[720px] mx-auto mb-6 p-5 md:p-6 rounded-2xl border border-[#FF7A00]/50 bg-[#FF7A00]/10 text-left"
+              style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.18)" }}
+            >
+              <p className="text-[0.9375rem] md:text-[1rem] text-white font-600 leading-[1.55]">
+                <span className="mr-1">🎁</span>
+                <strong className="text-[#FF7A00]">Cadeau exclusif</strong>{" "}
+                {giftMessage}
+              </p>
+            </div>
+          )}
 
           <p className="text-[1rem] md:text-[1.0625rem] text-white/90 mb-4">
             👇🏼 Il te suffit de choisir un créneau juste ici 👇🏼

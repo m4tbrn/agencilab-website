@@ -4,7 +4,12 @@ import IClosedReveal from "./IClosedReveal";
 import FunnelFooter from "./FunnelFooter";
 import LiveViewers from "./LiveViewers";
 import ExitIntentPopupVSL from "./ExitIntentPopupVSL";
+import MechanismSection from "./MechanismSection";
+import WarmTrustSection from "./WarmTrustSection";
+import GuaranteeSection from "./GuaranteeSection";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
+
+type Source = "yt" | "meta" | "newsletter" | "bienvenue";
 
 export default function ExplicationContent({
   vslId,
@@ -15,22 +20,44 @@ export default function ExplicationContent({
   vslId: string;
   iClosedUrl: string;
   iClosedTitle: string;
-  /** Source de trafic — "meta" ajoute une sub-headline curiosité sous la H1 */
-  source?: "yt" | "meta";
+  /**
+   * Source de trafic — pilote :
+   * - "meta" : H1 spécifique + sub-headline curiosité + Pixel Lead
+   * - "newsletter" / "bienvenue" : bandeau Louis warm (au lieu d'alerte)
+   */
+  source?: Source;
 }) {
   return (
     <>
-      {/* Bandeau message Louis */}
-      <div className="border-b border-gold-400/20 bg-gold-400/10">
-        <div className="mx-auto max-w-[1100px] px-6 py-3">
-          <p className="text-center text-[0.875rem] font-semibold text-gold-400">
-            ⚠️ Message de Louis :{" "}
-            <em className="font-medium not-italic text-white/80">
-              «&nbsp;Ne ferme pas cette page, j&apos;ai une annonce inédite à te faire.&nbsp;»
-            </em>
-          </p>
+      {/* Bandeau top — pour newsletter/bienvenue : warning + photo + preuve.
+          Pour yt/meta : simple alerte texte. */}
+      {source === "newsletter" || source === "bienvenue" ? (
+        <div className="border-b border-gold-400/20 bg-gold-400/10">
+          <div className="mx-auto max-w-[1100px] px-6 py-4">
+            <p className="mx-auto max-w-3xl text-center text-[0.8125rem] leading-[1.45] text-white/85 md:text-[0.875rem]">
+              <span className="mr-1">⚠️</span>
+              Il est possible que tu aies déjà commencé à regarder cette
+              vidéo. Je te conseille de la regarder{" "}
+              <strong className="text-white">attentivement jusqu&apos;à la fin</strong>.{" "}
+              <strong className="text-gold-400">
+                Des centaines de Français
+              </strong>{" "}
+              ont changé de vie en découvrant cette activité.
+            </p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="border-b border-gold-400/20 bg-gold-400/10">
+          <div className="mx-auto max-w-[1100px] px-6 py-3">
+            <p className="text-center text-[0.875rem] font-semibold text-gold-400">
+              ⚠️ Message de Louis :{" "}
+              <em className="font-medium not-italic text-white/80">
+                «&nbsp;Ne ferme pas cette page, j&apos;ai une annonce inédite à te faire.&nbsp;»
+              </em>
+            </p>
+          </div>
+        </div>
+      )}
 
       <main className="relative flex-1 overflow-hidden">
         {/* Background gradient orbs */}
@@ -55,10 +82,19 @@ export default function ExplicationContent({
 
             {/* Headline — DOIT rester identique à celle de la page opt-in du même funnel (scent match) */}
             <h1 className="mx-auto mb-5 max-w-[860px] text-center text-[clamp(1.75rem,4.5vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-white">
-              {source === "meta" ? (
+              {source === "newsletter" || source === "bienvenue" ? (
+                <>
+                  Quelle est cette{" "}
+                  <span className="gradient-text">activité méconnue</span>{" "}
+                  qui rapporte déjà{" "}
+                  <span className="gradient-text">+2 987€/mois</span>{" "}
+                  en moyenne à{" "}
+                  <span className="gradient-text">+1 018 Français</span>{" "}?
+                </>
+              ) : source === "meta" ? (
                 <>
                   Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">3&apos;500€ de Revenus Complémentaires</span>{" "}
+                  <span className="gradient-text">3&apos;000€ de Revenus Complémentaires</span>{" "}
                   grâce à cette{" "}
                   <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
                 </>
@@ -89,11 +125,27 @@ export default function ExplicationContent({
               </div>
             </div>
 
+            {/* Sections warm — explique le mécanisme + preuves avant l'iClosed.
+                Le timer 18 min est désactivé pour ces sources : la qualification
+                se fait par le scroll à travers ces sections. */}
+            {(source === "newsletter" || source === "bienvenue") && (
+              <>
+                <MechanismSection />
+                <WarmTrustSection />
+                <GuaranteeSection />
+              </>
+            )}
+
             <IClosedReveal
               url={iClosedUrl}
               title={iClosedTitle}
               vslId={vslId}
-              revealAfterSeconds={18 * 60}
+              revealImmediately
+              giftMessage={
+                source === "newsletter" || source === "bienvenue"
+                  ? "réservé à ceux qui réservent leur appel. Mon équipe t'enverra le détail au moment de l'échange."
+                  : undefined
+              }
             />
           </div>
         </section>

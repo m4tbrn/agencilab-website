@@ -129,7 +129,7 @@ export default function CoursContent({
               {source === "meta" ? (
                 <>
                   Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">3&apos;500€ de Revenus Complémentaires</span>{" "}
+                  <span className="gradient-text">3&apos;000€ de Revenus Complémentaires</span>{" "}
                   grâce à cette{" "}
                   <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
                 </>
