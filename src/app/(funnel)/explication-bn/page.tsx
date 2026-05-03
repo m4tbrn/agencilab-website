@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import ExplicationContent from "@/components/funnel/ExplicationContent";
 
 export const metadata: Metadata = {
@@ -15,11 +16,19 @@ const ICLOSED_TITLE = "(SDB) Réserve ton appel avec l'équipe de Louis";
 
 export default function ExplicationBn() {
   return (
-    <ExplicationContent
-      vslId={VSL_ID}
-      iClosedUrl={ICLOSED_URL}
-      iClosedTitle={ICLOSED_TITLE}
-      source="bienvenue"
-    />
+    <>
+      <ExplicationContent
+        vslId={VSL_ID}
+        iClosedUrl={ICLOSED_URL}
+        iClosedTitle={ICLOSED_TITLE}
+        source="bienvenue"
+      />
+      {/* iClosed Lift Widget — bienvenue (1fp_C3NxGqdj) */}
+      <Script
+        src="https://app.iclosed.io/assets/widget.js"
+        data-cta-widget="1fp_C3NxGqdj"
+        strategy="afterInteractive"
+      />
+    </>
   );
 }
