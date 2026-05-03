@@ -76,13 +76,23 @@ export default function RootLayout({
     <html lang="fr" className={`${interTight.variable} ${caveat.variable} antialiased`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        {/* iClosed Lift Widget site-wide (homepage + pages générales).
-            Les widgets newsletter/bienvenue sont chargés directement sur leurs pages
-            respectives pour que la vérification iClosed les détecte sur l'URL configurée. */}
+        {/* iClosed Lift Widgets — tous site-wide sur le NDD principal */}
         <script
           type="text/javascript"
           src="https://app.iclosed.io/assets/widget.js"
           data-cta-widget="GuibSlbXxsLW"
+          async
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://app.iclosed.io/assets/widget.js"
+          data-cta-widget="TfOxNQ_5L3pA"
+          async
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://app.iclosed.io/assets/widget.js"
+          data-cta-widget="1fp_C3NxGqdj"
           async
         ></script>
 
