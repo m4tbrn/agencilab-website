@@ -76,12 +76,17 @@ export default function RootLayout({
     <html lang="fr" className={`${interTight.variable} ${caveat.variable} antialiased`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        {/* iClosed widget : un seul tag suffit. Le data-cta-widget installe la CTA Lift,
-            et g() scanne aussi les .iclosed-widget divs (inline scheduling) sur la même exécution. */}
+        {/* iClosed Lift Widgets — deux CTAs flottantes site-wide */}
         <script
           type="text/javascript"
           src="https://app.iclosed.io/assets/widget.js"
           data-cta-widget="TfOxNQ_5L3pA"
+          async
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://app.iclosed.io/assets/widget.js"
+          data-cta-widget="GuibSlbXxsLW"
           async
         ></script>
 
