@@ -140,7 +140,10 @@ export default function ExplicationContent({
               url={iClosedUrl}
               title={iClosedTitle}
               vslId={vslId}
-              revealImmediately
+              revealAfterSeconds={18 * 60}
+              revealImmediately={
+                source === "newsletter" || source === "bienvenue"
+              }
               giftMessage={
                 source === "newsletter" || source === "bienvenue"
                   ? "réservé à ceux qui réservent leur appel. Mon équipe t'enverra le détail au moment de l'échange."

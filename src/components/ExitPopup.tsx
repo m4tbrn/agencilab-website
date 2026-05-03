@@ -4,8 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 const COOLDOWN_MS = 1500;
-// Lien direct WhatsApp Pierre — bypass /message-pierre pour shortcut maximal
-const PIERRE_WA = "https://wa.me/33684080455";
+const PIERRE_WA = "/message-pierre";
 
 export default function ExitPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -128,18 +127,16 @@ export default function ExitPopup() {
             </svg>
           </a>
 
-          {/* CTA secondaire — WhatsApp Pierre fast-lane */}
+          {/* CTA secondaire — page Pierre fast-lane (avec template à copier) */}
           <a
             href={PIERRE_WA}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={close}
             className="mt-3 block w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-[0.9375rem] font-semibold tracking-tight text-white/80 transition-all hover:border-accent-400/40 hover:bg-accent-400/10 hover:text-white"
           >
             Je suis pressé, je préfère envoyer un message à l&apos;équipe d&apos;Agencilab
           </a>
           <p className="mt-2 text-[0.75rem] text-white/40">
-            Réponse sous 24h · 100% gratuit
+            Réponse sous 2-4h · 100% gratuit
           </p>
         </div>
       </div>

@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import FunnelFooter from "@/components/funnel/FunnelFooter";
-import MessagePierreCTA, {
-  MessageTemplate,
-} from "@/components/funnel/MessagePierreCTA";
+import MessagePierreCTA from "@/components/funnel/MessagePierreCTA";
 
 export const metadata: Metadata = {
   title: "Envoie un message à Pierre — Agencilab",
   description:
-    "Pas le temps de regarder la vidéo ? Envoie un message direct à Pierre sur WhatsApp, il te répond sous 24h.",
+    "Pas le temps de regarder la vidéo ? Envoie un message direct à Pierre sur WhatsApp, il te répond sous 2-4h.",
   robots: { index: false, follow: false },
   openGraph: {
     title: "Envoie un message à Pierre — Agencilab",
     description:
-      "Pas le temps de regarder la vidéo ? Envoie un message direct à Pierre sur WhatsApp, il te répond sous 24h.",
+      "Pas le temps de regarder la vidéo ? Envoie un message direct à Pierre sur WhatsApp, il te répond sous 2-4h.",
     type: "website",
     locale: "fr_FR",
     siteName: "Agencilab",
@@ -31,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Envoie un message à Pierre — Agencilab",
     description:
-      "Pas le temps de regarder la vidéo ? Envoie un message direct à Pierre sur WhatsApp, il te répond sous 24h.",
+      "Pas le temps de regarder la vidéo ? Envoie un message direct à Pierre sur WhatsApp, il te répond sous 2-4h.",
     images: ["/images/team/pierre-helias.png"],
   },
 };
@@ -147,11 +145,10 @@ export default function MessagePierre() {
                         <strong className="font-semibold">Présente-toi</strong>{" "}
                         rapidement&nbsp;: prénom, âge, et explique ta situation
                         actuelle (ton job, ce que tu cherches, où tu en es).
+                        Le message d&apos;exemple est déjà pré-rempli quand tu
+                        cliques sur le bouton ci-dessous.
                       </p>
                     </div>
-                  </div>
-                  <div className="sm:ml-[52px]">
-                    <MessageTemplate />
                   </div>
                 </li>
 
@@ -162,7 +159,7 @@ export default function MessagePierre() {
                   <div className="flex-1 pt-1">
                     <p className="text-[0.9375rem] leading-[1.5] text-white md:text-[1rem]">
                       <strong className="font-semibold">
-                        Pierre te répond sous 24h
+                        Pierre te répond sous 2-4h
                       </strong>{" "}
                       avec un retour personnalisé.
                     </p>

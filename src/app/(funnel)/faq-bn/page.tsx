@@ -134,7 +134,7 @@ export default function FaqBn() {
               </h2>
               <p className="mx-auto mb-6 max-w-xl text-[0.9375rem] leading-[1.5] text-white/70 md:text-[1rem]">
                 Le plus rapide, c&apos;est de la poser directement à Pierre, il
-                te répond sous 24h sur WhatsApp ou tu réserves 15 min avec lui.
+                te répond sous 2-4h sur WhatsApp ou tu réserves 15 min avec lui.
               </p>
               <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link

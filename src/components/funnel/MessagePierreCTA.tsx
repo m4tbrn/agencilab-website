@@ -1,60 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { Check, Copy, WhatsappLogo } from "@phosphor-icons/react";
+import { WhatsappLogo } from "@phosphor-icons/react";
 
-const WHATSAPP_BASE = "https://wa.me/33777786388";
+const WHATSAPP_BASE = "https://wa.me/33684080455";
 
 const TEMPLATE = `Salut Pierre 👋
 
 Prénom :
 Âge :
 Ma situation actuelle (mon job, ce que je cherche, où j'en suis) : `;
-
-export function MessageTemplate() {
-  const [copied, setCopied] = useState(false);
-
-  const onCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(TEMPLATE);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // navigateur sans clipboard API : fallback silencieux, le user peut sélectionner manuellement
-    }
-  };
-
-  return (
-    <div className="mt-3 rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm md:p-5">
-      <div className="mb-2 flex items-center justify-between gap-3">
-        <h4 className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-white/50">
-          Modèle de message
-        </h4>
-        <button
-          type="button"
-          onClick={onCopy}
-          aria-label="Copier le modèle"
-          className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[0.8125rem] font-semibold text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
-        >
-          {copied ? (
-            <>
-              <Check size={14} weight="bold" className="text-[#10b981]" />
-              Copié
-            </>
-          ) : (
-            <>
-              <Copy size={14} weight="bold" />
-              Copier
-            </>
-          )}
-        </button>
-      </div>
-      <pre className="whitespace-pre-wrap break-words font-sans text-[0.875rem] leading-[1.6] text-white/85 md:text-[0.9375rem]">
-        {TEMPLATE}
-      </pre>
-    </div>
-  );
-}
 
 export default function MessagePierreCTA() {
   const waLink = `${WHATSAPP_BASE}?text=${encodeURIComponent(TEMPLATE)}`;
@@ -71,7 +25,7 @@ export default function MessagePierreCTA() {
         Envoyer un message à Pierre
       </a>
       <p className="mt-3 text-[0.8125rem] text-white/50">
-        Réponse sous 24h · 100% gratuit
+        Réponse sous 2-4h · 100% gratuit
       </p>
     </div>
   );
