@@ -76,7 +76,7 @@ export default function RootLayout({
     <html lang="fr" className={`${interTight.variable} ${caveat.variable} antialiased`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        {/* iClosed Lift Widgets — deux CTAs flottantes site-wide */}
+        {/* iClosed Lift Widgets — CTAs flottantes site-wide */}
         <script
           type="text/javascript"
           src="https://app.iclosed.io/assets/widget.js"
@@ -87,6 +87,12 @@ export default function RootLayout({
           type="text/javascript"
           src="https://app.iclosed.io/assets/widget.js"
           data-cta-widget="GuibSlbXxsLW"
+          async
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://app.iclosed.io/assets/widget.js"
+          data-cta-widget="1fp_C3NxGqdj"
           async
         ></script>
 
