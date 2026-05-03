@@ -301,7 +301,7 @@ export default function MechanismSection() {
               num: "2",
               title: "Tu trouves tes premiers clients",
               body:
-                "On t'apprend des méthodes éprouvées (pas de démarchage à froid) pour décrocher tes 2-3 premiers clients en parallèle de ton emploi.",
+                "On t'apprend les méthodes les plus efficaces pour décrocher tes 2-3 premiers clients en parallèle de ton emploi.",
             },
             {
               num: "3",
