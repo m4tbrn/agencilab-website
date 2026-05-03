@@ -155,7 +155,7 @@ export default function LivrePage() {
 
             <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white">
               Par <strong className="text-white">Louis Esquier</strong>, fondateur d&apos;Agencilab
-              (+1 000 salariés accompagnés à créer leur business) et Balistique (agence à +1M€/an).
+              (+1 018 salariés accompagnés à créer leur business) et Balistique (agence à +1M€/an).
               Tout ce que j&apos;aurais voulu savoir à mes débuts dans le business en ligne pour faire 1M€, condensé en 30 chapitres.
             </p>
 
@@ -897,7 +897,7 @@ export default function LivrePage() {
             </h2>
 
             <p className="mx-auto mb-6 max-w-xl text-base leading-relaxed text-black/60">
-              8 ans d&apos;expérience. +10M€ générés. 1 247 personnes accompagnées.
+              8 ans d&apos;expérience. +10M€ générés. 1 018 personnes accompagnées.
               Tout condensé dans un seul livre.
             </p>
 
@@ -917,7 +917,7 @@ export default function LivrePage() {
             </h2>
             <div className="space-y-5 text-[17px] leading-[1.85] text-black/80">
               <p>300 000 personnes me suivent sur YouTube.</p>
-              <p>1 247 personnes sont passées par notre accompagnement.</p>
+              <p>1 018 personnes sont passées par notre accompagnement.</p>
               <p>Mon entreprise emploie 12 personnes aujourd&apos;hui.</p>
               <p>Ma note Trustpilot est de 4.7/5.</p>
               <p><strong className="text-black">Si ce livre ne valait rien, j&apos;aurais tout à perdre.</strong></p>
@@ -937,7 +937,7 @@ export default function LivrePage() {
             <h2 className="mb-4 text-center text-2xl font-extrabold tracking-tight sm:text-3xl">
               Ce ne sont pas mes mots. <span className="pen-underline">Ce sont les leurs.</span>
             </h2>
-            <p className="mb-14 text-center text-base text-black/40">4.7/5 sur Trustpilot — 1 247 entrepreneurs accompagnés</p>
+            <p className="mb-14 text-center text-base text-black/40">4.7/5 sur Trustpilot — 1 018 entrepreneurs accompagnés</p>
             <div className="grid gap-5 sm:grid-cols-2">
               <ProofCard name="Jennifer" before="Doute total" after="Activité lancée" quote="Une transformation passant du doute à la création d'entreprise. L'accompagnement m'a permis d'acquérir une vraie confiance professionnelle." />
               <ProofCard name="Jules C." before="0 résultat" after="Résultats en 30j" quote="Les premiers à m'avoir vraiment permis d'avoir des résultats concrets. Investissement définitivement rentable." />
@@ -1011,7 +1011,7 @@ export default function LivrePage() {
                   <p>Tu investis 14,90€.</p>
                   <p>Le prix de 3 cafés.</p>
                   <p>Tu reçois chez toi <strong className="text-white/80">312 pages</strong> qui contiennent 8 ans d&apos;expérience.</p>
-                  <p>Le même plan que <strong className="text-white/80">1 247 personnes</strong> ont suivi avant toi.</p>
+                  <p>Le même plan que <strong className="text-white/80">1 018 personnes</strong> ont suivi avant toi.</p>
                   <p>Et dans 30 jours, tu as un plan d&apos;action clair.</p>
                   <p><strong className="text-white">Et tes premiers résultats.</strong></p>
                 </div>

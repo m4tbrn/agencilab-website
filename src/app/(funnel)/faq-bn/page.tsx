@@ -29,7 +29,7 @@ const FAQS: Faq[] = [
     question:
       "J'ai déjà essayé d'autres formations qui n'ont pas marché,qu'est-ce qui change ici ?",
     answer:
-      "Trois choses concrètes :\n\n1. Ce n'est pas une formation passive : tu as un coach dédié qui te suit, des appels de groupe hebdo, et une communauté active. Tu n'es jamais seul devant des vidéos.\n\n2. La méthode est testée sur +900 élèves avec des résultats reproductibles, pas une théorie sortie d'un livre.\n\n3. On a une garantie contractuelle rédigée par avocat : si tu suis la méthode et que tu n'atteins pas tes premiers résultats, on continue gratuitement jusqu'à ce que ça marche. C'est nous qui prenons le risque, pas toi.",
+      "Trois choses concrètes :\n\n1. Ce n'est pas une formation passive : tu as un coach dédié qui te suit, des appels de groupe hebdo, et une communauté active. Tu n'es jamais seul devant des vidéos.\n\n2. La méthode est testée sur +1 018 élèves avec des résultats reproductibles, pas une théorie sortie d'un livre.\n\n3. On a une garantie contractuelle rédigée par avocat : si tu suis la méthode et que tu n'atteins pas tes premiers résultats, on continue gratuitement jusqu'à ce que ça marche. C'est nous qui prenons le risque, pas toi.",
   },
   {
     question: "Combien de temps avant mes premiers euros gagnés ?",

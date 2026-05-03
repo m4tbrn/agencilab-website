@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const stats = [
   {
-    value: "900+",
+    value: "1 018+",
     label: "Salariés accompagnés",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -22,7 +22,7 @@ const stats = [
     ),
   },
   {
-    value: "1 600€",
+    value: "2 987€",
     label: "Revenu moyen généré/mois",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

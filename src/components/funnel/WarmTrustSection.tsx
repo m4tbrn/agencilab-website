@@ -48,7 +48,7 @@ export default function WarmTrustSection() {
         {[
           {
             name: "Marina",
-            city: "Lausanne",
+            city: "Ex-e-commerce, maman de 2",
             avatar: "/images/visages/marina.jpg",
             stars: 5,
             quote:
@@ -56,7 +56,7 @@ export default function WarmTrustSection() {
           },
           {
             name: "Damien",
-            city: "Montpellier",
+            city: "Ex-paysagiste, 27 ans",
             avatar: "/images/visages/damien.jpg",
             stars: 5,
             quote:
@@ -64,7 +64,7 @@ export default function WarmTrustSection() {
           },
           {
             name: "Lucas",
-            city: "ex-cuisinier",
+            city: "Ex-cuisinier",
             avatar: "/images/visages/lucas.jpg",
             stars: 5,
             quote:
@@ -72,7 +72,7 @@ export default function WarmTrustSection() {
           },
           {
             name: "Anaël",
-            city: "Media Buyer",
+            city: "Ex-école de commerce",
             avatar: "/images/visages/anael.jpg",
             stars: 5,
             quote:
@@ -80,7 +80,7 @@ export default function WarmTrustSection() {
           },
           {
             name: "Kylian",
-            city: "SEO & sites web",
+            city: "4 clients signés",
             avatar: "/images/visages/kylian.jpg",
             stars: 5,
             quote:
@@ -88,7 +88,7 @@ export default function WarmTrustSection() {
           },
           {
             name: "Barthélémy",
-            city: "Andorre",
+            city: "Caravane → 300m² en Andorre",
             avatar: "/images/visages/barthelemy.jpg",
             stars: 5,
             quote:
@@ -96,7 +96,7 @@ export default function WarmTrustSection() {
           },
           {
             name: "Yohann",
-            city: "Sites web",
+            city: "40 000€ en 6 mois",
             avatar: "/images/visages/yohann.jpg",
             stars: 5,
             quote:

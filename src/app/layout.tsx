@@ -19,7 +19,7 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   title: "Agencilab — Apprends une activité très rentable et crée ton deuxième salaire",
   description:
-    "Agencilab accompagne les salariés à se créer un complément de revenus de 1 500 à 3 000€/mois grâce à une activité très rentable, sans quitter leur emploi. +900 personnes accompagnées.",
+    "Agencilab accompagne les salariés à se créer un complément de revenus de 1 500 à 3 000€/mois grâce à une activité très rentable, sans quitter leur emploi. +1 018 personnes accompagnées.",
   keywords: [
     "growth marketing",
     "deuxième salaire",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Agencilab — Apprends une activité très rentable et crée ton deuxième salaire",
     description:
-      "Rejoins +900 salariés qui se créent un deuxième salaire grâce à une activité très rentable.",
+      "Rejoins +1 018 salariés qui se créent un deuxième salaire grâce à une activité très rentable.",
     type: "website",
     locale: "fr_FR",
     url: "https://agencilab.com",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Agencilab — Crée ton deuxième salaire",
     description:
-      "Rejoins +900 salariés qui génèrent 1 500 à 3 000€/mois grâce au Growth Marketing.",
+      "Rejoins +1 018 salariés qui génèrent 1 500 à 3 000€/mois grâce au Growth Marketing.",
     images: ["/images/hero-group.jpg"],
   },
   robots: {
@@ -77,7 +77,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async />
-        <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" data-cta-widget="GuibSlbXxsLW" async />
+        <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" data-cta-widget="TfOxNQ_5L3pA" async />
 
         {/* Meta Pixel Code — base seulement (pas de PageView auto, voir CoursContent pour le PageView capture) */}
         <script

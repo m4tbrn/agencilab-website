@@ -50,7 +50,7 @@ export default function Hero() {
               <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-accent-400" />
                 <span className="text-sm tracking-tight text-white/70">
-                  +900 salariés accompagnés
+                  +1 018 salariés accompagnés
                 </span>
               </div>
 
@@ -127,7 +127,7 @@ export default function Hero() {
                 />
                 <div className="flex flex-1 items-center justify-center divide-x divide-white/10">
                   <div className="px-4 text-center">
-                    <p className="text-sm font-bold tracking-tight text-accent-400 sm:text-base">900+</p>
+                    <p className="text-sm font-bold tracking-tight text-accent-400 sm:text-base">1 018+</p>
                     <p className="text-[9px] text-white/50 sm:text-[10px]">accompagnés</p>
                   </div>
                   <div className="px-4 text-center">
@@ -135,7 +135,7 @@ export default function Hero() {
                     <p className="text-[9px] text-white/50 sm:text-[10px]">Trustpilot</p>
                   </div>
                   <div className="px-4 text-center">
-                    <p className="text-sm font-bold tracking-tight text-accent-400 sm:text-base">1 600€</p>
+                    <p className="text-sm font-bold tracking-tight text-accent-400 sm:text-base">2 987€</p>
                     <p className="text-[9px] text-white/50 sm:text-[10px]">revenu moyen</p>
                   </div>
                 </div>

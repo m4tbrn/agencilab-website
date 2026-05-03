@@ -6,7 +6,7 @@ import Image from "next/image";
 const credentials = [
   "270 000+ abonnés YouTube",
   "6 ans d'expérience en marketing digital",
-  "+900 salariés accompagnés",
+  "+1 018 salariés accompagnés",
   "Basé à Lyon, France",
 ];
 

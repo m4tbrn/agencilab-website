@@ -73,7 +73,7 @@ export default function ConfirmationPage() {
                 Tu veux lancer ton business en ligne ?
               </h3>
               <p className="mb-6 text-sm leading-relaxed tracking-tight text-book-green-dark/60">
-                L'Incubateur t'accompagne de A à Z. +1 000 entrepreneurs accompagnés.
+                L'Incubateur t'accompagne de A à Z. +1 018 entrepreneurs accompagnés.
                 On t'aide à trouver tes premiers clients et à atteindre 3 000€/mois.
               </p>
             </div>
