@@ -87,9 +87,10 @@ export default function ExplicationContent({
                   Quelle est cette{" "}
                   <span className="gradient-text">activité méconnue</span>{" "}
                   qui rapporte déjà{" "}
-                  <span className="gradient-text">+2 987€/mois</span>{" "}
-                  en moyenne à{" "}
-                  <span className="gradient-text">+1 018 Français</span>{" "}?
+                  <span className="gradient-text">+2 937€ en moyenne</span>{" "}
+                  à{" "}
+                  <span className="gradient-text">+1 018 Français</span>{" "}
+                  sans quitter leur emploi&nbsp;?
                 </>
               ) : source === "meta" ? (
                 <>

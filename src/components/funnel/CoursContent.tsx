@@ -165,7 +165,7 @@ export default function CoursContent({
             >
               <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-900/60">
                 <Image
-                  src="/images/img-optin-3.png"
+                  src="/images/img-optin-3.webp"
                   alt="Louis Esquier — Documentaire Agencilab"
                   fill
                   className="object-cover"
