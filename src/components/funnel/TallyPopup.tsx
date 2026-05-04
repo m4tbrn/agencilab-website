@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
@@ -20,48 +20,40 @@ export default function TallyPopup({
   title: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const scriptInjectedRef = useRef(false);
 
-  // Lazy-load le script Tally UNIQUEMENT au premier clic sur le CTA
-  // (au lieu de charger sur mount comme avant). Évite ~30-100kb + 1 round-trip
-  // pour les 50%+ visiteurs qui ne cliquent jamais le CTA.
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const el = target.closest(`a[href="${trigger}"]`);
-      if (!el) return;
-      e.preventDefault();
-      setIsOpen(true);
-
-      // Première interaction : injecte le script Tally
-      if (scriptInjectedRef.current) {
-        // Déjà injecté : juste re-trigger les embeds au cas où
-        if (typeof window !== "undefined" && window.Tally) {
-          window.Tally.loadEmbeds();
-        }
-        return;
+      if (el) {
+        e.preventDefault();
+        setIsOpen(true);
       }
-      scriptInjectedRef.current = true;
-      const load = () => {
-        if (typeof window !== "undefined" && window.Tally) {
-          window.Tally.loadEmbeds();
-        }
-      };
-      const existing = document.querySelector(`script[src="${TALLY_SRC}"]`);
-      if (existing) {
-        load();
-        return;
-      }
-      const s = document.createElement("script");
-      s.src = TALLY_SRC;
-      s.async = true;
-      s.onload = load;
-      s.onerror = load;
-      document.body.appendChild(s);
     };
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
   }, [trigger]);
+
+  // Charge le script Tally au mount (pas lazy au clic) pour que l'iframe
+  // soit prête instantanément quand l'user clique sur le CTA.
+  useEffect(() => {
+    const load = () => {
+      if (typeof window !== "undefined" && window.Tally) {
+        window.Tally.loadEmbeds();
+      }
+    };
+    const existing = document.querySelector(`script[src="${TALLY_SRC}"]`);
+    if (existing) {
+      load();
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = TALLY_SRC;
+    s.async = true;
+    s.onload = load;
+    s.onerror = load;
+    document.body.appendChild(s);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
