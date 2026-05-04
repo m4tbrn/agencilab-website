@@ -87,7 +87,7 @@ export default function CoursContent({
                   </div>
                   <div className="flex flex-col items-start text-left">
                     <span className="text-[0.8125rem] font-bold tracking-tight text-white md:text-[0.875rem]">
-                      Documentaire exclusif de Louis Esquier
+                      Documentaire privé de Louis Esquier
                     </span>
                     <span className="text-[0.75rem] tracking-tight text-white/60 md:text-[0.8125rem]">
                       +270&nbsp;000 abonnés sur YouTube
@@ -129,7 +129,7 @@ export default function CoursContent({
               {source === "meta" ? (
                 <>
                   Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">3&apos;000€ de Revenus Complémentaires</span>{" "}
+                  <span className="gradient-text">2&apos;987€ en moyenne de revenus complémentaires</span>{" "}
                   grâce à cette{" "}
                   <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
                 </>
@@ -161,7 +161,7 @@ export default function CoursContent({
             <a
               href="#capture"
               aria-label="Accéder au documentaire"
-              className="video-glow-wrapper mx-auto mb-5 mt-3 block aspect-[16/9] max-w-[760px] cursor-pointer rounded-2xl transition-transform hover:scale-[1.01]"
+              className="mx-auto mb-5 mt-3 block aspect-[16/9] max-w-[760px] cursor-pointer rounded-2xl transition-transform hover:scale-[1.01]"
             >
               <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-900/60">
                 <Image
