@@ -76,6 +76,17 @@ export default function RootLayout({
     <html lang="fr" className={`${interTight.variable} ${caveat.variable} antialiased`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        {/* Preconnect aux domaines tiers utilisés par les funnels (Tally + iClosed) :
+            réduit le temps de TLS handshake quand l'iframe / le script sont chargés. */}
+        <link rel="preconnect" href="https://tally.so" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://tally.so" />
+        <link rel="preconnect" href="https://app.iclosed.io" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://app.iclosed.io" />
+        <link
+          rel="preload"
+          href="https://tally.so/widgets/embed.js"
+          as="script"
+        />
         {/* iClosed Lift Widgets — tous site-wide sur le NDD principal */}
         <script
           type="text/javascript"

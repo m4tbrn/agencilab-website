@@ -137,8 +137,8 @@ export default function CoursContent({
               {source === "meta" ? (
                 <>
                   Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">2&apos;987€ en moyenne de revenus complémentaires</span>{" "}
-                  grâce à cette{" "}
+                  <span className="gradient-text">2&apos;987€ en moyenne</span>{" "}
+                  de revenus complémentaires grâce à cette{" "}
                   <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
                 </>
               ) : (
