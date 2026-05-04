@@ -39,17 +39,19 @@ export default function CoursContent({
 
         <section className="relative z-10 pt-4 pb-10 md:pt-6 md:pb-16">
           <div className="mx-auto max-w-[920px] px-6 text-center">
-            {/* Logo Agencilab */}
-            <div className="mb-4 flex justify-center">
-              <Image
-                src="/images/logo-white.png"
-                alt="Agencilab"
-                width={140}
-                height={36}
-                className="h-7 w-auto opacity-80"
-                priority
-              />
-            </div>
+            {/* Logo Agencilab — masqué sur Meta pour gagner de l'espace vertical (CTA above-the-fold) */}
+            {source !== "meta" && (
+              <div className="mb-4 flex justify-center">
+                <Image
+                  src="/images/logo-white.png"
+                  alt="Agencilab"
+                  width={140}
+                  height={36}
+                  className="h-7 w-auto opacity-80"
+                  priority
+                />
+              </div>
+            )}
 
             {/* Pre-headline — varie selon la source de trafic */}
             <div className="mb-5 flex flex-col items-center gap-2">
@@ -125,7 +127,13 @@ export default function CoursContent({
             </div>
 
             {/* Headline */}
-            <h1 className="mb-4 text-[clamp(2rem,5vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-white">
+            <h1
+              className={`mb-4 font-bold leading-[1.15] tracking-tight text-white ${
+                source === "meta"
+                  ? "text-[clamp(1.5rem,4vw,2.25rem)]"
+                  : "text-[clamp(2rem,5vw,2.75rem)]"
+              }`}
+            >
               {source === "meta" ? (
                 <>
                   Comment des Français comme toi se créent{" "}
@@ -143,15 +151,25 @@ export default function CoursContent({
               )}
             </h1>
 
-            {/* Anti-bullets */}
-            <ul className="mb-6 flex flex-col items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-white/70 sm:flex-row sm:flex-wrap sm:justify-center">
+            {/* Anti-bullets — sur une ligne sur Meta (gain place above-the-fold) */}
+            <ul
+              className={`mb-6 flex items-center justify-center text-white/70 ${
+                source === "meta"
+                  ? "flex-row flex-wrap gap-x-2.5 gap-y-1 text-[0.75rem] md:gap-x-4 md:text-[0.875rem]"
+                  : "flex-col gap-x-4 gap-y-2 text-[0.9375rem] font-medium sm:flex-row sm:flex-wrap"
+              }`}
+            >
               {[
                 "Sans expérience préalable",
                 "Sans quitter ton emploi",
                 "Sans diplôme",
               ].map((item) => (
                 <li key={item} className="inline-flex items-center gap-1.5 whitespace-nowrap">
-                  <X size={16} weight="bold" className="shrink-0 text-[#ef4444]" />
+                  <X
+                    size={source === "meta" ? 13 : 16}
+                    weight="bold"
+                    className="shrink-0 text-[#ef4444]"
+                  />
                   <span>{item}</span>
                 </li>
               ))}

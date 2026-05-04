@@ -68,20 +68,28 @@ export default function ExplicationContent({
 
         <section className="relative z-10 pt-6 pb-12 md:pt-8 md:pb-20">
           <div className="mx-auto max-w-[1100px] px-6">
-            {/* Logo */}
-            <div className="mb-6 flex justify-center">
-              <Image
-                src="/images/logo-white.png"
-                alt="Agencilab"
-                width={140}
-                height={36}
-                className="h-7 w-auto opacity-80"
-                priority
-              />
-            </div>
+            {/* Logo — masqué sur Meta pour gagner de l'espace vertical (CTA above-the-fold) */}
+            {source !== "meta" && (
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/images/logo-white.png"
+                  alt="Agencilab"
+                  width={140}
+                  height={36}
+                  className="h-7 w-auto opacity-80"
+                  priority
+                />
+              </div>
+            )}
 
             {/* Headline — DOIT rester identique à celle de la page opt-in du même funnel (scent match) */}
-            <h1 className="mx-auto mb-5 max-w-[860px] text-center text-[clamp(1.75rem,4.5vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-white">
+            <h1
+              className={`mx-auto mb-5 max-w-[860px] text-center font-bold leading-[1.1] tracking-tight text-white ${
+                source === "meta"
+                  ? "text-[clamp(1.5rem,4vw,2.25rem)]"
+                  : "text-[clamp(1.75rem,4.5vw,2.75rem)]"
+              }`}
+            >
               {source === "newsletter" || source === "bienvenue" ? (
                 <>
                   Quelle est cette{" "}
