@@ -133,7 +133,7 @@ export default function LiveViewers({
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ef4444] opacity-75" />
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ef4444]" />
         </span>
-        <span className="text-[0.875rem] text-white/80 md:text-[0.9375rem]">
+        <span className="whitespace-nowrap text-[0.75rem] text-white/80 md:text-[0.9375rem]">
           <strong className="font-bold text-white">{count} personnes</strong> regardent la vidéo en ce moment
         </span>
       </div>
