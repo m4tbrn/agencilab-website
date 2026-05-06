@@ -29,8 +29,9 @@ export default function ExplicationContent({
 }) {
   return (
     <>
-      {/* Bandeau top — pour newsletter/bienvenue : warning + photo + preuve.
-          Pour yt/meta : simple alerte texte. */}
+      {/* Bandeau top — varie selon la source :
+          - newsletter/bienvenue : avertissement "déjà commencé"
+          - yt/meta : trust signal légal (encadrement par avocat) */}
       {source === "newsletter" || source === "bienvenue" ? (
         <div className="border-b border-gold-400/20 bg-gold-400/10">
           <div className="mx-auto max-w-[1100px] px-6 py-4">
@@ -48,12 +49,22 @@ export default function ExplicationContent({
         </div>
       ) : (
         <div className="border-b border-gold-400/20 bg-gold-400/10">
-          <div className="mx-auto max-w-[1100px] px-6 py-3">
-            <p className="text-center text-[0.875rem] font-semibold text-gold-400">
-              ⚠️ Message de Louis :{" "}
-              <em className="font-medium not-italic text-white/80">
-                «&nbsp;Ne ferme pas cette page, j&apos;ai une annonce inédite à te faire.&nbsp;»
-              </em>
+          <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-center gap-2 px-4 py-3 sm:px-6 md:flex-row md:gap-3 md:py-4">
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/40 bg-gold-400/15 text-[2rem] leading-none md:h-11 md:w-11 md:text-[2.25rem]"
+              style={{ boxShadow: "0 0 16px rgba(255, 122, 0, 0.25)" }}
+              aria-hidden
+            >
+              🧑‍⚖️
+            </div>
+            <p className="text-center text-[0.875rem] font-semibold leading-[1.45] text-gold-400 md:whitespace-nowrap md:text-[1rem]">
+              <span className="font-bold text-white">Rassure-toi :</span>{" "}
+              l&apos;activité que tu vas découvrir est{" "}
+              <strong className="text-white">
+                encadrée par un contrat rédigé par un avocat en droit des affaires
+              </strong>
+              .{" "}
+              <span className="font-bold text-gold-400">Tu es protégé.</span>
             </p>
           </div>
         </div>

@@ -4,13 +4,6 @@ import { useEffect, useState } from "react";
 
 const DEFAULT_DELAY_MS = 18 * 60 * 1000;
 
-function formatTime(ms: number) {
-  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
-
 // Bootstrap du helper Vidalytics (idempotent)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ensureVidalyticsHelper(): (id: string) => Promise<any> {
@@ -65,7 +58,11 @@ export default function IClosedReveal({
   /** Bypass timer/sync VSL — affiche le calendrier directement (audiences chaudes) */
   revealImmediately?: boolean;
 }) {
-  const [remainingMs, setRemainingMs] = useState(delayMs);
+  // Init aligné sur targetMs réel (revealAfterSeconds prioritaire) pour que la
+  // jauge ne démarre pas à un %  bizarre quand le target diffère du delayMs default.
+  const initialTargetMs =
+    (revealAfterSeconds ?? delayMs / 1000) * 1000;
+  const [remainingMs, setRemainingMs] = useState(initialTargetMs);
   const [revealed, setRevealed] = useState(revealImmediately);
   const [reservations, setReservations] = useState<number | null>(null);
 
@@ -328,15 +325,43 @@ export default function IClosedReveal({
     );
   }
 
+  // Jauge de progression non-linéaire : sqrt() = avance vite au début, ralentit
+  // à la fin. Donne l'impression que ça va être rapide (50% atteint à 25% de la
+  // VSL réellement regardée).
+  const targetMs = (revealAfterSeconds ?? delayMs / 1000) * 1000;
+  const safeRemaining = Math.min(Math.max(remainingMs, 0), targetMs);
+  const realProgress = Math.min(1, (targetMs - safeRemaining) / targetMs);
+  const displayProgress = Math.sqrt(realProgress);
+  const percent = Math.max(2, Math.min(100, displayProgress * 100));
+
   return (
-    <p className="text-center text-[1.125rem] md:text-[1.25rem] text-white mt-10 leading-[1.4] font-medium">
-      Reste bien jusqu&apos;à la fin, une surprise apparaîtra ici dans{" "}
-      <span
-        className="text-[#015FFF] tabular-nums text-[1.375rem] md:text-[1.5rem]"
-        style={{ fontWeight: 800 }}
-      >
-        {formatTime(remainingMs)}
-      </span>
-    </p>
+    <div className="mt-10">
+      <div className="relative mx-auto mb-5 h-3 w-full max-w-[480px] overflow-hidden rounded-full border border-white/10 bg-white/[0.06]">
+        <div
+          className="relative h-full overflow-hidden rounded-full bg-gradient-to-r from-[#FF7A00] to-[#FF9533] transition-[width] duration-1000 ease-out"
+          style={{
+            width: `${percent}%`,
+            animation: "barGlow 2.5s ease-in-out infinite",
+          }}
+        >
+          {/* Reflet animé (shimmer) qui traverse la barre — donne de la vie */}
+          <div
+            className="absolute inset-y-0 left-0 w-1/3"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent)",
+              animation: "shimmer 2.8s linear infinite",
+            }}
+          />
+        </div>
+      </div>
+      <p className="text-center text-[1rem] md:text-[1.125rem] text-white/90 leading-[1.5] font-medium">
+        Reste bien jusqu&apos;à la fin,{" "}
+        <span className="font-bold text-white">
+          une surprise apparaîtra ici quand la jauge sera remplie
+        </span>
+        .
+      </p>
+    </div>
   );
 }
