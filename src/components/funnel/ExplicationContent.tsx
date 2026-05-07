@@ -160,9 +160,7 @@ export default function ExplicationContent({
               url={iClosedUrl}
               title={iClosedTitle}
               vslId={vslId}
-              revealAfterSeconds={
-                source === "meta" ? 23 * 60 + 5 : 18 * 60
-              }
+              revealAfterSeconds={18 * 60}
               revealImmediately={
                 source === "newsletter" || source === "bienvenue"
               }
