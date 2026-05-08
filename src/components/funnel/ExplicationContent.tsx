@@ -111,16 +111,11 @@ export default function ExplicationContent({
                 </>
               ) : source === "meta" ? (
                 <>
-                  <span className="mb-3 block text-[0.45em] font-semibold uppercase tracking-[0.16em] text-white/70">
-                    Documentaire privé :
-                  </span>
-                  <span className="block">
-                    Comment cette{" "}
-                    <span className="gradient-text">activité méconnue</span>{" "}
-                    peut ajouter{" "}
-                    <span className="gradient-text">+2 987€/mois</span>{" "}
-                    à ton salaire (tous les mois 😎)&nbsp;?
-                  </span>
+                  Comment cette{" "}
+                  <span className="gradient-text">activité méconnue</span>{" "}
+                  peut ajouter{" "}
+                  <span className="gradient-text">+2 987€/mois</span>{" "}
+                  à ton salaire (tous les mois 😎)&nbsp;?
                 </>
               ) : (
                 <>
