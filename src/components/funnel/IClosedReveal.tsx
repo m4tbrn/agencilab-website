@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 const DEFAULT_DELAY_MS = 18 * 60 * 1000;
 
@@ -44,6 +44,7 @@ export default function IClosedReveal({
   revealAfterSeconds,
   giftMessage,
   revealImmediately = false,
+  revealHeader,
 }: {
   url: string;
   title: string;
@@ -57,6 +58,8 @@ export default function IClosedReveal({
   giftMessage?: string;
   /** Bypass timer/sync VSL — affiche le calendrier directement (audiences chaudes) */
   revealImmediately?: boolean;
+  /** Element optionnel rendu en haut du bloc révélé, au-dessus du compteur "🔥 X personnes" */
+  revealHeader?: ReactNode;
 }) {
   // Init aligné sur targetMs réel (revealAfterSeconds prioritaire) pour que la
   // jauge ne démarre pas à un %  bizarre quand le target diffère du delayMs default.
@@ -255,6 +258,9 @@ export default function IClosedReveal({
     return (
       <div id="rdv" className="mt-10 scroll-mt-20 -mx-6 md:mx-0">
         <div className="bg-[#131316] rounded-none md:rounded-3xl px-5 md:px-10 py-10 md:py-14 text-center text-white">
+          {revealHeader && (
+            <div className="mb-6 flex justify-center">{revealHeader}</div>
+          )}
           <div className="mb-6 text-center">
             <p className="text-white font-semibold text-[0.9375rem] md:text-[1rem]">
               🔥{" "}

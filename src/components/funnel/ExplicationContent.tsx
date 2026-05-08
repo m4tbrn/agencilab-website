@@ -7,6 +7,7 @@ import ExitIntentPopupVSL from "./ExitIntentPopupVSL";
 import MechanismSection from "./MechanismSection";
 import WarmTrustSection from "./WarmTrustSection";
 import GuaranteeSection from "./GuaranteeSection";
+import LouisAuthorCard from "./LouisAuthorCard";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 type Source = "yt" | "meta" | "newsletter" | "bienvenue";
@@ -168,6 +169,7 @@ export default function ExplicationContent({
                   ? "réservé à ceux qui réservent leur appel. Mon équipe t'enverra le détail au moment de l'échange."
                   : undefined
               }
+              revealHeader={source === "meta" ? <LouisAuthorCard /> : undefined}
             />
           </div>
         </section>
