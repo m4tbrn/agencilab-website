@@ -107,15 +107,15 @@ export default function LiveViewers({
   if (variant === "overlay") {
     // Badge compact pour overlay sur image (style YouTube live)
     return (
-      <div className="inline-flex items-center gap-1.5 rounded-md bg-black/75 px-2.5 py-1.5 backdrop-blur-sm">
-        <span className="inline-flex items-center gap-1 text-[0.6875rem] font-bold uppercase tracking-wider text-[#ef4444]">
+      <div className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md bg-black/75 px-2.5 py-1.5 backdrop-blur-sm">
+        <span className="inline-flex items-center gap-1 whitespace-nowrap text-[0.6875rem] font-bold uppercase tracking-wider text-[#ef4444]">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ef4444] opacity-75" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#ef4444]" />
           </span>
           LIVE
         </span>
-        <span className="text-[0.75rem] font-semibold text-white">
+        <span className="whitespace-nowrap text-[0.6875rem] font-semibold text-white md:text-[0.75rem]">
           {count} regardent en ce moment
         </span>
       </div>

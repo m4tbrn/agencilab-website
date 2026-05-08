@@ -79,19 +79,17 @@ export default function ExplicationContent({
 
         <section className="relative z-10 pt-6 pb-12 md:pt-8 md:pb-20">
           <div className="mx-auto max-w-[1100px] px-6">
-            {/* Logo — masqué sur Meta pour gagner de l'espace vertical (CTA above-the-fold) */}
-            {source !== "meta" && (
-              <div className="mb-6 flex justify-center">
-                <Image
-                  src="/images/logo-white.png"
-                  alt="Agencilab"
-                  width={140}
-                  height={36}
-                  className="h-7 w-auto opacity-80"
-                  priority
-                />
-              </div>
-            )}
+            {/* Logo */}
+            <div className="mb-6 flex justify-center">
+              <Image
+                src="/images/logo-white.png"
+                alt="Agencilab"
+                width={140}
+                height={36}
+                className="h-7 w-auto opacity-80"
+                priority
+              />
+            </div>
 
             {/* Headline — DOIT rester identique à celle de la page opt-in du même funnel (scent match) */}
             <h1
@@ -113,10 +111,16 @@ export default function ExplicationContent({
                 </>
               ) : source === "meta" ? (
                 <>
-                  Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">2&apos;987€ en moyenne</span>{" "}
-                  de revenus complémentaires grâce à cette{" "}
-                  <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
+                  <span className="mb-3 block text-[0.45em] font-semibold uppercase tracking-[0.16em] text-white/70">
+                    Documentaire privé :
+                  </span>
+                  <span className="block">
+                    Comment cette{" "}
+                    <span className="gradient-text">activité méconnue</span>{" "}
+                    peut ajouter{" "}
+                    <span className="gradient-text">+2 987€/mois</span>{" "}
+                    à ton salaire (tous les mois 😎)&nbsp;?
+                  </span>
                 </>
               ) : (
                 <>

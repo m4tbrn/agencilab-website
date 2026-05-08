@@ -5,6 +5,7 @@ import TallyPopup from "./TallyPopup";
 import ExitIntentPopup from "./ExitIntentPopup";
 import FunnelSocialNotif from "./FunnelSocialNotif";
 import LiveViewers from "./LiveViewers";
+import MetaCaptureLayout from "./MetaCaptureLayout";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export default function CoursContent({
@@ -38,138 +39,67 @@ export default function CoursContent({
         </div>
 
         <section className="relative z-10 pt-4 pb-10 md:pt-6 md:pb-16">
+          {source === "meta" ? (
+            <MetaCaptureLayout tallySrc={tallySrc} tallyTitle={tallyTitle} />
+          ) : (
           <div className="mx-auto max-w-[920px] px-6 text-center">
-            {/* Logo Agencilab — masqué sur Meta pour gagner de l'espace vertical (CTA above-the-fold) */}
-            {source !== "meta" && (
-              <div className="mb-4 flex justify-center">
-                <Image
-                  src="/images/logo-white.png"
-                  alt="Agencilab"
-                  width={140}
-                  height={36}
-                  className="h-7 w-auto opacity-80"
-                  priority
-                />
-              </div>
-            )}
+            {/* Logo Agencilab */}
+            <div className="mb-4 flex justify-center">
+              <Image
+                src="/images/logo-white.png"
+                alt="Agencilab"
+                width={140}
+                height={36}
+                className="h-7 w-auto opacity-80"
+                priority
+              />
+            </div>
 
-            {/* Pre-headline — varie selon la source de trafic */}
+            {/* Pre-headline — Documentaire privé + price anchoring (YT) */}
             <div className="mb-5 flex flex-col items-center gap-2">
-              {source === "meta" ? (
-                <div
-                  className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-sm"
-                  style={{ boxShadow: "0 0 30px rgba(1, 95, 255, 0.12)" }}
+              <div
+                className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400 backdrop-blur-sm md:text-[0.8125rem]"
+                style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.15)" }}
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
                 >
-                  <div className="relative shrink-0">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-white/10">
-                      <Image
-                        src="/images/team/louis-esquier.jpg"
-                        alt="Louis Esquier"
-                        fill
-                        className="object-cover"
-                        sizes="40px"
-                      />
-                    </div>
-                    <span
-                      className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#015FFF] ring-2 ring-navy-950"
-                      aria-label="Compte certifié"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="h-2.5 w-2.5 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12l5 5L20 7" />
-                      </svg>
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-start text-left">
-                    <span className="text-[0.8125rem] font-bold tracking-tight text-white md:text-[0.875rem]">
-                      Documentaire privé de Louis Esquier
-                    </span>
-                    <span className="text-[0.75rem] tracking-tight text-white/60 md:text-[0.8125rem]">
-                      +270&nbsp;000 abonnés sur YouTube
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <div
-                    className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400 backdrop-blur-sm md:text-[0.8125rem]"
-                    style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.15)" }}
-                  >
-                    <svg
-                      className="h-3.5 w-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                      />
-                    </svg>
-                    Documentaire privé
-                  </div>
-                  <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
-                    <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
-                    <span className="text-white/40">→</span>{" "}
-                    <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
-                  </p>
-                </>
-              )}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                  />
+                </svg>
+                Documentaire privé
+              </div>
+              <p className="text-[0.8125rem] tracking-tight text-white/50 md:text-[0.875rem]">
+                <span className="line-through decoration-white/40 decoration-2">Valeur 47€</span>{" "}
+                <span className="text-white/40">→</span>{" "}
+                <span className="font-bold text-white">Gratuit si tu viens de YouTube</span>
+              </p>
             </div>
 
             {/* Headline */}
-            <h1
-              className={`mb-4 font-bold leading-[1.15] tracking-tight text-white ${
-                source === "meta"
-                  ? "text-[clamp(1.5rem,4vw,2.25rem)]"
-                  : "text-[clamp(2rem,5vw,2.75rem)]"
-              }`}
-            >
-              {source === "meta" ? (
-                <>
-                  Comment des Français comme toi se créent{" "}
-                  <span className="gradient-text">2&apos;987€ en moyenne</span>{" "}
-                  de revenus complémentaires grâce à cette{" "}
-                  <span className="gradient-text">activité méconnue et l&apos;IA</span>{" "}?
-                </>
-              ) : (
-                <>
-                  Comment gagner{" "}
-                  <span className="gradient-text">+3 500 €/mois</span>{" "}
-                  à côté de ton travail grâce à une{" "}
-                  <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
-                </>
-              )}
+            <h1 className="mb-4 text-[clamp(2rem,5vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-white">
+              Comment gagner{" "}
+              <span className="gradient-text">+3 500 €/mois</span>{" "}
+              à côté de ton travail grâce à une{" "}
+              <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
             </h1>
 
-            {/* Anti-bullets — sur une ligne sur Meta (gain place above-the-fold) */}
-            <ul
-              className={`mb-6 flex items-center justify-center text-white/70 ${
-                source === "meta"
-                  ? "flex-row flex-wrap gap-x-2.5 gap-y-1 text-[0.75rem] md:gap-x-4 md:text-[0.875rem]"
-                  : "flex-col gap-x-4 gap-y-2 text-[0.9375rem] font-medium sm:flex-row sm:flex-wrap"
-              }`}
-            >
+            {/* Anti-bullets */}
+            <ul className="mb-6 flex flex-col items-center gap-x-4 gap-y-2 text-[0.9375rem] font-medium text-white/70 sm:flex-row sm:flex-wrap sm:justify-center">
               {[
                 "Sans expérience préalable",
                 "Sans quitter ton emploi",
                 "Sans diplôme",
               ].map((item) => (
                 <li key={item} className="inline-flex items-center gap-1.5 whitespace-nowrap">
-                  <X
-                    size={source === "meta" ? 13 : 16}
-                    weight="bold"
-                    className="shrink-0 text-[#ef4444]"
-                  />
+                  <X size={16} weight="bold" className="shrink-0 text-[#ef4444]" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -270,6 +200,7 @@ export default function CoursContent({
               </ul>
             </div>
           </div>
+          )}
         </section>
       </main>
 
