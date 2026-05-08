@@ -156,7 +156,7 @@ export default function Hero() {
           </p>
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
             <div
-              id="vidalytics_embed_BOKinTlwRUDuZ4BM"
+              id="vidalytics_embed_Q5cMENYOeQ7H8laF"
               style={{ width: "100%", position: "relative", paddingTop: "56.25%" }}
             />
             <script
@@ -170,7 +170,7 @@ export default function Hero() {
         i.getElementsByTagName("head")[0].appendChild(s);
     };}
     vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-})(window, document, 'Vidalytics', 'vidalytics_embed_BOKinTlwRUDuZ4BM', 'https://fast.vidalytics.com/embeds/19a1Efop/BOKinTlwRUDuZ4BM/');
+})(window, document, 'Vidalytics', 'vidalytics_embed_Q5cMENYOeQ7H8laF', 'https://fast.vidalytics.com/embeds/19a1Efop/Q5cMENYOeQ7H8laF/');
                 `,
               }}
             />
