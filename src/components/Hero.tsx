@@ -152,7 +152,7 @@ export default function Hero() {
           className="relative z-20 mx-auto mt-6 max-w-4xl sm:mb-[-80px]"
         >
           <p className="mb-4 text-center text-xl text-white/60 sm:text-2xl" style={{ fontFamily: "var(--font-caveat)" }}>
-            Regarde cette vidéo, elle t&apos;explique tout 👇
+            Regarde ce documentaire, il t&apos;explique tout 👇
           </p>
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
             <div
