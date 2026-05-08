@@ -55,7 +55,7 @@ export default function Hero() {
               </div>
 
               <h1 className="mb-5 text-3xl font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-[2.75rem]">
-                Apprends le <strong className="text-gold-400">Growth Marketing</strong>, une activité (très) rentable et <span className="gradient-text">génère +2 987€/mois</span> depuis chez toi.
+                Apprends le <strong className="text-accent-400">Growth Marketing</strong>, une activité (très) rentable et <span className="gradient-text">génère +2 987€/mois</span> depuis chez toi.
               </h1>
 
               <p className="mb-8 max-w-md text-base leading-relaxed tracking-tight text-white/50">
