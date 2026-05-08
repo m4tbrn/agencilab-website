@@ -55,7 +55,7 @@ export default function MetaCaptureLayout({
         Tu peux le faire le soir, après le boulot, comme un épisode de série,
         et{" "}
         <strong className="text-white">
-          profiter pleinement de ta famille et de tes enfants
+          profiter pleinement de ta famille, ta copine, ton copain ou de tes enfants
         </strong>
         .
       </p>
