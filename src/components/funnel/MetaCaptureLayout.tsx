@@ -1,5 +1,6 @@
 import Image from "next/image";
 import LiveViewers from "./LiveViewers";
+import LouisAuthorCard from "./LouisAuthorCard";
 
 /**
  * Layout simplifié pour la page de capture Meta uniquement.
@@ -24,6 +25,11 @@ export default function MetaCaptureLayout({
 }) {
   return (
     <div className="mx-auto max-w-[760px] px-6 text-center">
+      {/* Card Louis — autorité concrète pour cold Meta */}
+      <div className="mb-6 flex justify-center">
+        <LouisAuthorCard />
+      </div>
+
       {/* H1 */}
       <h1 className="mb-5 text-[clamp(1.625rem,4.5vw,2.375rem)] font-bold leading-[1.15] tracking-tight text-white">
         <span className="mb-3 block text-[0.45em] font-semibold uppercase tracking-[0.16em] text-white/70">

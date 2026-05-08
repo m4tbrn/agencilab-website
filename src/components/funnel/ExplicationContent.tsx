@@ -7,7 +7,6 @@ import ExitIntentPopupVSL from "./ExitIntentPopupVSL";
 import MechanismSection from "./MechanismSection";
 import WarmTrustSection from "./WarmTrustSection";
 import GuaranteeSection from "./GuaranteeSection";
-import LouisAuthorCard from "./LouisAuthorCard";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 type Source = "yt" | "meta" | "newsletter" | "bienvenue";
@@ -80,17 +79,19 @@ export default function ExplicationContent({
 
         <section className="relative z-10 pt-6 pb-12 md:pt-8 md:pb-20">
           <div className="mx-auto max-w-[1100px] px-6">
-            {/* Logo */}
-            <div className="mb-6 flex justify-center">
-              <Image
-                src="/images/logo-white.png"
-                alt="Agencilab"
-                width={140}
-                height={36}
-                className="h-7 w-auto opacity-80"
-                priority
-              />
-            </div>
+            {/* Logo — masqué sur Meta (déplacé en header du bloc iClosed reveal) */}
+            {source !== "meta" && (
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/images/logo-white.png"
+                  alt="Agencilab"
+                  width={140}
+                  height={36}
+                  className="h-7 w-auto opacity-80"
+                  priority
+                />
+              </div>
+            )}
 
             {/* Headline — DOIT rester identique à celle de la page opt-in du même funnel (scent match) */}
             <h1
@@ -169,7 +170,17 @@ export default function ExplicationContent({
                   ? "réservé à ceux qui réservent leur appel. Mon équipe t'enverra le détail au moment de l'échange."
                   : undefined
               }
-              revealHeader={source === "meta" ? <LouisAuthorCard /> : undefined}
+              revealHeader={
+                source === "meta" ? (
+                  <Image
+                    src="/images/logo-white.png"
+                    alt="Agencilab"
+                    width={140}
+                    height={36}
+                    className="h-7 w-auto opacity-80"
+                  />
+                ) : undefined
+              }
             />
           </div>
         </section>
