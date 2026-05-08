@@ -293,13 +293,18 @@ export default function IClosedReveal({
               <span className="text-[#a3e635] font-700">✓</span> Réponse personnalisée
             </span>
           </div>
-          <div className="max-w-[720px] mx-auto mb-6 p-5 md:p-6 rounded-2xl border border-[#ef4444]/40 bg-[#ef4444]/5 text-left">
+          <div
+            className="max-w-[720px] mx-auto mb-6 p-5 md:p-6 rounded-2xl border border-gold-400/40 bg-gold-400/5 text-left"
+            style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.12)" }}
+          >
             <p className="text-[0.9375rem] md:text-[1rem] text-white font-500 leading-[1.55]">
-              <span className="mr-1">⚠️</span>
-              Certes, l&apos;accès à l&apos;accompagnement est bien{" "}
-              <strong>moins cher que les 50 000€ d&apos;une école de commerce</strong>{" "}
-              mais représente tout de même un investissement de{" "}
-              <strong className="text-[#ef4444]">plusieurs milliers d&apos;euros</strong>.
+              <strong className="text-gold-400">Important :</strong> Une école
+              de commerce, c&apos;est{" "}
+              <strong className="text-white">50 000€</strong>. Agencilab
+              t&apos;enseigne le marketing digital avec{" "}
+              <strong className="text-white">bien plus de profondeur</strong>,
+              plus de pratique, à une{" "}
+              <strong className="text-white">fraction du prix</strong>.
             </p>
           </div>
 
