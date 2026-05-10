@@ -31,7 +31,8 @@ export default function ExplicationContent({
     <>
       {/* Bandeau top — varie selon la source :
           - newsletter/bienvenue : avertissement "déjà commencé"
-          - yt/meta : trust signal légal (encadrement par avocat) */}
+          - yt : trust signal légal (encadrement par avocat)
+          - meta : pas de bandeau (legal text déplacé sous la sub-headline) */}
       {source === "newsletter" || source === "bienvenue" ? (
         <div className="border-b border-gold-400/20 bg-gold-400/10">
           <div className="mx-auto max-w-[1100px] px-6 py-4">
@@ -44,6 +45,49 @@ export default function ExplicationContent({
                 Des centaines de Français
               </strong>{" "}
               ont changé de vie en découvrant cette activité.
+            </p>
+          </div>
+        </div>
+      ) : source === "meta" ? (
+        <div className="border-b border-gold-400/20 bg-gold-400/10">
+          <div className="mx-auto max-w-[1280px] px-4 py-3 sm:px-6">
+            {/* Mini-avatars : diversité visuelle instantanée des profils
+                (plus gros sur mobile pour être bien visibles) */}
+            <div className="mb-2 flex justify-center">
+              <div className="flex -space-x-3 md:-space-x-2">
+                {[
+                  { src: "/images/visages/marina.jpg", name: "Marina" },
+                  { src: "/images/visages/damien.jpg", name: "Damien" },
+                  { src: "/images/visages/stephanie.jpg", name: "Stéphanie" },
+                  { src: "/images/visages/yohann.jpg", name: "Yohann" },
+                  { src: "/images/visages/solene.jpg", name: "Solène" },
+                  { src: "/images/visages/clement.jpg", name: "Clément" },
+                  { src: "/images/visages/julien.jpg", name: "Julien" },
+                ].map((face, i) => (
+                  <div
+                    key={i}
+                    className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-gold-400/30 bg-navy-950 md:h-8 md:w-8"
+                  >
+                    <Image
+                      src={face.src}
+                      alt={face.name}
+                      fill
+                      className="object-cover"
+                      sizes="40px"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="mx-auto max-w-3xl text-center text-[0.8125rem] leading-[1.5] text-white/85 md:text-[0.875rem]">
+              <strong className="text-white">
+                Boulangers, infirmières, paysagistes, mamans, papas...
+              </strong>{" "}
+              <strong className="text-gold-400">+1 018 personnes</strong> ont
+              changé de vie grâce à cette activité.{" "}
+              <strong className="text-white">
+                Pourtant ils n&apos;y connaissaient rien au début.
+              </strong>
             </p>
           </div>
         </div>

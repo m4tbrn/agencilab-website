@@ -277,7 +277,7 @@ export default function IClosedReveal({
             className="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold leading-[1.15] mb-5"
             style={{ color: "#ffffff" }}
           >
-            Tu as encore des questions ?
+            Discutons ensemble de ta situation.
           </h2>
           <p className="text-[1rem] md:text-[1.0625rem] text-white/90 leading-[1.5] max-w-[720px] md:max-w-none mx-auto mb-4 md:whitespace-nowrap">
             Je mets à ta disposition pendant 45 minutes un de mes conseillers pour répondre à toutes tes questions.
@@ -298,8 +298,8 @@ export default function IClosedReveal({
             style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.12)" }}
           >
             <p className="text-[0.9375rem] md:text-[1rem] text-white font-500 leading-[1.55]">
-              <strong className="text-gold-400">Important :</strong> Une école
-              de commerce, c&apos;est{" "}
+              <strong className="text-gold-400">Important :</strong>{" "}
+              Une école de commerce, c&apos;est{" "}
               <strong className="text-white">50 000€</strong>. Agencilab
               t&apos;enseigne le marketing digital avec{" "}
               <strong className="text-white">bien plus de profondeur</strong>,
