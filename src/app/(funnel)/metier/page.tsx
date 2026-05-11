@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function DecouvrirIg() {
+export default function MetierCapture() {
   return (
     <CoursContent
       source="ig"
