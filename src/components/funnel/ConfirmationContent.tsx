@@ -13,7 +13,7 @@ export default function ConfirmationContent({
 }: {
   vslId?: string;
   /** Source de trafic — fire les events Meta Pixel uniquement si "meta" */
-  source?: "yt" | "meta";
+  source?: "yt" | "ig" | "meta";
 }) {
   return (
     <>

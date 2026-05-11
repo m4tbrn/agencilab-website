@@ -9,7 +9,7 @@ import WarmTrustSection from "./WarmTrustSection";
 import GuaranteeSection from "./GuaranteeSection";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
-type Source = "yt" | "meta" | "newsletter" | "bienvenue";
+type Source = "yt" | "ig" | "meta" | "newsletter" | "bienvenue";
 
 export default function ExplicationContent({
   vslId,
@@ -48,7 +48,7 @@ export default function ExplicationContent({
             </p>
           </div>
         </div>
-      ) : source === "meta" ? (
+      ) : source === "meta" || source === "ig" ? (
         <div className="border-b border-gold-400/20 bg-gold-400/10">
           <div className="mx-auto max-w-[1280px] px-4 py-3 sm:px-6">
             {/* Mini-avatars : diversité visuelle instantanée des profils
@@ -142,7 +142,9 @@ export default function ExplicationContent({
               className={`mx-auto mb-5 max-w-[860px] text-center font-bold leading-[1.1] tracking-tight text-white ${
                 source === "meta"
                   ? "text-[clamp(1.5rem,4vw,2.25rem)]"
-                  : "text-[clamp(1.75rem,4.5vw,2.75rem)]"
+                  : source === "ig"
+                    ? "text-[clamp(1.375rem,3.6vw,2rem)]"
+                    : "text-[clamp(1.75rem,4.5vw,2.75rem)]"
               }`}
             >
               {source === "newsletter" || source === "bienvenue" ? (
@@ -154,6 +156,15 @@ export default function ExplicationContent({
                   à{" "}
                   <span className="gradient-text">+1 018 Français</span>{" "}
                   sans quitter leur emploi&nbsp;?
+                </>
+              ) : source === "ig" ? (
+                <>
+                  Quelle est cette{" "}
+                  <span className="gradient-text">activité méconnue</span>{" "}
+                  qui me permet de voyager où je veux, quand je veux, et qui
+                  rapporte déjà{" "}
+                  <span className="gradient-text">+2 987€/mois</span> à{" "}
+                  <span className="gradient-text">+1 018 Français</span> 😎
                 </>
               ) : source === "meta" ? (
                 <>
