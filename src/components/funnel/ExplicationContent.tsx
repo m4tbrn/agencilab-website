@@ -177,7 +177,7 @@ export default function ExplicationContent({
               ) : (
                 <>
                   Comment gagner{" "}
-                  <span className="gradient-text">+3 500 €/mois</span>{" "}
+                  <span className="gradient-text">+2 987€/mois</span>{" "}
                   à côté de ton travail grâce à une{" "}
                   <span className="gradient-text">activité (très) rentable méconnue et l&apos;IA</span>.
                 </>
