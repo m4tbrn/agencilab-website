@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function MetierCapture() {
+export default function DevenirLibreCapture() {
   return (
     <CoursContent
       source="ig"
