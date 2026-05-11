@@ -13,7 +13,7 @@ export const metadata = {
 const BENEFITS = [
   {
     icon: CurrencyEur,
-    title: "Commission élevée",
+    title: "Commissions élevées",
     text: "Tu es payé 100% à la performance, sans plafond, sur des offres high-ticket avec des commissions plus avantageuses que ce que le marché te propose en temps normal.",
   },
   {
