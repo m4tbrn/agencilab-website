@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const CTA_LINK = "#rejoindre";
 
-const navLinks: { label: string; href: string; badge?: string }[] = [
-  { label: "L'activité", href: "#solution" },
-  { label: "Agencilab", href: "#competences" },
-  { label: "Témoignages", href: "#temoignages" },
-  { label: "FAQ", href: "#faq" },
+const navLinks: { label: string; href: string; badge?: string; highlight?: boolean }[] = [
+  { label: "L'activité", href: "/#solution" },
+  { label: "Agencilab", href: "/#competences" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Réussites", href: "/reussites", highlight: true },
   { label: "Mon livre", href: "#", badge: "Bientôt disponible" },
 ];
 
@@ -39,8 +39,16 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.badge ? undefined : link.href}
-                className={`text-sm tracking-tight transition-colors ${link.badge ? "cursor-default text-white/30" : "text-white/50 hover:text-white"}`}
+                className={`inline-flex items-center text-sm tracking-tight transition-colors ${
+                  link.badge ? "cursor-default text-white/30" : "text-white/50 hover:text-white"
+                }`}
               >
+                {link.highlight && (
+                  <span className="relative mr-2 flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-gold-400" />
+                  </span>
+                )}
                 {link.label}
                 {link.badge && (
                   <span className="ml-1.5 rounded-full bg-green-500 px-2 py-0.5 text-[10px] font-bold text-navy-950">
@@ -99,8 +107,16 @@ export default function Navbar() {
                 key={link.label}
                 href={link.badge ? undefined : link.href}
                 onClick={() => !link.badge && setMenuOpen(false)}
-                className={`rounded-lg px-4 py-3 text-sm tracking-tight transition-colors hover:bg-white/5 ${link.badge ? "cursor-default text-white/30" : "text-white/60 hover:text-white"}`}
+                className={`flex items-center rounded-lg px-4 py-3 text-sm tracking-tight transition-colors hover:bg-white/5 ${
+                  link.badge ? "cursor-default text-white/30" : "text-white/60 hover:text-white"
+                }`}
               >
+                {link.highlight && (
+                  <span className="relative mr-2 flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-gold-400" />
+                  </span>
+                )}
                 {link.label}
                 {link.badge && (
                   <span className="ml-1.5 rounded-full bg-green-500 px-2 py-0.5 text-[10px] font-bold text-navy-950">
