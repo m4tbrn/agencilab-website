@@ -257,37 +257,58 @@ export default function IClosedReveal({
   if (revealed) {
     return (
       <div id="rdv" className="mt-10 scroll-mt-20 -mx-6 md:mx-0">
-        <div className="bg-[#131316] rounded-none md:rounded-3xl px-5 md:px-10 py-10 md:py-14 text-center text-white">
+        <div
+          className="relative overflow-hidden rounded-none bg-gradient-to-b from-[#181820] to-[#0d0d11] px-5 py-10 text-center text-white md:rounded-3xl md:border-2 md:border-gold-400/35 md:px-10 md:py-14"
+          style={{
+            boxShadow:
+              "0 0 80px rgba(255, 122, 0, 0.22), 0 25px 70px rgba(0, 0, 0, 0.55)",
+          }}
+        >
+          {/* Top accent line — visual hook qui démarque le bloc */}
+          <div
+            className="absolute left-1/2 top-0 h-[2px] w-[85%] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold-400 to-transparent"
+            style={{ boxShadow: "0 0 14px rgba(255, 122, 0, 0.65)" }}
+            aria-hidden
+          />
           {revealHeader && (
             <div className="mb-6 flex justify-center">{revealHeader}</div>
           )}
+          {/* Pastille verte — candidature ouverte (placée en premier comme status badge) */}
+          <div className="mb-4 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#a3e635]/40 bg-[#a3e635]/10 px-4 py-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#a3e635] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#a3e635]" />
+              </span>
+              <span className="text-[0.8125rem] font-semibold tracking-wide text-[#a3e635] md:text-[0.875rem]">
+                Candidature ouverte pour rejoindre Agencilab
+              </span>
+            </div>
+          </div>
+          {/* Banner filtre qualifiant — apparait au moment du booking */}
+          <p className="mx-auto mb-6 max-w-[760px] text-center text-[0.9375rem] md:text-[1.125rem] font-black uppercase tracking-tight leading-[1.2] text-white">
+            Réservé aux personnes motivées à vivre du{" "}
+            <span className="text-gold-400">Growth Marketing</span>
+          </p>
+          {/* Compteur — combiné avec le rappel disponibilités */}
           <div className="mb-6 text-center">
             <p className="text-white font-semibold text-[0.9375rem] md:text-[1rem]">
               🔥{" "}
               <strong className="text-[#FF7A00] font-extrabold">
-                {reservations ?? "—"} personnes
+                {reservations ?? "—"} salariés
               </strong>{" "}
-              ont réservé leur appel aujourd&apos;hui
-            </p>
-            <p className="mt-1.5 text-[0.8125rem] italic text-white/50">
-              (Regarde s&apos;il reste des disponibilités)
+              ont réservé leur appel aujourd&apos;hui{" "}
+              <span className="font-normal italic text-white/55">
+                (Regarde s&apos;il reste des disponibilités)
+              </span>
             </p>
           </div>
-          <h2
-            className="text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold leading-[1.15] mb-5"
-            style={{ color: "#ffffff" }}
-          >
-            Discutons ensemble de ta situation.
-          </h2>
-          <p className="text-[1rem] md:text-[1.0625rem] text-white/90 leading-[1.5] max-w-[720px] md:max-w-none mx-auto mb-4 md:whitespace-nowrap">
-            Je mets à ta disposition pendant 45 minutes un de mes conseillers pour répondre à toutes tes questions.
-          </p>
           <div className="font-600 text-white mb-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[0.9375rem] md:text-[1rem]">
             <span className="inline-flex items-center gap-1.5">
               <span className="text-[#a3e635] font-700">✓</span> 100% gratuit
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <span className="text-[#a3e635] font-700">✓</span> Sans engagement
+              <span className="text-[#a3e635] font-700">✓</span> Sérieux uniquement
             </span>
             <span className="inline-flex items-center gap-1.5">
               <span className="text-[#a3e635] font-700">✓</span> Réponse personnalisée
@@ -298,13 +319,23 @@ export default function IClosedReveal({
             style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.12)" }}
           >
             <p className="text-[0.9375rem] md:text-[1rem] text-white font-500 leading-[1.55]">
-              <strong className="text-gold-400">Important :</strong>{" "}
-              Une école de commerce, c&apos;est{" "}
-              <strong className="text-white">50 000€</strong>. Agencilab
-              t&apos;enseigne le marketing digital avec{" "}
-              <strong className="text-white">bien plus de profondeur</strong>,
-              plus de pratique, à une{" "}
-              <strong className="text-white">fraction du prix</strong>.
+              <strong className="text-gold-400">
+                Agencilab représente un investissement.
+              </strong>{" "}
+              Car nous t&apos;enseignons{" "}
+              <strong className="text-white">
+                tout sur le Growth Marketing
+              </strong>{" "}
+              et t&apos;accompagnons{" "}
+              <strong className="text-white">de A à Z</strong> pour trouver
+              tes premiers clients et{" "}
+              <strong className="text-white">
+                vivre de cette activité en 3 mois
+              </strong>{" "}
+              !{" "}
+              <span className="text-gold-400 font-600">
+                (Tout ça sous garantie)
+              </span>
             </p>
           </div>
 

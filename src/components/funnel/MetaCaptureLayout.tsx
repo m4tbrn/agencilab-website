@@ -1,6 +1,7 @@
 import Image from "next/image";
 import LiveViewers from "./LiveViewers";
 import LouisAuthorCard from "./LouisAuthorCard";
+import TallyEmbed from "./TallyEmbed";
 
 /**
  * Layout simplifié pour la page de capture Meta uniquement.
@@ -40,7 +41,7 @@ export default function MetaCaptureLayout({
           <span className="gradient-text">activité méconnue</span>{" "}
           peut ajouter{" "}
           <span className="gradient-text">+2 987€/mois</span>{" "}
-          à ton salaire (tous les mois 😎)&nbsp;?
+          à ton salaire (depuis n&apos;importe où dans le monde 😎)&nbsp;?
         </span>
       </h1>
 
@@ -73,13 +74,10 @@ export default function MetaCaptureLayout({
       >
         {/* Zone form */}
         <div className="bg-white/[0.04] p-4 md:p-6">
-          <iframe
-            src={tallySrc}
-            loading="eager"
-            width="100%"
-            height={360}
+          <TallyEmbed
+            tallySrc={tallySrc}
             title={tallyTitle}
-            className="block w-full bg-transparent"
+            initialHeight={500}
           />
         </div>
 
