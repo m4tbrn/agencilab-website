@@ -16,6 +16,7 @@ export default function ExplicationContent({
   iClosedUrl,
   iClosedTitle,
   source = "yt",
+  revealAfterSeconds = 18 * 60,
 }: {
   vslId: string;
   iClosedUrl: string;
@@ -26,6 +27,8 @@ export default function ExplicationContent({
    * - "newsletter" / "bienvenue" : bandeau Louis warm (au lieu d'alerte)
    */
   source?: Source;
+  /** Délai (en secondes) avant reveal du calendrier iClosed. Default 18min. */
+  revealAfterSeconds?: number;
 }) {
   return (
     <>
@@ -172,7 +175,7 @@ export default function ExplicationContent({
                   <span className="gradient-text">activité méconnue</span>{" "}
                   peut ajouter{" "}
                   <span className="gradient-text">+2 987€/mois</span>{" "}
-                  à ton salaire (tous les mois 😎)&nbsp;?
+                  à ton salaire (depuis n&apos;importe où dans le monde 😎)&nbsp;?
                 </>
               ) : (
                 <>
@@ -216,7 +219,7 @@ export default function ExplicationContent({
               url={iClosedUrl}
               title={iClosedTitle}
               vslId={vslId}
-              revealAfterSeconds={18 * 60}
+              revealAfterSeconds={revealAfterSeconds}
               revealImmediately={
                 source === "newsletter" || source === "bienvenue"
               }
@@ -224,17 +227,6 @@ export default function ExplicationContent({
                 source === "newsletter" || source === "bienvenue"
                   ? "réservé à ceux qui réservent leur appel. Mon équipe t'enverra le détail au moment de l'échange."
                   : undefined
-              }
-              revealHeader={
-                source === "meta" ? (
-                  <Image
-                    src="/images/logo-white.png"
-                    alt="Agencilab"
-                    width={140}
-                    height={36}
-                    className="h-7 w-auto opacity-80"
-                  />
-                ) : undefined
               }
             />
           </div>
