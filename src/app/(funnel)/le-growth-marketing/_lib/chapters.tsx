@@ -129,7 +129,8 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   andreas: {
     name: "Andréas Mirabel",
     age: null,
-    photo: "/images/visages/andreas.jpg",
+    // TODO : remplacer par /images/visages/andreas.jpg quand la photo sera ajoutée
+    photo: "/images/visages/julien.jpg",
     before: "Lancement d'agence en remote",
     revenue: "≈ 17 500€/mois",
     duration: "105 000€ générés en 6 mois",
@@ -139,7 +140,8 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   christiane: {
     name: "Christiane Bilat",
     age: null,
-    photo: "/images/visages/christiane.jpg",
+    // TODO : remplacer par /images/visages/christiane.jpg quand la photo sera ajoutée
+    photo: "/images/visages/marina.jpg",
     before: "Ex-acheteuse média horlogerie suisse",
     revenue: "≈ 12 500€/mois",
     duration: "15 clients à Lausanne",
