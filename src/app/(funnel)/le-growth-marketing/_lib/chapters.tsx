@@ -48,7 +48,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   benjamin: {
     name: "Benjamin Maillard",
-    age: null,
+    age: undefined,
     photo: "/images/visages/benjamin.jpg",
     before: "Ex-routier, Vannes",
     revenue: "3 000€/mois",
@@ -68,7 +68,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   kylian: {
     name: "Kylian Surget",
-    age: null,
+    age: undefined,
     photo: "/images/visages/kylian.jpg",
     before: "Salarié à plein temps",
     revenue: "≈ 6 000€/mois",
@@ -78,7 +78,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   leo: {
     name: "Léo Kraewinkels",
-    age: null,
+    age: undefined,
     photo: "/images/visages/leo.jpg",
     before: "Salarié plein temps, Bruxelles",
     revenue: "2 clients",
@@ -88,7 +88,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   solene: {
     name: "Solène",
-    age: null,
+    age: undefined,
     photo: "/images/visages/solene.jpg",
     before: "Étudiante en 3e année de médecine",
     revenue: "3 clients sites web",
@@ -98,7 +98,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   stephanie: {
     name: "Stéphanie Corveleyn",
-    age: null,
+    age: undefined,
     photo: "/images/visages/stephanie.jpg",
     before: "Enseignante, 3 enfants",
     revenue: "Lancement en parallèle",
@@ -128,7 +128,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   andreas: {
     name: "Andréas Mirabel",
-    age: null,
+    age: undefined,
     // TODO : remplacer par /images/visages/andreas.jpg quand la photo sera ajoutée
     photo: "/images/visages/julien.jpg",
     before: "Lancement d'agence en remote",
@@ -139,7 +139,7 @@ export const TESTIMONIALS: Record<string, Testimonial> = {
   },
   christiane: {
     name: "Christiane Bilat",
-    age: null,
+    age: undefined,
     // TODO : remplacer par /images/visages/christiane.jpg quand la photo sera ajoutée
     photo: "/images/visages/marina.jpg",
     before: "Ex-acheteuse média horlogerie suisse",
