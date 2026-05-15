@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { CHAPTERS, type Chapter } from "./chapters";
 import { ArrowLeftIcon, ArrowRightIcon } from "./components";
+import { ReflectionPrompt } from "./ReflectionPrompt";
+import { NextStepLink } from "./NextStepLink";
 
 /**
  * Layout pour chaque chapitre de la brochure :
@@ -13,16 +15,32 @@ export function BrochureLayout({
   step,
   chapter,
   closerSlug,
+  closerLabel,
+  rdvParam,
+  prenom,
   children,
 }: {
   step: number;
   chapter: Chapter;
   closerSlug: string | null;
+  /** Label humain du conseiller (Tino, Matis, ou "ton conseiller") pour interpolation dans reflection.question */
+  closerLabel?: string;
+  /** Valeur brute du searchParam ?rdv= (à propager dans les liens nav) */
+  rdvParam?: string;
+  /** Prénom normalisé du lead (à propager dans les liens nav) */
+  prenom?: string | null;
   children: React.ReactNode;
 }) {
   const total = CHAPTERS.length;
   const isMarble = chapter.variant === "marble";
-  const closerQuery = closerSlug ? `?closer=${closerSlug}` : "";
+  const conseiller = closerLabel ?? "ton conseiller";
+  const closerQuery = (() => {
+    const parts: string[] = [];
+    if (closerSlug) parts.push(`closer=${closerSlug}`);
+    if (rdvParam) parts.push(`rdv=${encodeURIComponent(rdvParam)}`);
+    if (prenom) parts.push(`prenom=${encodeURIComponent(prenom)}`);
+    return parts.length ? `?${parts.join("&")}` : "";
+  })();
 
   return (
     <div className={isMarble ? "min-h-screen marble-bg" : "min-h-screen bg-navy-950"}>
@@ -86,8 +104,28 @@ export function BrochureLayout({
             {children}
           </div>
 
+          {/* Encart "exprime-toi" — si le chapitre en a un */}
+          {chapter.reflection && (
+            <ReflectionPrompt
+              question={chapter.reflection.question.replace(/\{closer\}/g, conseiller)}
+              louisExample={chapter.reflection.louisExample.replace(/\{closer\}/g, conseiller)}
+              storageKey={`gm_brochure_reflection_${chapter.slug}`}
+              variant={chapter.variant}
+            />
+          )}
+
           {/* Navigation bas de page */}
-          <BottomNav step={step} total={total} closerQuery={closerQuery} variant={chapter.variant} />
+          <BottomNav
+            step={step}
+            total={total}
+            closerQuery={closerQuery}
+            variant={chapter.variant}
+            requireFilledKey={
+              chapter.reflection
+                ? `gm_brochure_reflection_${chapter.slug}`
+                : undefined
+            }
+          />
         </div>
       </section>
     </div>
@@ -211,11 +249,13 @@ function BottomNav({
   total,
   closerQuery,
   variant,
+  requireFilledKey,
 }: {
   step: number;
   total: number;
   closerQuery: string;
   variant: "dark" | "marble";
+  requireFilledKey?: string;
 }) {
   const isMarble = variant === "marble";
   const isLast = step === total;
@@ -269,9 +309,10 @@ function BottomNav({
         </span>
       </Link>
 
-      {/* Suivant — CTA principale */}
-      <Link
+      {/* Suivant — CTA principale (avec validation question obligatoire) */}
+      <NextStepLink
         href={nextHref}
+        requireFilledKey={requireFilledKey}
         className={`group flex flex-[1.1] flex-col items-end gap-1 rounded-xl border-2 px-4 py-3 text-right transition-all md:px-5 md:py-4 ${
           isLast
             ? "border-gold-400/60 bg-gold-400/[0.08] hover:border-gold-400 hover:bg-gold-400/[0.14]"
@@ -316,7 +357,7 @@ function BottomNav({
             ? "Envoyer mes réponses"
             : `${nextChapter?.num} · ${nextChapter?.title}`}
         </span>
-      </Link>
+      </NextStepLink>
     </nav>
   );
 }

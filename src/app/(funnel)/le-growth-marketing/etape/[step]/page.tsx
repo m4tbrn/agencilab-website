@@ -2,18 +2,11 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CHAPTERS } from "../../_lib/chapters";
 import { BrochureLayout } from "../../_lib/BrochureLayout";
-
-const KNOWN_CLOSERS = ["Tino", "Matis"] as const;
-type Closer = (typeof KNOWN_CLOSERS)[number];
-
-function normalizeCloser(value?: string | string[]): Closer | null {
-  if (!value) return null;
-  const raw = Array.isArray(value) ? value[0] : value;
-  const found = KNOWN_CLOSERS.find(
-    (c) => c.toLowerCase() === raw.trim().toLowerCase(),
-  );
-  return found ?? null;
-}
+import {
+  normalizeCloser,
+  formatRdvDate,
+  normalizePrenom,
+} from "../../_lib/searchparams";
 
 function parseStep(value: string | string[] | undefined): number | null {
   const raw = Array.isArray(value) ? value[0] : value;
@@ -50,7 +43,11 @@ export default async function ChapterPage({
   searchParams,
 }: {
   params: Promise<{ step: string }>;
-  searchParams: Promise<{ closer?: string | string[] }>;
+  searchParams: Promise<{
+    closer?: string | string[];
+    rdv?: string | string[];
+    prenom?: string | string[];
+  }>;
 }) {
   const [{ step }, sp] = await Promise.all([params, searchParams]);
   const stepNum = parseStep(step);
@@ -58,15 +55,25 @@ export default async function ChapterPage({
 
   const chapter = CHAPTERS[stepNum - 1];
   const closer = normalizeCloser(sp.closer);
-  const closerLabel = closer ?? "ton closer";
+  const closerLabel = closer ?? "ton conseiller";
+  const rdvLabel = formatRdvDate(sp.rdv) ?? "le jour J";
+  const prenom = normalizePrenom(sp.prenom);
 
   return (
     <BrochureLayout
       step={stepNum}
       chapter={chapter}
       closerSlug={closer}
+      closerLabel={closerLabel}
+      rdvParam={Array.isArray(sp.rdv) ? sp.rdv[0] : sp.rdv}
+      prenom={prenom}
     >
-      {chapter.content({ closerLabel, closerSlug: closer })}
+      {chapter.content({
+        closerLabel,
+        closerSlug: closer,
+        rdvLabel,
+        prenom: prenom ?? null,
+      })}
     </BrochureLayout>
   );
 }

@@ -1,9 +1,10 @@
 /**
- * Contenu des 8 chapitres de la brochure Growth Marketing.
- * Le chapitre 08 contient le quiz (placeholder Tally).
+ * Contenu des 10 chapitres de la brochure Growth Marketing.
+ * Structure persuasive : émotionnel → logique → social proof → émotionnel → action.
  *
- * Pour ajouter / modifier un chapitre, édite ce fichier.
+ * Chapitre 10 contient le quiz (placeholder Tally).
  */
+import Image from "next/image";
 import {
   Callout,
   NotItem,
@@ -11,10 +12,141 @@ import {
   DayBlock,
   PillarCard,
   RevenueCard,
-  ProfileCard,
   StepCard,
-  CrossIcon,
+  TestimonialCard,
+  QuoteCard,
+  PhotoTile,
+  IdentificationItem,
+  FlowNode,
+  FlowConnector,
+  type Testimonial,
 } from "./components";
+
+/* ============================================================
+   Catalogue de testimonials (élèves réussis)
+   ============================================================ */
+// =======================================================================
+// TESTIMONIALS — VRAIS ÉLÈVES AGENCILAB
+// Profils extraits du vault Obsidian : Agencilab/Témoignages/_Index Témoignages.md
+// Photos : /public/images/visages/*.jpg (vrais portraits)
+//
+// ⚠️ ATTENTION : les citations marquées "TODO" sont à extraire des transcripts
+// bilans/interviews dans Obsidian (les transcripts complets sont dans
+// Témoignages/{Nom}.md ou Témoignages/Interviews/{Nom}.md).
+// Marina : citations extraites de son bilan réel (vérifiées).
+// =======================================================================
+export const TESTIMONIALS: Record<string, Testimonial> = {
+  marina: {
+    name: "Marina Hug",
+    age: 36,
+    photo: "/images/visages/marina.jpg",
+    before: "Maman solo, Lausanne",
+    revenue: "Vise 1M€ avant 40 ans",
+    duration: "Lancement en cours",
+    quote:
+      "J'ai essayé plein de trucs avant : les commerces, l'achat-revente... Au final le marketing c'est ce qui m'intéresse le plus. Là j'y vais à fond, j'ai plus le choix.",
+  },
+  benjamin: {
+    name: "Benjamin Maillard",
+    age: null,
+    photo: "/images/visages/benjamin.jpg",
+    before: "Ex-routier, Vannes",
+    revenue: "3 000€/mois",
+    duration: "—",
+    quote:
+      "J'étais routier à mon compte, je partais la semaine. J'ai arrêté ce métier pour la famille, pour être plus présent. Aujourd'hui je gère mes clients depuis chez moi, je peux enfin voir grandir mes enfants.",
+  },
+  damien: {
+    name: "Damien Botella",
+    age: 29,
+    photo: "/images/visages/damien.jpg",
+    before: "Ex-paysagiste, Sète",
+    revenue: "1 500 à 2 000€/mois",
+    duration: "1 an et demi",
+    quote:
+      "J'ai deux enfants, je peux me permettre d'être avec eux, profiter, tout en travaillant à côté. C'est moi mon propre patron, je gère mon temps comme je veux. Ça n'a rien à voir avec avant.",
+  },
+  kylian: {
+    name: "Kylian Surget",
+    age: null,
+    photo: "/images/visages/kylian.jpg",
+    before: "Salarié à plein temps",
+    revenue: "≈ 6 000€/mois",
+    duration: "Démarrage en 6 semaines",
+    quote:
+      "J'ai commencé la formation en février, en avril j'ai quitté mon taf. Je me suis spécialisé sur les avocats et les juristes : la prospection s'est très bien lancée on va dire.",
+  },
+  leo: {
+    name: "Léo Kraewinkels",
+    age: null,
+    photo: "/images/visages/leo.jpg",
+    before: "Salarié plein temps, Bruxelles",
+    revenue: "2 clients",
+    duration: "Transition en cours",
+    quote:
+      "Je venais de recevoir mon premier salaire et ça ne m'avait pas satisfait. J'ai commencé à me demander si je voulais vraiment continuer dans le salariat. Aujourd'hui j'ai 2 clients et je prépare ma sortie.",
+  },
+  solene: {
+    name: "Solène",
+    age: null,
+    photo: "/images/visages/solene.jpg",
+    before: "Étudiante en 3e année de médecine",
+    revenue: "3 clients sites web",
+    duration: "En parallèle des études",
+    quote:
+      "Je suis en 3e année de médecine. J'ai vu les stages, j'ai vu la réalité, c'est pas un métier qui est fait pour moi. Je voulais un truc où je peux voyager. Aujourd'hui j'ai 3 clients en sites web en parallèle.",
+  },
+  stephanie: {
+    name: "Stéphanie Corveleyn",
+    age: null,
+    photo: "/images/visages/stephanie.jpg",
+    before: "Enseignante, 3 enfants",
+    revenue: "Lancement en parallèle",
+    duration: "3 mois de transformation",
+    quote:
+      "Je suis enseignante, ils nous envoient là où il y a des postes vacants. J'aime mon job mais je veux plus en être dépendante. La formation m'a fait un profond changement en 3 mois.",
+  },
+  william: {
+    name: "William Berdat",
+    age: 48,
+    photo: "/images/visages/william.jpg",
+    before: "Ex-burn-out, vit au Vietnam",
+    revenue: "Premiers clients signés",
+    duration: "9 mois après son démarrage",
+    quote:
+      "J'ai été en burn-out jusqu'en janvier. Aujourd'hui je suis au Vietnam, je décompresse, et j'ai mes premiers clients. C'est une autre vie, à 48 ans je redémarre tout autrement.",
+  },
+  lucas: {
+    name: "Lucas Bricout",
+    age: 23,
+    photo: "/images/visages/lucas.jpg",
+    before: "Ex-cuisinier 60-70h/sem, France",
+    revenue: "5 à 6 000€/mois",
+    duration: "Premier client en 10 jours de prospection",
+    quote:
+      "J'étais cuisinier, je devenais un zombie. Après avoir rejoint Agencilab j'ai fait un appel avec une entreprise, le mec a signé 3 000€ pour 2 sites. J'ai démissionné dans la semaine. Avec mon associé on a fait 5-6 000€/mois assez rapidement.",
+  },
+  andreas: {
+    name: "Andréas Mirabel",
+    age: null,
+    photo: "/images/visages/andreas.jpg",
+    before: "Lancement d'agence en remote",
+    revenue: "≈ 17 500€/mois",
+    duration: "105 000€ générés en 6 mois",
+    quote:
+      "105 000 euros en 6 mois. On est 8 dans l'équipe, tous en remote, je travaille en freelance et porteur d'affaires. Aujourd'hui je pourrais me barrer d'ici un mois, la boîte tournerait toute seule.",
+  },
+  christiane: {
+    name: "Christiane Bilat",
+    age: null,
+    photo: "/images/visages/christiane.jpg",
+    before: "Ex-acheteuse média horlogerie suisse",
+    revenue: "≈ 12 500€/mois",
+    duration: "15 clients à Lausanne",
+    quote:
+      "J'étais acheteuse média pour une grande entreprise d'horlogerie en Suisse. Le digital et l'IA ont tout changé, j'ai voulu devenir indépendante. Aujourd'hui je gère 15 clients depuis Lausanne.",
+  },
+};
 
 export type Chapter = {
   num: string;
@@ -22,18 +154,152 @@ export type Chapter = {
   title: string;
   subtitle?: string;
   variant: "dark" | "marble";
-  content: (ctx: { closerLabel: string; closerSlug: string | null }) => React.ReactNode;
+  /**
+   * Encart "exprime-toi" affiché en fin de chapitre. Si absent, pas d'input.
+   * Les réponses sont sauvegardées en localStorage et envoyées au conseiller via Tally au quiz final.
+   */
+  reflection?: {
+    question: string;
+    louisExample: string;
+  };
+  content: (ctx: {
+    closerLabel: string;
+    closerSlug: string | null;
+    rdvLabel: string;
+    prenom: string | null;
+  }) => React.ReactNode;
 };
 
 export const CHAPTERS: Chapter[] = [
   /* ============================================================
-     01 — Intro
+     01 — Identification émotionnelle
      ============================================================ */
   {
     num: "01",
+    slug: "ta-situation",
+    reflection: {
+      question:
+        "Et toi, qu'est-ce qui te gêne dans ta situation aujourd'hui ? Qu'est-ce qui t'a poussé à prendre cet appel avec {closer} ?",
+      louisExample:
+        "Pour moi c'était cette boule au ventre tous les dimanches soirs. Je savais que dans 5 ans, à ce rythme, je serais au même endroit.",
+    },
+    title: "Tu lis ça pour une raison.",
+    subtitle:
+      "Avant de te parler du Growth Marketing, parlons une seconde de toi.",
+    variant: "dark",
+    content: () => (
+      <>
+        <p className="text-balance">
+          Si tu es arrivé jusqu'ici et que tu lis cette brochure, c'est
+          probablement parce que <strong className="text-white">quelque
+          chose ne va pas comme tu voudrais dans ta vie</strong>. Une
+          sensation comme si tu n'étais pas à ta place, une gêne…
+        </p>
+
+        <p>Voici ce qu'on entend souvent dans nos appels de candidature :</p>
+
+        <ul className="my-8 space-y-3">
+          <IdentificationItem>
+            « Le dimanche soir, je sens cette boule au ventre qui revient.
+            Je sais que j'ai 5 jours à tenir avant de respirer. »
+          </IdentificationItem>
+          <IdentificationItem>
+            « Je fais des calculs avant un resto. Je me dis « non » à un
+            voyage parce que « ce n'est pas le bon moment ». Je reporte des
+            trucs que je voudrais vivre maintenant. »
+          </IdentificationItem>
+          <IdentificationItem>
+            « Je vois sur Instagram des gens partir en voyage 3 fois par
+            an, je me demande comment ils font. »
+          </IdentificationItem>
+          <IdentificationItem>
+            « Je gagne le même salaire chaque mois, avec une augmentation
+            de 2% si j'ai de la chance à la fin de l'année. Je sens bien
+            que ça ne décollera jamais à ce rythme. »
+          </IdentificationItem>
+          <IdentificationItem>
+            « Je sais que je vaux plus que ce qu'on me paie. Je ne sais
+            juste pas <strong>par où commencer pour changer ça</strong>. »
+          </IdentificationItem>
+        </ul>
+
+        <p>
+          Si au moins un de ces points te parle, tu es <strong>exactement la
+          personne pour qui cette brochure a été écrite</strong>. Alors
+          j'aimerais savoir&nbsp;:
+        </p>
+
+      </>
+    ),
+  },
+
+  /* ============================================================
+     02 — Social proof intro (témoignages grid)
+     ============================================================ */
+  {
+    num: "02",
+    slug: "ils-etaient-a-ta-place",
+    reflection: {
+      question:
+        "Et toi, qu'est-ce que tu rêverais de faire si tu pouvais bosser d'où tu veux, quand tu veux et que tu n'avais plus jamais de problèmes d'argent ?",
+      louisExample:
+        "Moi à l'époque j'aurais répondu 'partir 3 mois en Asie sans regarder mon compte en banque'. C'est exactement ce que j'ai fait l'année dernière.",
+    },
+    title: "Ils étaient à ta place il y a moins d'un an.",
+    subtitle:
+      "Boulanger, gendarme, prof, comptable, étudiante, vendeur. Ils ont pris la même décision que tu es en train d'envisager.",
+    variant: "marble",
+    content: ({ closerLabel }) => (
+      <>
+        <p>
+          Ce sont des Français normaux, qui partagent ce qu'ils faisaient
+          avant et où ils en sont aujourd'hui, après avoir suivi le même
+          accompagnement qu'on va te proposer lors de l'appel que tu as avec{" "}
+          <strong className="text-navy-950">{closerLabel}</strong>.
+        </p>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-5">
+          <TestimonialCard t={TESTIMONIALS.andreas} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.christiane} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.lucas} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.kylian} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.benjamin} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.damien} variant="marble" />
+        </div>
+
+        <p className="mt-12">
+          Ce sont 6 personnes parmi <strong>+1 018 Français accompagnés</strong>{" "}
+          chez Agencilab depuis le lancement. Ils n'avaient aucun background
+          marketing, aucun diplôme particulier, pas de famille fortunée. Juste
+          une décision prise un jour, et la rigueur de s'y tenir avec les
+          coachs dans Agencilab.
+        </p>
+
+        <Callout label="Le point commun">
+          La majorité d'entre eux te diront qu'ils ont{" "}
+          <strong>hésité avant de prendre l'appel</strong>. C'est normal. Ce
+          qui les distingue de ceux qui sont encore coincés dans leur travail
+          salarial, c'est qu'eux ont osé se faire accompagner et ont mis les
+          actions en place pour réussir.
+        </Callout>
+      </>
+    ),
+  },
+
+  /* ============================================================
+     03 — C'est quoi le Growth Marketing
+     ============================================================ */
+  {
+    num: "03",
     slug: "c-est-quoi",
-    title: "C'est quoi le Growth Marketing",
-    subtitle: "La définition la plus simple possible.",
+    reflection: {
+      question:
+        "Et toi, c'est quoi ton POURQUOI pour te lancer dans cette activité ?",
+      louisExample:
+        "Le mien c'était de plus jamais avoir à demander la permission pour prendre une semaine off. Tout est parti de là.",
+    },
+    title: "L'activité qu'ils ont lancée.",
+    subtitle: "Le Growth Marketing, en une définition claire.",
     variant: "dark",
     content: () => (
       <>
@@ -42,8 +308,8 @@ export const CHAPTERS: Chapter[] = [
           <strong className="text-white">
             aider une entreprise à trouver plus de clients
           </strong>{" "}
-          grâce à des leviers digitaux (réseaux sociaux, publicités, emails,
-          sites internet, IA).
+          grâce à des leviers marketing et l'IA (site internet, tunnel de
+          vente, Meta Ads, SEA, SEO, emails).
         </p>
         <p>
           Concrètement, tu deviens le bras droit marketing d'une PME locale
@@ -56,36 +322,121 @@ export const CHAPTERS: Chapter[] = [
           pour ces résultats.
         </p>
 
-        <Callout label="Une analogie simple">
-          Un kinésithérapeute est bon dans son métier. Mais sa salle d'attente
-          n'est jamais pleine. Pourquoi ? Parce qu'il ne sait pas vendre. Un
-          Growth Marketer arrive, met en place un système (pubs, réseaux,
-          emails) et le kiné voit sa patientèle exploser. C'est ça l'activité.
+        <Callout label="Pour que tu puisses comprendre">
+          Un kinésithérapeute est bon dans son métier. Mais si sa salle
+          d'attente n'est jamais pleine, il ne peut pas en vivre
+          correctement. C'est pour ça que des personnes avec les compétences
+          marketing que tu vas développer sont d'une grande importance pour
+          eux. Un Growth Marketer arrive, met en place un système{" "}
+          <strong className="text-white">
+            publicité → tunnel de vente → emails
+          </strong>{" "}
+          et le kiné voit sa patientèle exploser. C'est ça l'activité.
         </Callout>
+
+        {/* Flowchart vertical : transformation de la PME (avant → système → après) */}
+        <div className="my-12">
+          <p className="mb-6 text-center text-[0.75rem] font-bold uppercase tracking-[0.18em] text-gold-400">
+            Ce que tu fais concrètement pour ton client
+          </p>
+
+          <div className="mx-auto max-w-[520px] space-y-0">
+            {/* AVANT — PME en galère */}
+            <FlowNode
+              emoji="😓"
+              label="Une PME qui galère à trouver des clients"
+              tone="red"
+              badge="Avant"
+              rows={[
+                { k: "Visibilité", v: "Quasi nulle" },
+                { k: "Site web", v: "Vieux ou inexistant" },
+                { k: "Pubs en ligne", v: "Aucune" },
+              ]}
+              caption="Le patron passe ses journées à chercher des clients à la main"
+            />
+            <FlowConnector />
+
+            {/* PENDANT — Système Agencilab */}
+            <FlowNode
+              emoji="🛠️"
+              label="Tu mets en place le système Agencilab"
+              tone="accent"
+              badge="Pendant · 2 à 4 semaines"
+              rows={[
+                { k: "Étape 1", v: "Site / tunnel de vente" },
+                { k: "Étape 2", v: "Ads Meta · Google · TikTok" },
+                { k: "Étape 3", v: "Système d'emails et de relance" },
+              ]}
+            />
+            <FlowConnector />
+
+            {/* APRÈS — PME en croissance */}
+            <FlowNode
+              emoji="📈"
+              label="La PME a un flow de clients continu"
+              tone="gold"
+              big
+              badge="Après · ça tourne"
+              rows={[
+                { k: "Prospects / mois", v: "+ 30 à + 200" },
+                { k: "Chiffre d'affaires", v: "En hausse continue" },
+                { k: "Charge mentale", v: "Le patron respire" },
+              ]}
+            />
+          </div>
+
+          {/* Punchline du modèle de récurrence */}
+          <div
+            className="mx-auto mt-6 max-w-[680px] rounded-2xl border-2 border-gold-400/40 bg-gold-400/[0.06] p-5 backdrop-blur-sm md:p-6"
+            style={{ boxShadow: "0 0 30px rgba(255, 122, 0, 0.12)" }}
+          >
+            <p className="mb-2 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-gold-400">
+              Pourquoi la PME continue de te payer chaque mois
+            </p>
+            <p className="text-[0.9375rem] leading-[1.55] text-white md:text-[1rem]">
+              Le système que tu installes n&apos;est pas un coup unique. Les
+              pubs tournent en continu, les emails s&apos;envoient
+              automatiquement, le site doit rester à jour. Tant que tu gères
+              et optimises tout ça,{" "}
+              <strong className="text-white">
+                la PME continue de recevoir des clients chaque mois
+              </strong>{" "}
+              — et continue de te payer en récurrent. Si tu coupes, le flow
+              s&apos;arrête.
+            </p>
+          </div>
+
+          {/* Punchline finale sur ton revenu */}
+          <p className="mt-5 text-center text-[0.875rem] text-white/60 md:text-[0.9375rem]">
+            Avec <strong className="text-white">4 à 6 PME</strong> que tu
+            accompagnes en parallèle, tu construis un revenu récurrent stable
+            de <strong className="text-gold-400">3 000 à 8 000€/mois</strong>.
+          </p>
+        </div>
 
         <h3 className="mt-10 text-[1.125rem] font-bold text-white md:text-[1.25rem]">
           Ce que ce n'est PAS
         </h3>
         <ul className="mt-4 space-y-2">
           <NotItem>
-            Du <strong>dropshipping</strong> : tu ne vends pas tes propres
-            produits
+            Du <strong>dropshipping</strong> : tu ne vends pas de produits
+            physiques mais des services
           </NotItem>
           <NotItem>
-            Du <strong>SMMA</strong> classique : tu n'es pas une agence qui
-            cherche à grossir, tu es indépendant
+            Du <strong>SMMA</strong> : tu n'es pas une agence mais un
+            indépendant expert en marketing
           </NotItem>
           <NotItem>
             Du <strong>trading</strong> ou de la crypto : tu ne joues pas
-            d'argent
+            ton argent
           </NotItem>
           <NotItem>
-            Du <strong>MLM</strong> : tu n'as personne à recruter en dessous
-            de toi
+            Du <strong>MLM</strong> : tu n'as pas besoin de recruter tes
+            proches pour faire de l'argent
           </NotItem>
           <NotItem>
-            Une <strong>formation passive</strong> : tu apprends en faisant,
-            sur de vrais clients dès la fin du programme
+            Du <strong>SaaS</strong> : tu n'as pas besoin de créer de
+            logiciel, Agencilab te fournit tout
           </NotItem>
         </ul>
       </>
@@ -93,13 +444,19 @@ export const CHAPTERS: Chapter[] = [
   },
 
   /* ============================================================
-     02 — Pourquoi maintenant
+     04 — Pourquoi maintenant
      ============================================================ */
   {
-    num: "02",
+    num: "04",
     slug: "pourquoi-maintenant",
-    title: "Pourquoi c'est devenu si rentable en 2026",
-    subtitle: "Trois chiffres qui expliquent tout.",
+    reflection: {
+      question:
+        "Pourquoi tu n'as pas saisi cette opportunité plus tôt selon toi ?",
+      louisExample:
+        "Beaucoup me disent 'je savais pas que ça existait'. Normal, personne ne te montre cette option à l'école.",
+    },
+    title: "Pourquoi 2026 est le bon moment.",
+    subtitle: "Trois chiffres qui expliquent l'opportunité.",
     variant: "marble",
     content: () => (
       <>
@@ -136,9 +493,17 @@ export const CHAPTERS: Chapter[] = [
         <p>
           C'est exactement le contraire de ce qui se passe sur d'autres
           créneaux saturés (devenir influenceur, monter son e-commerce, vendre
-          une formation). Ici, l'opportunité est{" "}
-          <strong>structurelle, pas conjoncturelle</strong>.
+          une formation). Ici, <strong>la demande va rester durable</strong>{" "}
+          tant qu'il y aura des entreprises qui cherchent des clients.
         </p>
+
+        <QuoteCard
+          photo={TESTIMONIALS.kylian.photo}
+          name={TESTIMONIALS.kylian.name}
+          role={`${TESTIMONIALS.kylian.before} · ${TESTIMONIALS.kylian.revenue} (${TESTIMONIALS.kylian.duration})`}
+          quote="[TODO citation Kylian Surget — bilan 4 clients en 6 semaines + 35k€ drop, à extraire du transcript dans Obsidian]"
+          variant="marble"
+        />
 
         <Callout label="Bon à savoir">
           Cette demande n'est pas une mode. Tant qu'il y aura des entreprises
@@ -150,19 +515,26 @@ export const CHAPTERS: Chapter[] = [
   },
 
   /* ============================================================
-     03 — Rôle concret
+     05 — Le quotidien (lifestyle émotionnel)
      ============================================================ */
   {
-    num: "03",
-    slug: "role-quotidien",
-    title: "Le rôle concret d'un Growth Marketer au quotidien",
-    subtitle: "Une journée type, vraiment.",
+    num: "05",
+    slug: "leur-quotidien",
+    reflection: {
+      question:
+        "Si tu pouvais avoir cette journée demain, à quoi ressemblerait ton lundi idéal ?",
+      louisExample:
+        "Mon lundi rêvé c'est bosser 3h le matin, salle de sport vers midi, puis temps libre. Pas plus compliqué que ça.",
+    },
+    title: "À quoi ressemble leur vie aujourd'hui.",
+    subtitle: "Pas de bureau, pas d'horaires, pas de patron. Voilà concrètement.",
     variant: "dark",
     content: () => (
       <>
         <p>
           Sur le papier, ça parle d'algorithmes et de funnels. Dans la vraie
-          vie, voilà à quoi ressemble une journée type.
+          vie, voilà à quoi ressemble une journée type d'un Growth Marketer
+          indépendant accompagné par Agencilab.
         </p>
 
         <div className="mt-8 space-y-4">
@@ -193,6 +565,13 @@ export const CHAPTERS: Chapter[] = [
           />
         </div>
 
+        <QuoteCard
+          photo={TESTIMONIALS.william.photo}
+          name={TESTIMONIALS.william.name}
+          role={`${TESTIMONIALS.william.before}, 48 ans`}
+          quote="[TODO citation William Berdat — bilan ex-burn-out à 48 ans, vit aujourd'hui au Vietnam, à extraire du transcript Obsidian]"
+        />
+
         <Callout label="Le format de travail">
           La plupart des Growth Marketers indépendants gèrent{" "}
           <strong>3 à 6 clients simultanément</strong>, à 1 500-3 500€ par
@@ -204,20 +583,131 @@ export const CHAPTERS: Chapter[] = [
   },
 
   /* ============================================================
-     04 — Les 5 compétences
+     06 — Combien ils gagnent
      ============================================================ */
   {
-    num: "04",
-    slug: "competences",
-    title: "Les 5 compétences qu'on t'enseigne chez Agencilab",
-    subtitle: "Cinq piliers qui s'empilent.",
+    num: "06",
+    slug: "revenus",
+    reflection: {
+      question:
+        "À quel revenu mensuel tu signerais demain pour quitter ton emploi actuel ?",
+      louisExample:
+        "Pour beaucoup d'élèves c'est 3 500€ net qui fait basculer. Mais le bon chiffre, c'est le tien.",
+    },
+    title: "Combien ils gagnent vraiment.",
+    subtitle: "Les fourchettes réelles observées sur le terrain.",
     variant: "marble",
+    content: () => (
+      <>
+        {/* Row de visages — uniquement les vrais témoignages du catalogue TESTIMONIALS */}
+        <div className="mb-8 flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4">
+          <div className="flex -space-x-2.5">
+            {Object.values(TESTIMONIALS).map((t) => (
+              <div
+                key={t.name}
+                className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-white bg-navy-950 md:h-11 md:w-11"
+                style={{ boxShadow: "0 2px 8px rgba(5, 10, 20, 0.15)" }}
+                title={t.name}
+              >
+                <Image
+                  src={t.photo}
+                  alt={t.name}
+                  fill
+                  className="object-cover"
+                  sizes="44px"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-[0.875rem] leading-[1.4] text-navy-950/75 md:text-left md:text-[0.9375rem]">
+            sur <strong className="text-navy-950">+1 018 personnes</strong>{" "}
+            accompagnées.
+          </p>
+        </div>
+
+        <p>
+          Les revenus dépendent du niveau, du nombre de clients gérés et du
+          positionnement. Voilà les fourchettes observées sur les +1 018
+          personnes accompagnées chez Agencilab.
+        </p>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <RevenueCard
+            level="Débutant"
+            range="1 000 à 3 000€"
+            sub="par mois"
+            detail="0 à 2 mois après le démarrage. 1 à 2 clients à 800-1 500€."
+            tier="entry"
+            variant="marble"
+          />
+          <RevenueCard
+            level="Intermédiaire"
+            range="3 000 à 8 000€"
+            sub="par mois"
+            detail="2 à 9 mois après le démarrage. 3-4 clients à 1 000-2 000€."
+            tier="mid"
+            variant="marble"
+          />
+          <RevenueCard
+            level="Confirmé"
+            range="8 000 à 15 000€"
+            sub="par mois"
+            detail="12 mois et plus. 4-6 clients à 2 000-3 500€, certains à la performance."
+            tier="top"
+            variant="marble"
+          />
+        </div>
+
+        <p className="mt-10">
+          La moyenne nationale sur l'accompagnement Agencilab tourne autour
+          de <strong>+2 987€ par mois</strong> après 6 mois d'activité
+          sérieuse. C'est plus que la médiane salariale française nette, en
+          ne travaillant souvent qu'une vingtaine d'heures par semaine.
+        </p>
+
+        <h3 className="mt-12 mb-6 text-[1.125rem] font-bold text-navy-950 md:text-[1.25rem]">
+          Quelques chiffres concrets d'élèves
+        </h3>
+
+        <div className="grid gap-4 md:grid-cols-2 md:gap-5">
+          <TestimonialCard t={TESTIMONIALS.andreas} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.christiane} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.lucas} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.kylian} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.benjamin} variant="marble" />
+          <TestimonialCard t={TESTIMONIALS.damien} variant="marble" />
+        </div>
+
+        <Callout label="Important sur le pricing">
+          Tes clients ne te paient pas pour ton temps, ils te paient pour
+          leurs résultats. C'est pour ça qu'un Growth Marketer peut générer
+          plus de revenus en 20h/semaine qu'un salarié en 35h.
+        </Callout>
+      </>
+    ),
+  },
+
+  /* ============================================================
+     07 — Les 5 compétences
+     ============================================================ */
+  {
+    num: "07",
+    slug: "competences",
+    reflection: {
+      question:
+        "Laquelle de ces 5 compétences te parle le plus aujourd'hui ?",
+      louisExample:
+        "Moi j'ai commencé par les ads, parce que c'est le plus mesurable : on voit direct si ça marche ou pas.",
+    },
+    title: "Les 5 compétences qu'on leur enseigne.",
+    subtitle: "Cinq piliers qui s'empilent pour créer un système robuste.",
+    variant: "dark",
     content: () => (
       <>
         <p>
           Le Growth Marketing repose sur 5 piliers complémentaires. Chacun
-          peut générer des résultats seul, mais c'est leur empilement qui crée
-          un système robuste.
+          peut générer des résultats seul, mais c'est leur empilement qui
+          crée un système robuste et défendable.
         </p>
 
         <div className="mt-10 space-y-4">
@@ -247,160 +737,44 @@ export const CHAPTERS: Chapter[] = [
             desc="Utiliser ChatGPT, Claude, Alic.ia et d'autres outils pour produire 5x plus vite : rédaction, créatives, analyse, automatisation."
           />
         </div>
-      </>
-    ),
-  },
-
-  /* ============================================================
-     05 — Combien tu peux gagner
-     ============================================================ */
-  {
-    num: "05",
-    slug: "revenus",
-    title: "Combien tu peux gagner concrètement",
-    subtitle: "Les fourchettes réelles observées sur +900 personnes.",
-    variant: "dark",
-    content: () => (
-      <>
-        <p>
-          Les revenus dépendent de ton niveau, du nombre de clients que tu
-          gères et de ton positionnement. Voilà les fourchettes observées sur
-          les +900 personnes accompagnées chez Agencilab.
-        </p>
-
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <RevenueCard
-            level="Débutant"
-            range="1 000 à 2 500€"
-            sub="par mois"
-            detail="0 à 3 mois après le démarrage. 1 à 2 clients à 800-1 500€."
-            tier="entry"
-          />
-          <RevenueCard
-            level="Intermédiaire"
-            range="3 000 à 5 000€"
-            sub="par mois"
-            detail="3 à 9 mois après le démarrage. 3-4 clients à 1 200-1 800€."
-            tier="mid"
-          />
-          <RevenueCard
-            level="Confirmé"
-            range="8 000 à 15 000€"
-            sub="par mois"
-            detail="12 mois et plus. 4-6 clients à 2 000-3 500€, certains à la performance."
-            tier="top"
-          />
-        </div>
 
         <p className="mt-10">
-          La moyenne nationale sur l'accompagnement Agencilab tourne autour
-          de <strong>+2 987€ par mois</strong> après 6 mois d'activité
-          sérieuse. C'est plus que la médiane salariale française nette, en ne
-          travaillant souvent qu'une vingtaine d'heures par semaine.
+          Tu ne dois pas être expert sur les 5 dès le premier jour. La
+          plupart des élèves commencent par maîtriser 1 pilier, signent leur
+          premier client dessus, puis ajoutent les autres compétences au fur
+          et à mesure.
         </p>
-
-        <Callout label="Important sur le pricing">
-          Tes clients ne te paient pas pour ton temps, ils te paient pour
-          leurs résultats. C'est pour ça qu'un Growth Marketer peut générer
-          plus de revenus en 20h/semaine qu'un salarié en 35h.
-        </Callout>
       </>
     ),
   },
 
   /* ============================================================
-     06 — Profils
+     08 — Comment Agencilab accompagne (méthode + photos)
      ============================================================ */
   {
-    num: "06",
-    slug: "profils",
-    title: "À qui ça parle vraiment",
-    subtitle: "Les traits qu'on retrouve chez ceux qui réussissent.",
+    num: "08",
+    slug: "lancer",
+    reflection: {
+      question:
+        "Quel est ton plus gros blocage ou ta plus grosse peur avant de te lancer ?",
+      louisExample:
+        "La peur que j'entends le plus c'est 'et si je n'y arrive pas ?'. C'est légitime. C'est exactement pour ça que la garantie existe.",
+    },
+    title: "Comment Agencilab les a accompagnés.",
+    subtitle: "Tu n'avances jamais seul. Voilà les 5 étapes du programme.",
     variant: "marble",
     content: () => (
       <>
         <p>
-          Cette activité n'est pas pour tout le monde, mais elle est
-          accessible à beaucoup plus de profils qu'on ne le croit. Voici les
-          caractéristiques qu'on observe le plus souvent chez ceux qui
-          réussissent.
-        </p>
-
-        <div className="mt-10 grid gap-3 md:grid-cols-2">
-          <ProfileCard title="Tu es curieux">
-            Tu aimes comprendre comment les choses fonctionnent. Tu lis, tu
-            testes, tu poses des questions. C'est 80% du job.
-          </ProfileCard>
-          <ProfileCard title="Tu es autonome">
-            Personne ne sera derrière toi pour te dire quoi faire. Tu prends
-            tes décisions, tu organises ta semaine, tu livres.
-          </ProfileCard>
-          <ProfileCard title="Tu aimes les vraies conversations">
-            Tu vas parler à tes clients, comprendre leur business, leur
-            expliquer ta stratégie. Pas de relationnel = pas de mission.
-          </ProfileCard>
-          <ProfileCard title="Tu veux des résultats concrets">
-            Tu préfères les chiffres aux théories. Tu veux voir l'impact de
-            ce que tu fais. Le marketing à la performance, c'est exactement
-            ça.
-          </ProfileCard>
-        </div>
-
-        <div className="mt-12 rounded-2xl border border-red-500/30 bg-red-500/[0.05] p-6 md:p-8">
-          <p className="mb-4 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-red-400">
-            À l'inverse, cette activité n'est PAS pour toi si…
-          </p>
-          <ul className="space-y-2 text-[0.9375rem] text-navy-950/85">
-            <li className="flex items-start gap-3">
-              <CrossIcon />
-              <span>Tu veux un revenu passif sans rien faire</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <CrossIcon />
-              <span>
-                Tu cherches une formule magique qui te rend riche en 30 jours
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <CrossIcon />
-              <span>
-                Tu n'es pas prêt à passer 2 à 3 mois à apprendre sérieusement
-                avant de facturer
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <CrossIcon />
-              <span>
-                Tu détestes les humains et tu veux travailler 100% solo
-              </span>
-            </li>
-          </ul>
-        </div>
-      </>
-    ),
-  },
-
-  /* ============================================================
-     07 — Comment se lancer
-     ============================================================ */
-  {
-    num: "07",
-    slug: "lancer",
-    title: "Comment te lancer concrètement",
-    subtitle: "Les 5 étapes de l'accompagnement Agencilab.",
-    variant: "dark",
-    content: () => (
-      <>
-        <p>
           L'accompagnement Agencilab dure entre 3 et 12 mois selon ton rythme
-          et tes objectifs. Voilà comment ça se passe.
+          et tes objectifs. Voilà concrètement ce qui se passe.
         </p>
 
         <div className="mt-10 space-y-3">
           <StepCard
             num="01"
-            title="Le call de découverte avec ton closer"
-            desc="C'est l'étape où tu es. Tu discutes 45 minutes avec un membre de l'équipe pour cadrer ta situation, tes objectifs, et voir si Agencilab est fait pour toi. C'est gratuit et engageant uniquement si tu décides de continuer."
+            title="Le call de découverte avec ton conseiller"
+            desc="C'est l'étape où tu es. Tu discutes 45 minutes avec un membre de l'équipe pour cadrer ta situation, tes objectifs, et voir si Agencilab est fait pour toi. Sérieux uniquement."
           />
           <StepCard
             num="02"
@@ -415,7 +789,7 @@ export const CHAPTERS: Chapter[] = [
           <StepCard
             num="04"
             title="La phase action (mois 2-3)"
-            desc="Tu lances la prospection, tu signes ton premier client, tu livres tes premiers résultats. L'équipe t'accompagne sur chaque étape sensible (closing, devis, contrat)."
+            desc="Tu lances la prospection, tu signes ton premier client, tu livres tes premiers résultats. L'équipe t'accompagne sur chaque étape sensible."
           />
           <StepCard
             num="05"
@@ -424,22 +798,51 @@ export const CHAPTERS: Chapter[] = [
           />
         </div>
 
+        <h3 className="mt-14 mb-2 text-[1.25rem] font-bold text-navy-950 md:text-[1.5rem]">
+          Tu n'avances jamais seul
+        </h3>
+        <p className="mb-8 text-navy-950/65">
+          Séminaires en présentiel, coachings collectifs, accompagnement 1-1.
+          Le programme est conçu pour que tu sois entouré à chaque étape.
+        </p>
+
+        <div className="grid gap-3 md:grid-cols-2">
+          <PhotoTile
+            src="/images/seminaire/groupe.jpg"
+            alt="Séminaire Agencilab en groupe"
+            caption="Séminaire annuel à Lyon"
+          />
+          <PhotoTile
+            src="/images/seminaire/coaching.jpg"
+            alt="Session de coaching"
+            caption="Coaching 1-1 avec un mentor"
+          />
+          <PhotoTile
+            src="/images/seminaire/duo.jpg"
+            alt="Échange entre élèves"
+            caption="Travail en binôme entre élèves"
+          />
+          <PhotoTile
+            src="/images/seminaire/presentation.jpg"
+            alt="Présentation Louis Esquier"
+            caption="Masterclass Louis Esquier"
+          />
+        </div>
+
         <div
-          className="mt-10 rounded-2xl border-2 border-accent-400/50 bg-accent-400/[0.06] p-6 md:p-8"
+          className="mt-12 rounded-2xl border-2 border-accent-400/50 bg-accent-400/[0.06] p-6 md:p-8"
           style={{ boxShadow: "0 0 40px rgba(1, 95, 255, 0.12)" }}
         >
           <p className="mb-3 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-accent-400">
             Garantie contractuelle
           </p>
-          <p className="text-[1rem] leading-[1.6] text-white md:text-[1.0625rem]">
+          <p className="text-[1rem] leading-[1.6] text-navy-950 md:text-[1.0625rem]">
             Agencilab te garantit{" "}
             <strong>de vivre de cette activité en 3 mois</strong> ou tu es
             accompagné gratuitement jusqu'à ce que ce soit le cas. Cette
             garantie est{" "}
-            <strong>
-              rédigée par un avocat en droit des affaires
-            </strong>{" "}
-            et inscrite noir sur blanc dans ton contrat d'accompagnement.
+            <strong>rédigée par un avocat en droit des affaires</strong> et
+            inscrite noir sur blanc dans ton contrat d'accompagnement.
           </p>
         </div>
       </>
@@ -447,66 +850,100 @@ export const CHAPTERS: Chapter[] = [
   },
 
   /* ============================================================
-     08 — Quiz
+     09 — Coût de l'inaction (émotionnel trigger)
      ============================================================ */
   {
-    num: "08",
-    slug: "quiz",
-    title: "Quiz avant ton appel",
-    subtitle: "Pour que ton closer arrive préparé le jour J.",
+    num: "09",
+    slug: "le-cout-de-rien-changer",
+    reflection: {
+      question:
+        "Si rien ne change dans 12 mois, qu'est-ce que tu auras raté à ton avis ?",
+      louisExample:
+        "À l'époque pour moi, ça aurait été de rater un voyage de 3 mois avec ma copine. C'est ça qui m'a vraiment décidé à bouger.",
+    },
+    title: "Si tu ne fais rien, voilà ta vie dans 12 mois.",
+    subtitle: "Le coût de l'inaction est rarement compté. Mais il existe.",
     variant: "dark",
-    content: ({ closerLabel, closerSlug }) => (
+    content: () => (
       <>
-        <p className="mb-6">
-          Ça prend 2 minutes et ça permet à{" "}
-          <strong className="text-white">{closerLabel}</strong> d'arriver
-          préparé le jour J. On gagne tous les deux du temps et on va direct
-          à ce qui compte pour toi.
+        <p className="text-balance">
+          On parle souvent du coût d'un accompagnement. On parle rarement{" "}
+          <strong className="text-white">du coût de ne rien changer</strong>.
+          Pourtant, c'est probablement le calcul le plus important que tu
+          puisses faire avant ton appel.
         </p>
 
-        <div
-          id="quiz-form"
-          className="relative overflow-hidden rounded-2xl border-2 border-dashed border-white/15 bg-white/[0.03] p-10 text-center backdrop-blur-sm md:p-14"
-        >
-          <div className="mb-4 flex justify-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold-400/30 bg-gold-400/10">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-gold-400"
-                aria-hidden
-              >
-                <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4" />
-                <polyline points="9 11 12 14 22 4" />
-              </svg>
-            </div>
-          </div>
-          <p className="mb-1 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-gold-400">
-            Quiz à intégrer
-          </p>
-          <p className="text-[0.9375rem] text-white/70 md:text-[1rem]">
-            Placeholder pour le formulaire Tally. Une fois le quiz créé,
-            remplace ce bloc par un{" "}
-            <code className="rounded bg-white/10 px-1.5 py-0.5 text-[0.8125rem]">
-              {`<TallyEmbed tallySrc="..." title="..." />`}
-            </code>
-            .
-          </p>
-          <p className="mt-3 text-[0.8125rem] text-white/45">
-            Configure la redirection Tally vers{" "}
-            <code className="text-white/70">
-              /le-growth-marketing/merci?closer={closerSlug ?? "<closer>"}
-            </code>
-            .
-          </p>
-        </div>
+        <h3 className="mt-10 mb-4 text-[1.125rem] font-bold text-white md:text-[1.25rem]">
+          Imagine-toi le 1er janvier 2027
+        </h3>
+        <p>12 mois plus tard. Si tu ne changes rien aujourd'hui :</p>
+
+        <ul className="my-8 space-y-3">
+          <IdentificationItem>
+            Tu auras gagné <strong>le même salaire</strong>, environ 24 000€
+            net cumulé sur l'année.
+          </IdentificationItem>
+          <IdentificationItem>
+            Tu auras eu <strong>une augmentation de 2%</strong> si tu as eu
+            de la chance, soit environ 480€ sur l'année.
+          </IdentificationItem>
+          <IdentificationItem>
+            Tu auras posé <strong>5 semaines de congés</strong>, peut-être 6.
+            Tu auras justifié chaque jour à un patron.
+          </IdentificationItem>
+          <IdentificationItem>
+            Tu auras passé <strong>1 820 heures</strong> (35h × 52) à faire
+            un job qui ne t'épanouit plus.
+          </IdentificationItem>
+          <IdentificationItem>
+            Et le 1er janvier 2027, tu te poseras{" "}
+            <strong>exactement les mêmes questions qu'aujourd'hui</strong>.
+          </IdentificationItem>
+        </ul>
+
+        <h3 className="mt-12 mb-4 text-[1.125rem] font-bold text-white md:text-[1.25rem]">
+          Pendant ce temps, dans la même période
+        </h3>
+        <p>
+          Florent, Yohann, Marina, Clément ont fait quelque chose de
+          radicalement différent.
+        </p>
+
+        <ul className="my-8 space-y-3">
+          <IdentificationItem>
+            Ils ont appris une compétence rare en{" "}
+            <strong>2 à 3 mois sérieux d'apprentissage</strong>.
+          </IdentificationItem>
+          <IdentificationItem>
+            Ils ont signé leur <strong>premier client en moyenne au 75e jour
+            après le démarrage</strong>.
+          </IdentificationItem>
+          <IdentificationItem>
+            Ils ont atteint, en moyenne, <strong>+2 987€/mois</strong> à la
+            fin de la première année.
+          </IdentificationItem>
+          <IdentificationItem>
+            Ils ont arrêté de regarder leur compte en banque avant chaque
+            décision.
+          </IdentificationItem>
+        </ul>
+
+        <Callout label="Le coût réel">
+          Sur 12 mois, l'écart entre rester salarié à 1 850€/mois et atteindre
+          +2 987€/mois représente <strong>environ +13 600€ cumulés</strong> sur
+          l'année. Plus que le prix de n'importe quel accompagnement. Sans
+          parler du temps, de la liberté et de l'estime de soi.
+        </Callout>
+
+        <p className="mt-10">
+          Le seul truc qui change entre Florent, Yohann, Marina et toi
+          aujourd'hui ?{" "}
+          <strong className="text-white">Ils ont pris l'appel.</strong> Tu en
+          as un de prévu. Le seul truc à faire maintenant, c'est répondre au
+          quiz pour qu'on en tire le maximum.
+        </p>
       </>
     ),
   },
+
 ];

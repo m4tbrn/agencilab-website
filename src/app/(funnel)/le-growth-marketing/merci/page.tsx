@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  normalizeCloser,
+  formatRdvDate,
+  normalizePrenom,
+  buildBrochureQuery,
+} from "../_lib/searchparams";
 
 export const metadata: Metadata = {
   title: "Merci — Tes réponses ont bien été envoyées",
@@ -8,33 +14,29 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const KNOWN_CLOSERS = ["Tino", "Matis"] as const;
-type Closer = (typeof KNOWN_CLOSERS)[number];
-
-function normalizeCloser(value?: string | string[]): Closer | null {
-  if (!value) return null;
-  const raw = Array.isArray(value) ? value[0] : value;
-  const found = KNOWN_CLOSERS.find(
-    (c) => c.toLowerCase() === raw.trim().toLowerCase(),
-  );
-  return found ?? null;
-}
-
 export default async function MerciPage({
   searchParams,
 }: {
-  searchParams: Promise<{ closer?: string | string[] }>;
+  searchParams: Promise<{
+    closer?: string | string[];
+    rdv?: string | string[];
+    prenom?: string | string[];
+  }>;
 }) {
   const params = await searchParams;
   const closer = normalizeCloser(params.closer);
-  const closerLabel = closer ?? "ton closer";
+  const closerLabel = closer ?? "ton conseiller";
+  const rdvLabel = formatRdvDate(params.rdv) ?? "le jour J";
+  const rdvRaw = Array.isArray(params.rdv) ? params.rdv[0] : params.rdv;
+  const prenom = normalizePrenom(params.prenom);
+  const brochureQuery = buildBrochureQuery({ closer, rdvRaw, prenom });
 
   return (
     <main className="relative flex min-h-screen items-center bg-navy-950 px-6 py-16 text-white">
       {/* Background orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/2 top-1/4 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-accent-400/12 blur-[140px]" />
-        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-gold-400/10 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-accent-400/10 blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[640px] text-center">
@@ -76,6 +78,14 @@ export default async function MerciPage({
 
         {/* H1 */}
         <h1 className="mb-5 text-[clamp(1.875rem,4.5vw,2.875rem)] font-extrabold leading-[1.1] tracking-tight">
+          {prenom && (
+            <>
+              <span className="text-white/85">Merci </span>
+              <span className="gradient-text">{prenom}</span>
+              <span className="text-white/85"> ! </span>
+              <br className="hidden md:block" />
+            </>
+          )}
           Tes réponses ont bien été envoyées
           <br className="hidden md:block" />
           <span className="text-white/85"> à </span>
@@ -84,42 +94,45 @@ export default async function MerciPage({
         </h1>
 
         {/* Sub */}
-        <p className="mx-auto mb-10 max-w-[520px] text-[1rem] leading-[1.6] text-white/75 md:text-[1.0625rem]">
+        <p className="mx-auto mb-10 max-w-[560px] text-[1rem] leading-[1.6] text-white/75 md:text-[1.0625rem]">
           {closer ? (
             <>
-              <strong className="text-white">{closer}</strong> va lire tes
-              réponses avant ton appel pour pouvoir aller direct à
-              l'essentiel.
+              <strong className="text-white">{closer}</strong> va prendre le
+              temps de lire tout ce que tu as écrit pour préparer votre appel{" "}
+              <strong className="text-white">{rdvLabel}</strong>.
             </>
           ) : (
             <>
-              L'équipe Agencilab va lire tes réponses avant ton appel pour
-              pouvoir aller direct à l'essentiel.
+              Ton conseiller va prendre le temps de lire tout ce que tu as
+              écrit pour préparer votre appel{" "}
+              <strong className="text-white">{rdvLabel}</strong>.
             </>
-          )}{" "}
-          Pense bien à être à l'heure et dans un endroit calme le jour J.
+          )}
         </p>
 
-        {/* What's next card */}
+        {/* What's next card — 2 actions essentielles */}
         <div className="mb-8 rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left backdrop-blur-sm md:p-8">
-          <p className="mb-5 text-[0.75rem] font-bold uppercase tracking-[0.2em] text-gold-400">
-            La suite
+          <p className="mb-5 text-[0.75rem] font-bold uppercase tracking-[0.2em] text-accent-400">
+            Deux choses à faire maintenant
           </p>
           <ol className="space-y-4">
             <NextStep
               num="1"
-              title="Tu reçois un rappel par mail et SMS"
-              desc="48h avant l'appel, puis 1h avant. Si tu ne reçois rien, vérifie tes spams ou contacte directement le closer."
+              title={`Note ton rdv ${rdvLabel} dans ton agenda`}
+              desc="Mets une alarme 30 minutes avant pour être prêt. C'est la meilleure façon de ne pas louper l'appel."
             />
             <NextStep
               num="2"
-              title="Le jour J, sois dans un endroit calme"
-              desc="L'appel dure 45 minutes. Prévois ton ordinateur ou téléphone chargé, et un casque si possible."
-            />
-            <NextStep
-              num="3"
-              title="Prépare 2-3 questions concrètes"
-              desc="Tout ce que tu veux savoir sur l'accompagnement, le pricing, la garantie, le rythme. Plus tu poses de questions, mieux on peut te répondre."
+              title={
+                closer
+                  ? `Reste joignable pour ${closer} jusqu'à l'appel`
+                  : "Reste joignable pour ton conseiller jusqu'à l'appel"
+              }
+              desc={
+                closer
+                  ? `Si ${closer} te recontacte d'ici l'appel pour valider un point ou confirmer un détail, réponds-lui vite. Ça permet d'arriver vraiment préparés des deux côtés.`
+                  : "Si ton conseiller te recontacte d'ici l'appel pour valider un point ou confirmer un détail, réponds-lui vite. Ça permet d'arriver vraiment préparés des deux côtés."
+              }
             />
           </ol>
         </div>
@@ -141,7 +154,7 @@ export default async function MerciPage({
 
         {/* CTA secondaire — relire la brochure */}
         <Link
-          href={`/le-growth-marketing${closer ? `?closer=${closer}` : ""}`}
+          href={`/le-growth-marketing${brochureQuery}`}
           className="group inline-flex items-center gap-2 text-[0.9375rem] text-white/55 underline-offset-4 transition hover:text-white hover:underline"
         >
           <BookIcon />
@@ -172,7 +185,7 @@ function NextStep({
   return (
     <li className="flex gap-4">
       <div className="shrink-0">
-        <div className="flex h-7 w-7 items-center justify-center rounded-full border border-gold-400/40 bg-gold-400/10 text-[0.8125rem] font-bold text-gold-400">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full border border-accent-400/40 bg-accent-400/10 text-[0.8125rem] font-bold text-accent-400">
           {num}
         </div>
       </div>
@@ -235,7 +248,7 @@ function ArrowRightIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-gold-400"
+      className="text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-accent-400"
       aria-hidden
     >
       <line x1="5" y1="12" x2="19" y2="12" />
