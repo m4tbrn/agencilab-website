@@ -10,7 +10,13 @@ import {
  * Growth Marketing pour les audiences chaudes (newsletter / bienvenue)
  * qui ont besoin d'un cadre concret avant de prendre RDV.
  */
-export default function MechanismSection() {
+export default function MechanismSection({
+  showSteps = true,
+}: {
+  /** Affiche le bloc "En 3 étapes simples". À désactiver si la page a
+   *  déjà sa propre section d'étapes (ex: offre-m). */
+  showSteps?: boolean;
+} = {}) {
   return (
     <section className="mt-14 md:mt-20">
       {/* Title */}
@@ -285,6 +291,7 @@ export default function MechanismSection() {
       </div>
 
       {/* Process en 3 étapes */}
+      {showSteps && (
       <div className="mx-auto mt-12 max-w-[760px] rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm md:mt-16 md:p-10">
         <h3 className="mb-6 text-center text-[1.125rem] font-bold tracking-tight text-white md:text-[1.25rem]">
           En 3 étapes simples
@@ -326,6 +333,7 @@ export default function MechanismSection() {
           ))}
         </ol>
       </div>
+      )}
     </section>
   );
 }

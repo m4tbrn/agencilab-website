@@ -39,6 +39,8 @@ export default function ExitIntentPopupVSL() {
     const onLeave = (e: MouseEvent) => {
       if (disabledRef.current) return;
       if (isOpenRef.current) return;
+      // Ne pas déclencher si la popup One Time Offer est ouverte.
+      if ((window as unknown as { __otoOpen?: boolean }).__otoOpen) return;
       if (Date.now() - lastFiredRef.current < COOLDOWN_MS) return;
       if (e.clientY <= 0 && e.relatedTarget === null) {
         lastFiredRef.current = Date.now();

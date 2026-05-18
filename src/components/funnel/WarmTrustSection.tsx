@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Star } from "@phosphor-icons/react/dist/ssr";
+import { Star, UsersThree, TrendUp, Medal } from "@phosphor-icons/react/dist/ssr";
 
 /**
  * Section preuves & confiance pour les pages warm.
@@ -24,23 +24,38 @@ export default function WarmTrustSection() {
       {/* 4 trust cards */}
       <div className="mx-auto mb-10 grid max-w-[1100px] grid-cols-2 gap-3 md:mb-14 md:gap-5 lg:grid-cols-4">
         {[
-          { value: "1 018+", label: "salariés accompagnés" },
-          { value: "4.7/5", label: "sur Trustpilot" },
-          { value: "+2 987€", label: "revenu moyen généré/mois par nos élèves" },
-          { value: "10 ans", label: "d'expertise marketing" },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center backdrop-blur-sm md:p-6"
-          >
-            <p className="mb-1 text-[1.5rem] font-extrabold tracking-tight text-white md:text-[1.875rem]">
-              <span className="gradient-text">{stat.value}</span>
-            </p>
-            <p className="text-[0.8125rem] leading-[1.4] text-white/60 md:text-[0.875rem]">
-              {stat.label}
-            </p>
-          </div>
-        ))}
+          { value: "1 018+", label: "salariés accompagnés", Icon: UsersThree },
+          { value: "4.7/5", label: "sur Trustpilot", Icon: Star },
+          {
+            value: "+2 987€",
+            label: "revenu moyen généré/mois par nos élèves",
+            Icon: TrendUp,
+          },
+          { value: "10 ans", label: "d'expertise marketing", Icon: Medal },
+        ].map((stat) => {
+          const Icon = stat.Icon;
+          return (
+            <div
+              key={stat.label}
+              className="relative overflow-hidden rounded-2xl border border-accent-400/30 bg-gradient-to-b from-accent-400/[0.10] to-white/[0.02] p-5 text-center backdrop-blur-sm md:p-6"
+              style={{ boxShadow: "0 0 32px rgba(1, 95, 255, 0.14)" }}
+            >
+              <div
+                className="absolute left-1/2 top-0 h-[2px] w-[65%] -translate-x-1/2 bg-gradient-to-r from-transparent via-accent-400 to-transparent"
+                aria-hidden
+              />
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-400/40 bg-accent-400/15 text-accent-400">
+                <Icon size={24} weight="duotone" />
+              </div>
+              <p className="mb-1 text-[1.875rem] font-extrabold leading-none tracking-tight md:text-[2.5rem]">
+                <span className="gradient-text">{stat.value}</span>
+              </p>
+              <p className="text-[0.8125rem] leading-[1.4] text-white/70 md:text-[0.875rem]">
+                {stat.label}
+              </p>
+            </div>
+          );
+        })}
       </div>
 
       {/* Témoignages courts */}

@@ -503,7 +503,7 @@ export const CHAPTERS: Chapter[] = [
           photo={TESTIMONIALS.kylian.photo}
           name={TESTIMONIALS.kylian.name}
           role={`${TESTIMONIALS.kylian.before} · ${TESTIMONIALS.kylian.revenue} (${TESTIMONIALS.kylian.duration})`}
-          quote="[TODO citation Kylian Surget — bilan 4 clients en 6 semaines + 35k€ drop, à extraire du transcript dans Obsidian]"
+          quote="J'ai signé 4 clients en un mois et demi : 3 avocats et mon coach sportif. Je suis parti de zéro, j'étais nul en vente, j'ai juste passé 300 appels."
           variant="marble"
         />
 

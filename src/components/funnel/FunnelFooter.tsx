@@ -26,6 +26,9 @@ export default function FunnelFooter() {
           >
             Mentions légales
           </a>
+          <a href="/cgv" className="transition-colors hover:text-white/60">
+            CGV
+          </a>
         </nav>
         <p className="text-white/20">&copy; {new Date().getFullYear()} Agencilab</p>
       </div>
