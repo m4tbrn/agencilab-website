@@ -18,8 +18,27 @@ declare global {
 export default function MetaPixelEvent({ event }: { event: string }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (typeof window.fbq !== "function") return;
-    window.fbq("track", event);
+
+    // Le pixel de base (fbq) peut ne pas encore être chargé au montage.
+    // On attend qu'il soit prêt avant de déclencher l'event (retry ~10 s).
+    let cancelled = false;
+    let tries = 0;
+
+    const fire = () => {
+      if (cancelled) return;
+      if (typeof window.fbq === "function") {
+        window.fbq("track", event);
+        return;
+      }
+      if (tries++ < 50) {
+        setTimeout(fire, 200);
+      }
+    };
+
+    fire();
+    return () => {
+      cancelled = true;
+    };
   }, [event]);
 
   return null;
