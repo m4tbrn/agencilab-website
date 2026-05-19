@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CoursContent from "@/components/funnel/CoursContent";
+import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export const metadata: Metadata = {
   title:
@@ -19,6 +20,14 @@ const TALLY_TITLE = "Capture - Side tunnel Cash Cow Express";
 
 export default function DecouvrirGrowthM() {
   return (
-    <CoursContent tallySrc={TALLY_SRC} tallyTitle={TALLY_TITLE} source="meta" />
+    <>
+      <CoursContent
+        tallySrc={TALLY_SRC}
+        tallyTitle={TALLY_TITLE}
+        source="meta"
+      />
+      {/* PageView : uniquement sur cette 1re page du tunnel */}
+      <MetaPixelEvent event="PageView" />
+    </>
   );
 }
