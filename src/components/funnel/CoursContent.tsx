@@ -4,7 +4,6 @@ import ExitIntentPopup from "./ExitIntentPopup";
 import FunnelSocialNotif from "./FunnelSocialNotif";
 import LiveViewers from "./LiveViewers";
 import MetaCaptureLayout from "./MetaCaptureLayout";
-import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export default function CoursContent({
   tallySrc,
@@ -225,7 +224,6 @@ export default function CoursContent({
       <FunnelFooter />
       <ExitIntentPopup />
       <FunnelSocialNotif />
-      {source === "meta" && <MetaPixelEvent event="PageView" />}
     </>
   );
 }
