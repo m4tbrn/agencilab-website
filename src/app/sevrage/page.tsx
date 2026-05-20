@@ -150,10 +150,26 @@ const MODULES = [
 ];
 
 const FAQ_ITEMS = [
-  { q: "Et si je n'arrive pas à tenir comme avec les défis No Fap ?", a: "Sevrage n'est pas un défi basé sur la volonté. C'est une reprogrammation de tes circuits. Tu n'as pas à « tenir » contre ton cerveau · il devient ton allié." },
-  { q: "Combien de temps ça prend ?", a: "Tu sens un changement dès les premiers jours (clarté, énergie, sommeil). La transformation complète se joue sur quelques semaines, en suivant la méthode étape par étape." },
-  { q: "C'est compatible avec mon quotidien ?", a: "Oui. La méthode se pratique en quelques minutes par jour. Pas besoin de méditer 1 h ou de changer ta vie. Juste appliquer les bons gestes au bon moment." },
-  { q: "Et si ça ne marche pas pour moi ?", a: "Voir la garantie ci-dessus. Le risque est de mon côté, pas du tien." },
+  {
+    q: "Quand est-ce que j'ai accès à la formation ?",
+    a: "Sevrage est en pré-lancement. La formation est disponible le 24 mai. En prenant l'offre maintenant, tu sécurises ton accès à vie au tarif de pré-lancement (-50%), et tu reçois un mail le 24 mai pour entrer dans l'espace membre.",
+  },
+  {
+    q: "Combien de temps ça prend pour voir les premiers changements ?",
+    a: "J'ai déjà testé la méthode sur plusieurs de mes proches avant de la sortir publiquement. Ce qui ressort à chaque fois : une clarté mentale plus nette dès la première semaine. Entre le jour 7 et le jour 21, la baseline dopaminergique se réinitialise. La migration d'identité complète se joue sur 60 à 90 jours.",
+  },
+  {
+    q: "C'est compatible avec mon quotidien (boulot, études, famille) ?",
+    a: "Oui. La formation est répartie sur 6 modules à consommer à ton rythme. Les exercices se pratiquent en 10 à 15 minutes par jour.",
+  },
+  {
+    q: "Comment se passe le paiement ?",
+    a: "Le paiement est unique, par carte bancaire (via Stripe). Aucun abonnement, aucun prélèvement récurrent. Tu paies une fois et tu gardes l'accès à vie.",
+  },
+  {
+    q: "Est-ce que vous gardez ma vie privée privée ?",
+    a: "Oui. Aucun nom n'apparaît publiquement nulle part. Pas de communauté publique. Pas de groupe Facebook. Aucun forum. Le paiement Stripe est confidentiel comme n'importe quel achat en ligne.",
+  },
 ];
 
 // Texte prose · wrapper qui donne le style "VSL en page" partagé.
@@ -555,11 +571,19 @@ function ValueStack({
       </div>
 
       <div className="relative mx-auto max-w-[760px]">
+        {/* Logo Sevrage */}
+        <div className="mb-6 flex justify-center">
+          <Image
+            src="/images/sevrage/logo-white.png"
+            alt="Sevrage"
+            width={520}
+            height={300}
+            className="h-16 w-auto md:h-20"
+          />
+        </div>
+
         {/* Header */}
         <div className="mx-auto mb-8 max-w-[760px] text-center md:mb-10">
-          <span className="mb-3 inline-block text-[0.75rem] font-bold uppercase tracking-[0.16em] text-[#FF9000] md:text-[0.8125rem]">
-            Récapitulatif
-          </span>
           <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.15] tracking-tight text-white">
             Tout ce que tu reçois{" "}
             <Orange>en rejoignant aujourd&apos;hui</Orange>
@@ -611,10 +635,16 @@ function ValueStack({
             className="mt-3 rounded-2xl border-2 border-[#FF9000]/45 bg-[#FF9000]/[0.06] px-6 py-10 text-center md:px-8 md:py-12"
             style={{ boxShadow: "0 0 40px rgba(255, 144, 0, 0.14)" }}
           >
-            {/* Badge en haut */}
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FF9000] px-3.5 py-1.5 text-[0.6875rem] font-extrabold uppercase tracking-[0.2em] text-black">
-              <Star size={11} weight="fill" />
-              Offre de lancement · -50%
+            {/* Badge en haut · pré-lancement */}
+            <span className="inline-flex flex-col items-center gap-0.5 rounded-2xl bg-[#FF9000] px-4 py-2 text-center text-[0.6875rem] font-extrabold uppercase tracking-[0.18em] text-black md:flex-row md:gap-2">
+              <span className="inline-flex items-center gap-1.5">
+                <Star size={11} weight="fill" />
+                Offre de pré-lancement · -50%
+              </span>
+              <span className="hidden md:inline text-black/45">·</span>
+              <span className="text-[0.625rem] font-bold normal-case tracking-normal text-black/80 md:text-[0.6875rem]">
+                Formation disponible le 24 mai
+              </span>
             </span>
 
             {/* Prix héros 47€ */}
@@ -638,10 +668,6 @@ function ValueStack({
               <span className="inline-flex items-center gap-2">
                 <CheckCircle size={14} weight="fill" className="text-[#FF9000]" />
                 Paiement unique · accès à vie
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <ShieldCheck size={14} weight="fill" className="text-[#FF9000]" />
-                Accès immédiat après ton inscription
               </span>
             </div>
 
@@ -799,8 +825,20 @@ export default function Sevrage() {
           />
 
           {/* ===================== PARTIE 1 · ACCROCHE ===================== */}
-          <section className="relative z-10 px-5 pb-10 pt-14 sm:px-6 md:pb-12 md:pt-12">
+          <section className="relative z-10 px-5 pb-10 pt-10 sm:px-6 md:pb-12 md:pt-10">
             <div className="mx-auto max-w-[960px]">
+
+              {/* Logo Sevrage */}
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/images/sevrage/logo-white.png"
+                  alt="Sevrage"
+                  width={520}
+                  height={300}
+                  priority
+                  className="h-[72px] w-auto md:h-[88px]"
+                />
+              </div>
 
               {/* Kicker · pré-headline */}
               <div className="mb-7 flex justify-center">
@@ -834,38 +872,17 @@ export default function Sevrage() {
                 de ton cerveau d&apos;homme.
               </p>
 
-              {/* HERO VISUAL · doodle principal, mis en valeur dans un cadre avec glow */}
-              <div className="relative mx-auto mt-12 max-w-[720px]">
-                {/* Coins décoratifs orange */}
-                <div className="pointer-events-none absolute -left-2 -top-2 h-6 w-6 border-l-2 border-t-2 border-[#FF9000]" aria-hidden />
-                <div className="pointer-events-none absolute -right-2 -top-2 h-6 w-6 border-r-2 border-t-2 border-[#FF9000]" aria-hidden />
-                <div className="pointer-events-none absolute -bottom-2 -left-2 h-6 w-6 border-b-2 border-l-2 border-[#FF9000]" aria-hidden />
-                <div className="pointer-events-none absolute -bottom-2 -right-2 h-6 w-6 border-b-2 border-r-2 border-[#FF9000]" aria-hidden />
-
-                <figure
-                  className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl border border-[#FF9000]/30 bg-gradient-to-br from-[#FF9000]/[0.08] to-transparent px-8 text-center text-[0.8125rem] leading-[1.5] text-[#F5F1E8]/45"
-                  style={{
-                    boxShadow:
-                      "0 0 80px rgba(255, 144, 0, 0.20), inset 0 0 60px rgba(255,144,0,0.04)",
-                  }}
-                >
-                  <figcaption className="max-w-[420px]">
-                    <strong className="text-[#FF9000]">[Image hero]</strong>
-                    <br />
-                    Homme assis dos courbé devant un écran lumineux qui projette
-                    une silhouette féminine. Des chaînes de pixels orange
-                    relient son visage à l&apos;écran. Style sketch sharpie sur
-                    fond noir. Au-dessus en lettres mal écrites :
-                    &laquo; ESCLAVE &raquo;. Accent #FF9000 sur les chaînes et
-                    l&apos;écran.
-                  </figcaption>
-                </figure>
-
-                {/* Légende d'image discrète */}
-                <p className="mt-4 text-center text-[0.75rem] uppercase tracking-[0.18em] text-[#F5F1E8]/35">
-                  Toi · tous les soirs · sans même t&apos;en rendre compte
-                </p>
-              </div>
+              {/* HERO VISUAL · image brute, sans cadre */}
+              <figure className="mx-auto mt-12 max-w-[720px]">
+                <Image
+                  src="/images/sevrage/hero-chains.png"
+                  alt="Homme enchaîné à un écran · ESCLAVE"
+                  width={1600}
+                  height={1000}
+                  priority
+                  className="block aspect-[16/10] w-full object-cover"
+                />
+              </figure>
 
               {/* Diviseur décoratif */}
               <div
@@ -990,7 +1007,7 @@ export default function Sevrage() {
               </Prose>
 
               <Aside
-                src="/images/turnoff/brain-equals.png"
+                src="/images/sevrage/brain-equals.png"
                 alt="Cerveau de toxicomane et cerveau d'accro au porno, identiques"
                 brief=""
               />
@@ -1095,7 +1112,7 @@ export default function Sevrage() {
               </Prose>
 
               <Aside
-                src="/images/turnoff/dreams-crushed.png"
+                src="/images/sevrage/dreams-crushed.png"
                 alt="Homme écrasé sous ses rêves barrés devant un écran"
                 brief=""
               />
@@ -1190,7 +1207,7 @@ export default function Sevrage() {
               </Prose>
 
               <Aside
-                src="/images/turnoff/industry-octopus.png"
+                src="/images/sevrage/industry-octopus.png"
                 alt="L'industrie du porno comme une pieuvre qui contrôle tout"
                 brief=""
               />
@@ -1279,7 +1296,7 @@ export default function Sevrage() {
               </Prose>
 
               <Aside
-                src="/images/turnoff/free-man.png"
+                src="/images/sevrage/free-man.png"
                 alt="L'homme que tu étais censé devenir, libre, debout, flamme intérieure"
                 variant="light"
                 brief=""
@@ -1360,7 +1377,7 @@ export default function Sevrage() {
               </Prose>
 
               <Aside
-                src="/images/turnoff/brain-rewire.png"
+                src="/images/sevrage/brain-rewire.png"
                 alt="Reprogrammer le circuit neuronal du cerveau"
                 variant="light"
                 brief=""
@@ -1453,7 +1470,7 @@ export default function Sevrage() {
               </Prose>
 
               <Aside
-                src="/images/turnoff/louis-portrait.png"
+                src="/images/sevrage/louis-portrait.png"
                 alt="Louis a tout reprogrammé, flamme intérieure"
                 variant="light"
                 brief=""
@@ -1501,6 +1518,17 @@ export default function Sevrage() {
             className="relative z-10 scroll-mt-12 px-5 py-8 sm:px-6 md:py-10"
           >
             <div className="mx-auto max-w-[1000px]">
+              {/* Logo Sevrage (version noire pour fond crème) */}
+              <div className="mb-5 flex justify-center">
+                <Image
+                  src="/images/sevrage/logo-black.png"
+                  alt="Sevrage"
+                  width={520}
+                  height={300}
+                  className="h-16 w-auto md:h-20"
+                />
+              </div>
+
               <SectionTitle>
                 <Orange>Sevrage</Orange>
                 <span className="text-[#0a0a0a]">, c&apos;est quoi exactement.</span>
@@ -1532,7 +1560,7 @@ export default function Sevrage() {
                       <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_8px_24px_rgba(0,0,0,0.04)]">
                         {/* Doodle module · sharpie blanc sur fond noir, accent orange */}
                         <Image
-                          src={`/images/turnoff/module-${m.num}.png`}
+                          src={`/images/sevrage/module-${m.num}.png`}
                           alt={`Doodle ${m.titre}`}
                           width={1280}
                           height={720}
@@ -1647,9 +1675,15 @@ export default function Sevrage() {
                   Satisfait <Orange>ou remboursé.</Orange>
                 </h3>
                 <p className="mx-auto mt-4 max-w-[520px] text-[0.9375rem] leading-[1.65] text-black/70 md:text-[1rem]">
-                  Si dans les <strong className="text-[#0a0a0a]">14 jours</strong> suivant ton achat tu
-                  estimes que Sevrage ne te correspond pas, tu m&apos;envoies un mail · je te rembourse
-                  intégralement. Sans question. Sans justification. Sans drame.
+                  Si dans les <strong className="text-[#0a0a0a]">14 jours</strong> suivant ton achat
+                  tu estimes que Sevrage ne te correspond pas, tu m&apos;envoies un mail à{" "}
+                  <a
+                    href="mailto:contact@agencilab.com"
+                    className="font-bold text-[#FF9000] underline decoration-[#FF9000]/30 underline-offset-2 hover:decoration-[#FF9000]"
+                  >
+                    contact@agencilab.com
+                  </a>{" "}
+                  · je te rembourse intégralement.
                 </p>
                 <p className="mt-4 text-[0.8125rem] font-bold text-black/55">
                   Le risque est de mon côté · pas du tien.
@@ -1708,15 +1742,28 @@ export default function Sevrage() {
                   className="absolute left-1/2 top-0 h-[3px] w-[85%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#FF9000] to-transparent"
                   aria-hidden
                 />
+
+                {/* Logo Sevrage · version noire pour fond crème */}
+                <div className="mb-5 flex justify-center">
+                  <Image
+                    src="/images/sevrage/logo-black.png"
+                    alt="Sevrage"
+                    width={520}
+                    height={300}
+                    className="h-16 w-auto md:h-20"
+                  />
+                </div>
+
                 <h2 className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-tight text-[#0a0a0a]">
                   Reprends le contrôle <Orange>aujourd&apos;hui.</Orange>
                 </h2>
                 <p className="mx-auto mt-4 max-w-[480px] text-[0.9375rem] leading-[1.6] text-black/65 md:text-[1rem]">
-                  49€ · paiement unique. Accès immédiat à Sevrage et aux bonus offerts.
+                  47€ · paiement unique. Offre de pré-lancement -50%, formation
+                  disponible le 24 mai.
                 </p>
 
                 <div className="mt-7 flex justify-center">
-                  <CTAButton>Je rejoins Sevrage · 49€</CTAButton>
+                  <CTAButton>Je rejoins Sevrage · 47€</CTAButton>
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.8125rem] text-black/55">
