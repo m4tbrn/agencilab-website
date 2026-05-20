@@ -8,7 +8,9 @@ import {
   X,
   ArrowRight,
 } from "@phosphor-icons/react/dist/ssr";
-import { createCheckoutSession } from "@/app/rejoindre-cash-cow-express/_lib/actions";
+
+const STRIPE_LINK_ANNUEL = "https://buy.stripe.com/14A6oH3cagvtczRgg96g803";
+const STRIPE_LINK_MENSUEL = "https://buy.stripe.com/9B6bJ17sqenlczR5Bv6g804";
 
 /**
  * Popup One Time Offer — upsell vers la formule annuelle.
@@ -44,18 +46,13 @@ export default function OffreOto() {
           aria-hidden
         />
         {/* La croix continue avec la formule mensuelle (checkout Stripe 179€/mois). */}
-        <form
-          action={createCheckoutSession.bind(null, "mensuel")}
-          className="absolute right-4 top-4"
+        <a
+          href={STRIPE_LINK_MENSUEL}
+          aria-label="Continuer avec la formule mensuelle"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/40 transition-colors hover:text-white"
         >
-          <button
-            type="submit"
-            aria-label="Continuer avec la formule mensuelle"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/40 transition-colors hover:text-white"
-          >
-            <X size={15} weight="bold" />
-          </button>
-        </form>
+          <X size={15} weight="bold" />
+        </a>
 
         {/* En-tête */}
         <div className="text-center">
@@ -128,25 +125,21 @@ export default function OffreOto() {
           </div>
         </div>
 
-        {/* Choix — chaque bouton ouvre le checkout Stripe correspondant */}
+        {/* Choix — chaque bouton ouvre le Payment Link Stripe correspondant */}
         <div className="mt-6 space-y-2.5">
-          <form action={createCheckoutSession.bind(null, "annuel")}>
-            <button
-              type="submit"
-              className="cta-button glow-gold flex w-full items-center justify-center gap-2 rounded-xl bg-gold-400 px-6 py-4 text-[0.9375rem] font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30"
-            >
-              Oui ! Je passe à l&apos;annuel et j&apos;économise 1 151€
-              <ArrowRight size={17} weight="bold" />
-            </button>
-          </form>
-          <form action={createCheckoutSession.bind(null, "mensuel")}>
-            <button
-              type="submit"
-              className="flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/[0.05] px-6 py-3.5 text-[0.875rem] font-bold tracking-tight text-white transition-colors hover:border-white/35 hover:bg-white/[0.08]"
-            >
-              Non merci, je reste au mensuel (179€/mois)
-            </button>
-          </form>
+          <a
+            href={STRIPE_LINK_ANNUEL}
+            className="cta-button glow-gold flex w-full items-center justify-center gap-2 rounded-xl bg-gold-400 px-6 py-4 text-[0.9375rem] font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30"
+          >
+            Oui ! Je passe à l&apos;annuel et j&apos;économise 1 151€
+            <ArrowRight size={17} weight="bold" />
+          </a>
+          <a
+            href={STRIPE_LINK_MENSUEL}
+            className="flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/[0.05] px-6 py-3.5 text-[0.875rem] font-bold tracking-tight text-white transition-colors hover:border-white/35 hover:bg-white/[0.08]"
+          >
+            Non merci, je reste au mensuel (179€/mois)
+          </a>
         </div>
 
         <p className="mt-2 text-center text-[0.6875rem] text-white/35">
