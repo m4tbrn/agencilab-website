@@ -71,13 +71,13 @@ export default function MerciCloserPage() {
               C&apos;est dans la <span className="gradient-text">boîte.</span>
             </h1>
 
-            {/* Photo Matis */}
+            {/* Photo Mathis */}
             <div className="mt-8 flex flex-col items-center">
               <div className="relative">
                 <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-accent-400/30 shadow-[0_0_40px_rgba(1,95,255,0.25)] sm:h-32 sm:w-32">
                   <Image
                     src="/images/team/mathis-baron.jpg"
-                    alt="Matis — Head of Sales Agencilab"
+                    alt="Mathis — Co-fondateur Agencilab"
                     fill
                     className="object-cover"
                   />
@@ -88,16 +88,16 @@ export default function MerciCloserPage() {
                 </div>
               </div>
               <p className="mt-3 text-center text-sm font-bold tracking-tight text-white sm:text-base">
-                Matis <span className="text-white/60">-</span> HOS Agencilab
+                Mathis <span className="text-white/60">-</span> Co-fondateur Agencilab
               </p>
             </div>
 
             {/* Sous-titre */}
             <p className="mx-auto mt-5 max-w-[580px] text-center text-base leading-[1.6] tracking-tight text-white/75 sm:text-lg">
               Si ton profil match,{" "}
-              <strong className="text-white">Mathis</strong> notre Head of Sales
-              reviendra vers toi{" "}
-              <strong className="text-white">sous 72h via WhatsApp</strong>.
+              <strong className="text-white">Mathis</strong>, co-fondateur
+              d&apos;Agencilab, reviendra vers toi{" "}
+              <strong className="text-white">sous 24h via WhatsApp</strong>.
             </p>
 
             {/* Bloc en attendant */}

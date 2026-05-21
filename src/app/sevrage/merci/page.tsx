@@ -9,10 +9,31 @@ import FunnelFooter from "@/components/funnel/FunnelFooter";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export const metadata: Metadata = {
-  title: "Bienvenue dans Sevrage · Agencilab",
+  title: "Bienvenue dans Sevrage",
   description:
     "Ton inscription à Sevrage est confirmée. La formation est disponible le 24 mai.",
   robots: { index: false, follow: false },
+  openGraph: {
+    title: "Bienvenue dans Sevrage",
+    description: "Ton inscription à Sevrage est confirmée.",
+    type: "website",
+    siteName: "Sevrage",
+    locale: "fr_FR",
+    images: [
+      {
+        url: "/images/sevrage/og-share.png",
+        width: 1200,
+        height: 630,
+        alt: "Sevrage",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bienvenue dans Sevrage",
+    description: "Ton inscription à Sevrage est confirmée.",
+    images: ["/images/sevrage/og-share.png"],
+  },
 };
 
 const ETAPES = [

@@ -15,6 +15,30 @@ export const metadata: Metadata = {
   title: "Sevrage · Libère-toi de ton addiction au p*rno",
   description:
     "La méthode neuro-comportementale pour reprogrammer ton cerveau, retrouver ton énergie masculine et reprendre le contrôle.",
+  openGraph: {
+    title: "Sevrage · Libère-toi de ton addiction au p*rno",
+    description:
+      "La méthode neuro-comportementale pour reprogrammer ton cerveau, retrouver ton énergie masculine et reprendre le contrôle.",
+    type: "website",
+    url: "https://agencilab.com/sevrage",
+    siteName: "Sevrage",
+    locale: "fr_FR",
+    images: [
+      {
+        url: "/images/sevrage/og-share.png",
+        width: 1200,
+        height: 630,
+        alt: "Sevrage · Libère-toi de ton addiction au porno",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sevrage · Libère-toi de ton addiction au p*rno",
+    description:
+      "La méthode neuro-comportementale pour reprogrammer ton cerveau et reprendre le contrôle.",
+    images: ["/images/sevrage/og-share.png"],
+  },
 };
 
 // Stripe Payment Link · Sevrage 47€ one-shot (offre de lancement, live).
