@@ -748,8 +748,8 @@ function FunnelMeta() {
       <StepCard
         step="—"
         title="Page de disqualification"
-        url="(branche Tally hors-critères)"
-        description="Si le formulaire détecte un profil non qualifié (revenus trop bas, hors cible, etc.), le lead est redirigé vers une page de disqualification au lieu de la VSL. Pas d'appel programmé."
+        url="agencilab.com/file-attente"
+        description="Si le formulaire détecte un profil non qualifié (revenus trop bas, hors cible, etc.), le lead est redirigé ici au lieu de la VSL. Pas d'appel programmé."
         tag="Hors funnel"
       />
     </div>
