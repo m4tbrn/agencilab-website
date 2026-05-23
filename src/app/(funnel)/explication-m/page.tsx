@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const VSL_ID = "zXsq7BhD7g1i5GCI";
+const VSL_ID = "5exToSbRr2Tj9hUm";
 
 const ICLOSED_URL =
   "https://app.iclosed.io/e/fit-mass-formation/agencilab-neo";

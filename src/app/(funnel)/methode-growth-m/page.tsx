@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 // Même VSL que le funnel Meta actuel (explication-m).
-const VSL_ID = "zXsq7BhD7g1i5GCI";
+const VSL_ID = "5exToSbRr2Tj9hUm";
 
 export default function MethodeGrowth() {
   return <OffreContent vslId={VSL_ID} revealAfterSeconds={21 * 60} />;
