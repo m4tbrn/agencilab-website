@@ -781,19 +781,23 @@ export default function PitchView() {
           <div className="mx-auto w-full max-w-[1000px]">
             {/* Hero stat */}
             <div className="relative px-6 py-10 text-center md:px-10 md:py-14">
-              {/* Lueurs dorées derrière */}
+              {/* Lueurs derrière — bleu pour l'Incubateur, or pour le Mentorat */}
               <div
                 className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[110px]"
-                style={{ background: "rgba(212,175,55,0.3)" }}
+                style={{ background: isMentorat ? "rgba(212,175,55,0.3)" : "rgba(1,95,255,0.3)" }}
               />
               <div
                 className="pointer-events-none absolute left-1/2 top-1/2 h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[70px]"
-                style={{ background: "rgba(228,193,84,0.45)" }}
+                style={{ background: isMentorat ? "rgba(228,193,84,0.45)" : "rgba(1,95,255,0.45)" }}
               />
 
               <p
                 className="relative text-[clamp(3rem,10vw,6.5rem)] font-black leading-none tracking-tight text-white"
-                style={{ textShadow: "0 0 50px rgba(212,175,55,0.65), 0 0 100px rgba(212,175,55,0.35)" }}
+                style={{
+                  textShadow: isMentorat
+                    ? "0 0 50px rgba(212,175,55,0.65), 0 0 100px rgba(212,175,55,0.35)"
+                    : "0 0 50px rgba(1,95,255,0.65), 0 0 100px rgba(1,95,255,0.35)",
+                }}
               >
                 10 000 000€
               </p>
