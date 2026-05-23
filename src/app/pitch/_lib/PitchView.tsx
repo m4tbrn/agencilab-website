@@ -629,17 +629,19 @@ export default function PitchView() {
     if (!container) return;
     const sections = Array.from(container.querySelectorAll<HTMLElement>("section"));
     if (sections.length === 0) return;
-    const tops = sections.map((s) => s.offsetTop);
+    const containerTop = container.getBoundingClientRect().top;
+    // Top de chaque section relatif à la zone scrollable
+    const tops = sections.map((s) => s.getBoundingClientRect().top - containerTop + container.scrollTop);
     const current = container.scrollTop;
-    let targetIndex: number;
+    let targetTop: number;
     if (direction === "down") {
-      targetIndex = tops.findIndex((t) => t > current + 8);
-      if (targetIndex === -1) targetIndex = sections.length - 1;
+      const next = tops.find((t) => t > current + 8);
+      targetTop = next ?? tops[tops.length - 1];
     } else {
-      const next = tops.findIndex((t) => t >= current - 8);
-      targetIndex = Math.max(0, (next === -1 ? sections.length : next) - 1);
+      const prev = [...tops].reverse().find((t) => t < current - 8);
+      targetTop = prev ?? 0;
     }
-    sections[targetIndex].scrollIntoView({ behavior: "smooth" });
+    container.scrollTo({ top: targetTop, behavior: "smooth" });
   };
 
   return (
