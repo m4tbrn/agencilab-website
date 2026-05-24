@@ -403,9 +403,9 @@ function WinsWall() {
 
 function CenterStat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-2xl border border-white/15 bg-navy-950/70 px-3 py-3 backdrop-blur md:px-4 md:py-4">
+    <div className="rounded-2xl border border-white/15 bg-navy-950/90 px-3 py-3 backdrop-blur-md md:px-4 md:py-4">
       <p className="text-[clamp(1.1rem,2.4vw,1.6rem)] font-extrabold leading-none tracking-tight text-white">{value}</p>
-      <p className="mt-1 text-[0.7rem] font-medium leading-tight text-white/55 md:text-[0.78rem]">{label}</p>
+      <p className="mt-1 text-[0.7rem] font-medium leading-tight text-white/70 md:text-[0.78rem]">{label}</p>
     </div>
   );
 }
@@ -1017,8 +1017,8 @@ export default function PitchView() {
 
         {/* PILIER 3 — mur de wins infini, plein écran, avec centre fixe */}
         <section className="relative h-[100dvh] min-h-[100dvh] snap-start overflow-hidden">
-          {/* Couche 1 : le mur défilant, prend tout l'écran (background) */}
-          <div className="absolute inset-0 opacity-50 md:opacity-65">
+          {/* Couche 1 : le mur défilant, prend tout l'écran (background, atténué) */}
+          <div className="absolute inset-0 opacity-30 md:opacity-40">
             <WinsWall />
           </div>
 
@@ -1028,20 +1028,36 @@ export default function PitchView() {
           <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-navy-950 to-transparent md:h-48" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-navy-950 to-transparent md:h-48" />
 
-          {/* Couche 3 : vignette radiale pour faire ressortir le centre */}
+          {/* Couche 3 : vignette radiale très sombre au centre pour faire ressortir le texte */}
           <div
             className="pointer-events-none absolute inset-0 z-10"
-            style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(5,10,20,0.6) 55%, rgba(5,10,20,0.95) 90%)" }}
+            style={{ background: "radial-gradient(ellipse at center, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.55) 45%, rgba(5,10,20,0.85) 80%, #050A14 100%)" }}
           />
 
           {/* Couche 4 : pièce centrale fixe — titre + chiffres clés */}
           <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
-            <span className="bg-gradient-to-b from-accent-400/50 to-accent-400/0 bg-clip-text text-[5rem] font-black leading-none text-transparent md:text-[8rem]">03</span>
-            <span className="mt-2 text-[0.78rem] font-bold uppercase tracking-[0.22em] text-accent-400 md:text-[0.85rem]">Pilier 3</span>
-            <h2 className="mt-3 text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1.05] tracking-tight text-white">
+            <span
+              className="text-[5rem] font-black leading-none text-accent-400 md:text-[8rem]"
+              style={{ textShadow: "0 0 30px rgba(1,95,255,0.55), 0 4px 24px rgba(0,0,0,0.7)" }}
+            >
+              03
+            </span>
+            <span
+              className="mt-2 text-[0.78rem] font-bold uppercase tracking-[0.22em] text-accent-400 md:text-[0.85rem]"
+              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.8)" }}
+            >
+              Pilier 3
+            </span>
+            <h2
+              className="mt-3 text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1.05] tracking-tight text-white"
+              style={{ textShadow: "0 2px 18px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.6)" }}
+            >
               La culture de la <span className="gradient-text">réussite</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-[640px] text-[clamp(0.95rem,1.6vw,1.15rem)] leading-snug text-white/75">
+            <p
+              className="mx-auto mt-5 max-w-[640px] text-[clamp(0.95rem,1.6vw,1.15rem)] font-medium leading-snug text-white/90"
+              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.85)" }}
+            >
               Une communauté qui partage <span className="font-bold text-white">tous les jours</span> ses wins, ses premiers clients, ses virements.
             </p>
 
