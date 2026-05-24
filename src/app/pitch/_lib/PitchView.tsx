@@ -1055,7 +1055,7 @@ export default function PitchView() {
               La culture de la <span className="gradient-text" style={{ textShadow: "none" }}>réussite</span>
             </h2>
             <div className="mt-8 grid w-full max-w-[760px] grid-cols-3 gap-3 md:gap-4">
-              <CenterStat value="+1 018" label="élèves accompagnés" />
+              <CenterStat value="+2 987€" label="par mois en moyenne / élève" />
               <CenterStat value="4,7/5" label="sur Trustpilot" />
               <CenterStat value="+1,2M€" label="générés par nos élèves / an" />
             </div>
