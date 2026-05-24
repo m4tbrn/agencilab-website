@@ -1052,7 +1052,7 @@ export default function PitchView() {
               className="mt-3 text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1.05] tracking-tight text-white"
               style={{ textShadow: "0 2px 18px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.6)" }}
             >
-              La culture de la <span className="gradient-text">réussite</span>
+              La culture de la <span className="gradient-text" style={{ textShadow: "none" }}>réussite</span>
             </h2>
             <p
               className="mx-auto mt-5 max-w-[640px] text-[clamp(0.95rem,1.6vw,1.15rem)] font-medium leading-snug text-white/90"
