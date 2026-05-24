@@ -628,28 +628,28 @@ function RoadmapTimeline({ isMentorat = false }: { isMentorat?: boolean }) {
         )}
 
         {step.virements && step.virements.length > 1 && (
-          <div className="mt-5 flex flex-1 flex-col gap-2.5">
+          <div className="mt-4 flex flex-1 flex-col gap-2">
             {step.virements.map((v, i) => (
               <div
                 key={i}
-                className="animate-[deckIn_0.4s_ease-out] flex flex-1 items-center gap-3.5 rounded-2xl border p-4 md:p-5"
+                className="animate-[deckIn_0.4s_ease-out] flex items-center gap-3 rounded-xl border px-3 py-2.5"
                 style={{ borderColor: vRgba(0.35), background: vRgba(0.06) }}
               >
                 <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-navy-950 md:h-14 md:w-14"
-                  style={{ background: vColor, boxShadow: `0 0 14px ${vRgba(0.5)}` }}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-navy-950"
+                  style={{ background: vColor, boxShadow: `0 0 12px ${vRgba(0.5)}` }}
                 >
-                  <CurrencyEur size={26} weight="bold" />
+                  <CurrencyEur size={18} weight="bold" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[0.78rem] font-bold uppercase tracking-wide text-white/55">Ta banque</span>
-                    <span className="text-[0.72rem] text-white/40">à l&apos;instant</span>
+                    <span className="text-[0.7rem] font-bold uppercase tracking-wide text-white/55">Ta banque</span>
+                    <span className="text-[0.65rem] text-white/40">à l&apos;instant</span>
                   </div>
-                  <p className="mt-0.5 text-[0.9rem] leading-snug text-white/80 md:text-[0.95rem]">{v.libelle}</p>
+                  <p className="text-[0.82rem] leading-tight text-white/80">{v.libelle}</p>
                 </div>
                 <p
-                  className="shrink-0 text-right text-[1.2rem] font-extrabold tracking-tight md:text-[1.4rem]"
+                  className="shrink-0 text-right text-[1.05rem] font-extrabold tracking-tight md:text-[1.15rem]"
                   style={{ color: vColor }}
                 >
                   {v.montant}
@@ -657,9 +657,9 @@ function RoadmapTimeline({ isMentorat = false }: { isMentorat?: boolean }) {
               </div>
             ))}
             {step.total && (
-              <div className="flex items-center justify-between rounded-2xl border-2 border-gold-400/45 bg-gold-400/[0.1] px-5 py-4" style={{ boxShadow: "0 0 30px rgba(255,122,0,0.18)" }}>
-                <span className="text-[0.8rem] font-bold uppercase tracking-wide text-gold-400">Total ce mois-ci</span>
-                <span className="text-[1.4rem] font-extrabold tracking-tight text-white md:text-[1.65rem]">{step.total}</span>
+              <div className="flex items-center justify-between rounded-xl border-2 border-gold-400/45 bg-gold-400/[0.1] px-4 py-2.5" style={{ boxShadow: "0 0 24px rgba(255,122,0,0.18)" }}>
+                <span className="text-[0.72rem] font-bold uppercase tracking-wide text-gold-400">Total ce mois-ci</span>
+                <span className="text-[1.2rem] font-extrabold tracking-tight text-white md:text-[1.35rem]">{step.total}</span>
               </div>
             )}
           </div>
