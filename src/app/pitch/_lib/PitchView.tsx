@@ -1057,7 +1057,7 @@ export default function PitchView() {
             <div className="mt-8 grid w-full max-w-[760px] grid-cols-3 gap-3 md:gap-4">
               <CenterStat value="+1 018" label="élèves accompagnés" />
               <CenterStat value="4,7/5" label="sur Trustpilot" />
-              <CenterStat value="N°1" label="en France" />
+              <CenterStat value="+1,2M€" label="générés par nos élèves / an" />
             </div>
           </div>
         </section>
