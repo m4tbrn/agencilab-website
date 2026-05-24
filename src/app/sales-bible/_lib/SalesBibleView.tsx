@@ -8,6 +8,7 @@ import {
   Funnel,
   LinkSimple,
   ChatTeardropText,
+  Phone,
   Presentation,
   YoutubeLogo,
   InstagramLogo,
@@ -19,7 +20,7 @@ import {
   XCircle,
 } from "@phosphor-icons/react/dist/ssr";
 
-type SectionId = "icp" | "site" | "funnel-meta" | "reseaux" | "script-closing" | "pitch-deck";
+type SectionId = "icp" | "site" | "funnel-meta" | "reseaux" | "script-closing" | "pitch-deck" | "calls-tino";
 
 type Section = {
   id: SectionId;
@@ -34,6 +35,7 @@ const SECTIONS: Section[] = [
   { id: "reseaux", label: "Les réseaux de Louis", Icon: LinkSimple },
   { id: "script-closing", label: "Script de closing", Icon: ChatTeardropText },
   { id: "pitch-deck", label: "Pitch deck", Icon: Presentation },
+  { id: "calls-tino", label: "Calls de Tino", Icon: Phone },
 ];
 
 export default function SalesBibleView() {
@@ -107,6 +109,7 @@ export default function SalesBibleView() {
           {activeId === "reseaux" && <Reseaux />}
           {activeId === "script-closing" && <ScriptClosing />}
           {activeId === "pitch-deck" && <PitchDeck />}
+          {activeId === "calls-tino" && <CallsTino />}
         </main>
       </div>
     </div>
@@ -1129,6 +1132,41 @@ function PitchDeck() {
           <li>Garantie 1er client</li>
         </ol>
       </div>
+    </div>
+  );
+}
+
+function CallsTino() {
+  const calls = [
+    "https://fathom.video/share/MZK7_na6sYxzYRwKESxAoqCeBxi_gxy8",
+    "https://fathom.video/share/eGANBsF6tvJyBxJAJfknxdwstYTszNVE",
+    "https://fathom.video/share/dzBJfenFi8TDmBAHzCbhSxXsJjMY3ryx",
+  ];
+  return (
+    <div className="space-y-4">
+      <p className="text-[0.95rem] leading-relaxed text-white/65">
+        Trois appels de Tino à regarder en priorité pour t'imprégner du ton, du rythme, du traitement d'objections et du close.
+      </p>
+      {calls.map((url, i) => (
+        <a
+          key={url}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-accent-400/30 hover:bg-white/[0.06]"
+        >
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent-400/40 bg-accent-400/10 text-accent-400">
+            <Phone size={22} weight="duotone" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <p className="text-[1rem] font-bold tracking-tight text-white">Call de Tino #{i + 1}</p>
+              <ArrowSquareOut size={14} weight="bold" className="text-white/40 transition group-hover:text-accent-400" />
+            </div>
+            <p className="mt-0.5 truncate font-mono text-[0.78rem] text-accent-400/70">{url.replace("https://", "")}</p>
+          </div>
+        </a>
+      ))}
     </div>
   );
 }
