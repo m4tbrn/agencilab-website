@@ -1017,8 +1017,8 @@ export default function PitchView() {
 
         {/* PILIER 3 — mur de wins infini, plein écran, avec centre fixe */}
         <section className="relative h-[100dvh] min-h-[100dvh] snap-start overflow-hidden">
-          {/* Couche 1 : le mur défilant, prend tout l'écran (background, atténué) */}
-          <div className="absolute inset-0 opacity-30 md:opacity-40">
+          {/* Couche 1 : le mur défilant, prend tout l'écran (background) */}
+          <div className="absolute inset-0 opacity-70 md:opacity-80">
             <WinsWall />
           </div>
 
@@ -1028,10 +1028,10 @@ export default function PitchView() {
           <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-navy-950 to-transparent md:h-48" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-navy-950 to-transparent md:h-48" />
 
-          {/* Couche 3 : vignette radiale très sombre au centre pour faire ressortir le texte */}
+          {/* Couche 3 : assombrissement localisé derrière le titre uniquement (laisse voir les wins sur les côtés) */}
           <div
             className="pointer-events-none absolute inset-0 z-10"
-            style={{ background: "radial-gradient(ellipse at center, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.55) 45%, rgba(5,10,20,0.85) 80%, #050A14 100%)" }}
+            style={{ background: "radial-gradient(ellipse 60% 45% at center, rgba(5,10,20,0.75) 0%, rgba(5,10,20,0.55) 50%, transparent 80%)" }}
           />
 
           {/* Couche 4 : pièce centrale fixe — titre + chiffres clés */}
