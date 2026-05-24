@@ -546,13 +546,38 @@ function RoadmapTimeline() {
         <h3 className="mt-1.5 text-[1.3rem] font-bold leading-tight tracking-tight text-white md:text-[1.6rem]">
           {step.titre}
         </h3>
-        <div className="mt-4 flex items-start gap-2.5">
-          <span className={`mt-0.5 text-[0.72rem] font-bold uppercase tracking-wide ${step.mega ? "text-gold-400" : "text-[#a3e635]"}`}>
-            Résultat
+        <div
+          className={`mt-4 flex items-start gap-3 rounded-2xl border p-3.5 md:p-4 ${
+            step.mega
+              ? "border-gold-400/50 bg-gold-400/[0.12]"
+              : "border-[#a3e635]/45 bg-[#a3e635]/[0.10]"
+          }`}
+          style={{
+            boxShadow: step.mega
+              ? "0 0 28px rgba(255,122,0,0.22)"
+              : "0 0 24px rgba(163,230,53,0.18)",
+          }}
+        >
+          <span
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+              step.mega ? "bg-gold-400 text-navy-950" : "bg-[#a3e635] text-navy-950"
+            }`}
+            style={{
+              boxShadow: step.mega
+                ? "0 0 14px rgba(255,122,0,0.55)"
+                : "0 0 14px rgba(163,230,53,0.55)",
+            }}
+          >
+            <CheckCircle size={20} weight="fill" />
           </span>
-          <p className="text-[1rem] font-semibold leading-snug text-white md:text-[1.1rem]">
-            {step.resultat}
-          </p>
+          <div className="min-w-0 flex-1">
+            <p className={`text-[0.7rem] font-bold uppercase tracking-[0.16em] ${step.mega ? "text-gold-400" : "text-[#a3e635]"}`}>
+              Résultat
+            </p>
+            <p className="mt-1 text-[1.05rem] font-bold leading-snug text-white md:text-[1.2rem]">
+              {step.resultat}
+            </p>
+          </div>
         </div>
 
         {!step.virements && <StepSchema schema={step.schema} />}
