@@ -509,7 +509,7 @@ function RoadmapTimeline() {
       </div>
 
       {/* Navigation — au-dessus pour rester fixe quand la carte grandit */}
-      <div className="mt-7 flex items-center justify-between">
+      <div className="mt-5 flex items-center justify-between">
         <button
           type="button"
           onClick={() => setActive((a) => Math.max(0, a - 1))}
@@ -533,7 +533,7 @@ function RoadmapTimeline() {
 
       {/* Carte détail de l'étape active — hauteur fixée pour ne pas faire bouger la page */}
       <div
-        className={`mt-5 flex min-h-[500px] flex-col rounded-3xl border p-6 backdrop-blur-sm transition md:min-h-[600px] md:p-8 ${
+        className={`mt-4 flex min-h-[380px] flex-col rounded-3xl border p-5 backdrop-blur-sm transition md:min-h-[440px] md:p-6 ${
           step.mega
             ? "border-gold-400/45 bg-gold-400/[0.08]"
             : "border-white/10 bg-white/[0.03]"
@@ -882,9 +882,11 @@ export default function PitchView() {
         </section>
 
         {/* ROADMAP */}
-        <section className="mt-32 flex min-h-[100dvh] snap-start items-center justify-center md:mt-48">
+        <section className="flex min-h-[100dvh] snap-start items-center justify-center py-8">
           <div className="w-full max-w-[820px]">
-            <SectionTitle>Voilà concrètement comment on t&apos;accompagne, étape par étape, sur 90 jours.</SectionTitle>
+            <h2 className="mx-auto mb-6 max-w-[760px] text-center text-[clamp(1.15rem,2.6vw,1.8rem)] font-bold leading-tight tracking-tight text-white md:mb-8">
+              Voilà concrètement comment on t&apos;accompagne, <span className="gradient-text">étape par étape</span>, sur 90 jours.
+            </h2>
             <RoadmapTimeline />
           </div>
         </section>
