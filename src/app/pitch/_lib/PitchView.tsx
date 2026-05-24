@@ -811,12 +811,12 @@ export default function PitchView() {
             {/* Cards créateurs */}
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { nom: "Les Moustachus", photo: "/images/createurs/moustachus.jpg" },
-                { nom: "Nassim Sahili", photo: "/images/createurs/nassim-sahili.jpg" },
-                { nom: "Valek", photo: "/images/createurs/valek.jpg" },
-                { nom: "Norton", photo: "/images/createurs/norton.jpg" },
-                { nom: "Charles Elias Farah", photo: "/images/createurs/charles-elias-farah.jpg" },
-                { nom: "Khazy_wl", photo: "/images/createurs/khazy-wl.jpg" },
+                { nom: "Les Moustachus", photo: "/images/createurs/moustachus.jpg", stats: "210k IG · 100k TikTok · 20k YT" },
+                { nom: "Nassim Sahili", photo: "/images/createurs/nassim-sahili.jpg", stats: "1,2M YT · 400k IG" },
+                { nom: "Valek", photo: "/images/createurs/valek.jpg", stats: "380k YT · 100k IG" },
+                { nom: "Norton", photo: "/images/createurs/norton.jpg", stats: "88k YT" },
+                { nom: "Charles Elias Farah", photo: "/images/createurs/charles-elias-farah.jpg", stats: "35k LinkedIn · 20k YT" },
+                { nom: "Khazy_wl", photo: "/images/createurs/khazy-wl.jpg", stats: "400k TikTok · 220k IG" },
               ].map((c) => (
                 <div key={c.nom} className="flex items-center gap-3.5 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
                   <div className="relative h-14 w-14 shrink-0">
@@ -825,7 +825,10 @@ export default function PitchView() {
                     </div>
                     <SealCheck size={20} weight="fill" className="absolute -bottom-0.5 -right-0.5 rounded-full bg-navy-950" style={{ color: "#015FFF" }} />
                   </div>
-                  <p className="min-w-0 truncate text-[0.95rem] font-bold tracking-tight text-white">{c.nom}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[0.95rem] font-bold tracking-tight text-white">{c.nom}</p>
+                    {c.stats && <p className="mt-0.5 truncate text-[0.78rem] font-medium text-white/55">{c.stats}</p>}
+                  </div>
                 </div>
               ))}
             </div>
