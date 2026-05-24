@@ -1054,13 +1054,6 @@ export default function PitchView() {
             >
               La culture de la <span className="gradient-text" style={{ textShadow: "none" }}>réussite</span>
             </h2>
-            <p
-              className="mx-auto mt-5 max-w-[640px] text-[clamp(0.95rem,1.6vw,1.15rem)] font-medium leading-snug text-white/90"
-              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.85)" }}
-            >
-              Une communauté qui partage <span className="font-bold text-white">tous les jours</span> ses wins, ses premiers clients, ses virements.
-            </p>
-
             <div className="mt-8 grid w-full max-w-[760px] grid-cols-3 gap-3 md:gap-4">
               <CenterStat value="+1 018" label="élèves accompagnés" />
               <CenterStat value="4,7/5" label="sur Trustpilot" />
