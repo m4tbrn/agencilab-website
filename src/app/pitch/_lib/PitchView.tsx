@@ -446,7 +446,10 @@ const MEGA_VIREMENTS: Virement[] = [
   { montant: "+1 497,00 €", libelle: "Création de site internet · client C" },
 ];
 
-function RoadmapTimeline() {
+function RoadmapTimeline({ isMentorat = false }: { isMentorat?: boolean }) {
+  // Couleur des virements : OR pour Mentorat, BLEU pour Incubateur
+  const vColor = isMentorat ? "#D4AF37" : "#015FFF";
+  const vRgba = (a: number) => (isMentorat ? `rgba(212,175,55,${a})` : `rgba(1,95,255,${a})`);
   const STEPS: RoadStep[] = ROADMAP.flatMap((m) => [
     ...m.phases.map((p) => {
       const virements = "virements" in p ? p.virements : undefined;
@@ -583,11 +586,21 @@ function RoadmapTimeline() {
         {!step.virements && <StepSchema schema={step.schema} />}
 
         {step.virements && step.virements.length === 1 && (
-          <div className="mt-5 flex flex-1 flex-col overflow-hidden rounded-3xl border border-[#a3e635]/40 bg-gradient-to-b from-[#a3e635]/[0.10] to-[#a3e635]/[0.02]" style={{ boxShadow: "0 0 50px rgba(163,230,53,0.18)" }}>
+          <div
+            className="mt-5 flex flex-1 flex-col overflow-hidden rounded-3xl border"
+            style={{
+              borderColor: vRgba(0.4),
+              background: `linear-gradient(to bottom, ${vRgba(0.1)}, ${vRgba(0.02)})`,
+              boxShadow: `0 0 50px ${vRgba(0.18)}`,
+            }}
+          >
             {/* Header style appli bancaire */}
             <div className="flex items-center justify-between border-b border-white/8 bg-navy-950/40 px-5 py-3.5">
               <div className="flex items-center gap-2.5">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#a3e635] text-navy-950" style={{ boxShadow: "0 0 14px rgba(163,230,53,0.6)" }}>
+                <span
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-navy-950"
+                  style={{ background: vColor, boxShadow: `0 0 14px ${vRgba(0.6)}` }}
+                >
                   <CurrencyEur size={20} weight="bold" />
                 </span>
                 <div>
@@ -595,7 +608,10 @@ function RoadmapTimeline() {
                   <p className="text-[0.7rem] leading-tight text-white/45">Virement instantané · à l&apos;instant</p>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#a3e635]/15 px-2.5 py-1 text-[0.7rem] font-bold text-[#a3e635]">
+              <span
+                className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[0.7rem] font-bold"
+                style={{ background: vRgba(0.15), color: vColor }}
+              >
                 <CheckCircle size={11} weight="fill" /> Reçu
               </span>
             </div>
@@ -603,7 +619,10 @@ function RoadmapTimeline() {
             {/* Montant XXL au centre */}
             <div className="flex flex-1 flex-col items-center justify-center px-5 py-8 text-center">
               <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-white/50">Tu as reçu</p>
-              <p className="mt-3 text-[clamp(2.6rem,8vw,4.5rem)] font-black leading-none tracking-tight text-[#a3e635]" style={{ textShadow: "0 0 40px rgba(163,230,53,0.45)" }}>
+              <p
+                className="mt-3 text-[clamp(2.6rem,8vw,4.5rem)] font-black leading-none tracking-tight"
+                style={{ color: vColor, textShadow: `0 0 40px ${vRgba(0.45)}` }}
+              >
                 {step.virements[0].montant}
               </p>
               <p className="mt-4 max-w-[480px] text-[0.95rem] leading-snug text-white/75 md:text-[1.05rem]">
@@ -616,8 +635,15 @@ function RoadmapTimeline() {
         {step.virements && step.virements.length > 1 && (
           <div className="mt-5 flex flex-1 flex-col gap-2.5">
             {step.virements.map((v, i) => (
-              <div key={i} className="animate-[deckIn_0.4s_ease-out] flex flex-1 items-center gap-3.5 rounded-2xl border border-[#a3e635]/35 bg-[#a3e635]/[0.06] p-4 md:p-5">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#a3e635] text-navy-950 md:h-14 md:w-14" style={{ boxShadow: "0 0 14px rgba(163,230,53,0.5)" }}>
+              <div
+                key={i}
+                className="animate-[deckIn_0.4s_ease-out] flex flex-1 items-center gap-3.5 rounded-2xl border p-4 md:p-5"
+                style={{ borderColor: vRgba(0.35), background: vRgba(0.06) }}
+              >
+                <div
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-navy-950 md:h-14 md:w-14"
+                  style={{ background: vColor, boxShadow: `0 0 14px ${vRgba(0.5)}` }}
+                >
                   <CurrencyEur size={26} weight="bold" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -627,7 +653,12 @@ function RoadmapTimeline() {
                   </div>
                   <p className="mt-0.5 text-[0.9rem] leading-snug text-white/80 md:text-[0.95rem]">{v.libelle}</p>
                 </div>
-                <p className="shrink-0 text-right text-[1.2rem] font-extrabold tracking-tight text-[#a3e635] md:text-[1.4rem]">{v.montant}</p>
+                <p
+                  className="shrink-0 text-right text-[1.2rem] font-extrabold tracking-tight md:text-[1.4rem]"
+                  style={{ color: vColor }}
+                >
+                  {v.montant}
+                </p>
               </div>
             ))}
             {step.total && (
@@ -910,9 +941,9 @@ export default function PitchView() {
         <section className="flex min-h-[100dvh] snap-start items-center justify-center py-8">
           <div className="w-full max-w-[820px]">
             <h2 className="mx-auto mb-6 max-w-[760px] text-center text-[clamp(1.15rem,2.6vw,1.8rem)] font-bold leading-tight tracking-tight text-white md:mb-8">
-              Voilà concrètement comment on t&apos;accompagne, <span className="gradient-text">étape par étape</span>, sur 90 jours.
+              Voilà concrètement comment on t&apos;accompagne, en <span className="gradient-text">9 étapes</span>.
             </h2>
-            <RoadmapTimeline />
+            <RoadmapTimeline isMentorat={isMentorat} />
           </div>
         </section>
 
