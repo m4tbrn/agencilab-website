@@ -938,7 +938,16 @@ export default function PitchView() {
 
         {/* PILIER 1 — plein écran */}
         <section className="flex min-h-[100dvh] snap-start flex-col items-center justify-center py-20 text-center md:py-28">
-          <span className="bg-gradient-to-b from-accent-400/40 to-accent-400/0 bg-clip-text text-[7rem] font-black leading-none text-transparent md:text-[10rem]">01</span>
+          <span
+            className="bg-clip-text text-[7rem] font-black leading-none text-transparent md:text-[10rem]"
+            style={{
+              backgroundImage: isMentorat
+                ? "linear-gradient(to bottom, rgba(212,175,55,0.55), rgba(212,175,55,0))"
+                : "linear-gradient(to bottom, rgba(1,95,255,0.55), rgba(1,95,255,0))",
+            }}
+          >
+            01
+          </span>
           <span className="mt-2 flex h-16 w-16 items-center justify-center rounded-2xl border border-accent-400/40 bg-accent-400/10 text-accent-400 md:h-20 md:w-20">
             <GraduationCap size={36} weight="duotone" />
           </span>
@@ -976,7 +985,16 @@ export default function PitchView() {
 
         {/* PILIER 2 — plein écran (diffère) */}
         <section className="flex min-h-[100dvh] snap-start flex-col items-center justify-center py-20 text-center md:py-28">
-          <span className="bg-gradient-to-b from-accent-400/40 to-accent-400/0 bg-clip-text text-[7rem] font-black leading-none text-transparent md:text-[10rem]">02</span>
+          <span
+            className="bg-clip-text text-[7rem] font-black leading-none text-transparent md:text-[10rem]"
+            style={{
+              backgroundImage: isMentorat
+                ? "linear-gradient(to bottom, rgba(212,175,55,0.55), rgba(212,175,55,0))"
+                : "linear-gradient(to bottom, rgba(1,95,255,0.55), rgba(1,95,255,0))",
+            }}
+          >
+            02
+          </span>
           <span className="mt-2 flex h-16 w-16 items-center justify-center rounded-2xl border border-accent-400/40 bg-accent-400/10 text-accent-400 md:h-20 md:w-20">
             <UsersThree size={36} weight="duotone" />
           </span>
@@ -1037,14 +1055,22 @@ export default function PitchView() {
           {/* Couche 4 : pièce centrale fixe — titre + chiffres clés */}
           <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
             <span
-              className="text-[5rem] font-black leading-none text-accent-400 md:text-[8rem]"
-              style={{ textShadow: "0 0 30px rgba(1,95,255,0.55), 0 4px 24px rgba(0,0,0,0.7)" }}
+              className="text-[5rem] font-black leading-none md:text-[8rem]"
+              style={{
+                color: isMentorat ? "#D4AF37" : "#015FFF",
+                textShadow: isMentorat
+                  ? "0 0 30px rgba(212,175,55,0.55), 0 4px 24px rgba(0,0,0,0.7)"
+                  : "0 0 30px rgba(1,95,255,0.55), 0 4px 24px rgba(0,0,0,0.7)",
+              }}
             >
               03
             </span>
             <span
-              className="mt-2 text-[0.78rem] font-bold uppercase tracking-[0.22em] text-accent-400 md:text-[0.85rem]"
-              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.8)" }}
+              className="mt-2 text-[0.78rem] font-bold uppercase tracking-[0.22em] md:text-[0.85rem]"
+              style={{
+                color: isMentorat ? "#D4AF37" : "#015FFF",
+                textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+              }}
             >
               Pilier 3
             </span>
