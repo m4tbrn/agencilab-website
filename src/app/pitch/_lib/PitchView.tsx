@@ -352,52 +352,17 @@ function StepSchema({ schema }: { schema?: SchemaKey }) {
   return null;
 }
 
-function WinsRow({ images, duration, heightClass }: { images: string[]; duration: number; heightClass: string }) {
-  const [paused, setPaused] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active: false, startX: 0, startScroll: 0 });
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    const el = trackRef.current;
-    if (!el) return;
-    drag.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft };
-    el.setPointerCapture(e.pointerId);
-    setPaused(true);
-  };
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current.active) return;
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollLeft = drag.current.startScroll - (e.clientX - drag.current.startX);
-  };
-  const endDrag = () => {
-    drag.current.active = false;
-    // Petit délai avant de relancer l'auto-défilement
-    setTimeout(() => setPaused(false), 1200);
-  };
-
+function WinsColumn({ images, duration, reverse }: { images: string[]; duration: number; reverse: boolean }) {
   return (
-    <div
-      ref={trackRef}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerCancel={endDrag}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => { if (!drag.current.active) setPaused(false); }}
-      className="relative w-full cursor-grab touch-pan-x overflow-x-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden active:cursor-grabbing"
-    >
+    <div className="relative h-full overflow-hidden">
       <div
-        className={`flex w-max gap-3 ${heightClass}`}
-        style={{
-          animation: `marqueeReverse ${duration}s linear infinite`,
-          animationPlayState: paused ? "paused" : "running",
-        }}
+        className="flex flex-col gap-3"
+        style={{ animation: `${reverse ? "marqueeYReverse" : "marqueeY"} ${duration}s linear infinite` }}
       >
         {[...images, ...images].map((src, i) => (
-          <div key={i} className="h-full shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
+          <div key={i} className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.04]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt="" className="block h-full w-auto" draggable={false} />
+            <img src={src} alt="" className="block w-full" draggable={false} loading="lazy" />
           </div>
         ))}
       </div>
@@ -406,17 +371,41 @@ function WinsRow({ images, duration, heightClass }: { images: string[]; duration
 }
 
 function WinsWall() {
-  // Distribue les 37 images en 3 rangs (round-robin)
-  const rows: string[][] = [[], [], []];
-  COMMUNAUTE_SHOTS.forEach((src, i) => rows[i % 3].push(src));
-  const durations = [90, 110, 100];
-  const heightClass = "h-[clamp(160px,22vh,260px)]";
+  // Distribue les 37 images en colonnes (round-robin) — 5 desktop, 3 mobile.
+  // Chaque colonne défile verticalement, sens alterné, vitesse légèrement différente
+  // pour donner une impression de flux infini et continu.
+  const distribute = (n: number) => {
+    const cols: string[][] = Array.from({ length: n }, () => []);
+    COMMUNAUTE_SHOTS.forEach((src, i) => cols[i % n].push(src));
+    return cols;
+  };
+  const desktopCols = distribute(5);
+  const mobileCols = distribute(3);
+  const durations = [85, 110, 95, 120, 100];
 
   return (
-    <div className="flex h-full w-full flex-col justify-around gap-4 md:gap-6">
-      {rows.map((imgs, i) => (
-        <WinsRow key={i} images={imgs} duration={durations[i]} heightClass={heightClass} />
-      ))}
+    <>
+      {/* Desktop : 5 colonnes */}
+      <div className="hidden h-full w-full grid-cols-5 gap-3 md:grid">
+        {desktopCols.map((imgs, i) => (
+          <WinsColumn key={i} images={imgs} duration={durations[i] ?? 100} reverse={i % 2 === 1} />
+        ))}
+      </div>
+      {/* Mobile : 3 colonnes */}
+      <div className="grid h-full w-full grid-cols-3 gap-2 md:hidden">
+        {mobileCols.map((imgs, i) => (
+          <WinsColumn key={i} images={imgs} duration={durations[i] ?? 100} reverse={i % 2 === 1} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+function CenterStat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-2xl border border-white/15 bg-navy-950/70 px-3 py-3 backdrop-blur md:px-4 md:py-4">
+      <p className="text-[clamp(1.1rem,2.4vw,1.6rem)] font-extrabold leading-none tracking-tight text-white">{value}</p>
+      <p className="mt-1 text-[0.7rem] font-medium leading-tight text-white/55 md:text-[0.78rem]">{label}</p>
     </div>
   );
 }
@@ -1026,20 +1015,41 @@ export default function PitchView() {
           )}
         </section>
 
-        {/* PILIER 3 — mur de wins plein écran */}
-        <section className="relative flex h-[100dvh] min-h-[100dvh] snap-start flex-col overflow-hidden">
-          {/* Titre */}
-          <div className="flex flex-col items-center pt-8 text-center md:pt-10">
-            <span className="bg-gradient-to-b from-accent-400/40 to-accent-400/0 bg-clip-text text-[4rem] font-black leading-none text-transparent md:text-[6rem]">03</span>
-            <span className="mt-3 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-accent-400">Pilier 3</span>
-            <h2 className="mt-1 text-[clamp(1.5rem,3.6vw,2.4rem)] font-extrabold leading-[1.1] tracking-tight text-white">La culture de la réussite</h2>
+        {/* PILIER 3 — mur de wins infini, plein écran, avec centre fixe */}
+        <section className="relative h-[100dvh] min-h-[100dvh] snap-start overflow-hidden">
+          {/* Couche 1 : le mur défilant, prend tout l'écran (background) */}
+          <div className="absolute inset-0 opacity-50 md:opacity-65">
+            <WinsWall />
           </div>
 
-          {/* Mur de wins */}
-          <div className="relative mt-6 w-full flex-1 overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-navy-950 to-transparent md:w-24" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-navy-950 to-transparent md:w-24" />
-            <WinsWall />
+          {/* Couche 2 : fades sur les 4 bords pour donner l'illusion d'infini */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-navy-950 to-transparent md:w-32" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-navy-950 to-transparent md:w-32" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-navy-950 to-transparent md:h-48" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-navy-950 to-transparent md:h-48" />
+
+          {/* Couche 3 : vignette radiale pour faire ressortir le centre */}
+          <div
+            className="pointer-events-none absolute inset-0 z-10"
+            style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(5,10,20,0.6) 55%, rgba(5,10,20,0.95) 90%)" }}
+          />
+
+          {/* Couche 4 : pièce centrale fixe — titre + chiffres clés */}
+          <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
+            <span className="bg-gradient-to-b from-accent-400/50 to-accent-400/0 bg-clip-text text-[5rem] font-black leading-none text-transparent md:text-[8rem]">03</span>
+            <span className="mt-2 text-[0.78rem] font-bold uppercase tracking-[0.22em] text-accent-400 md:text-[0.85rem]">Pilier 3</span>
+            <h2 className="mt-3 text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1.05] tracking-tight text-white">
+              La culture de la <span className="gradient-text">réussite</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-[640px] text-[clamp(0.95rem,1.6vw,1.15rem)] leading-snug text-white/75">
+              Une communauté qui partage <span className="font-bold text-white">tous les jours</span> ses wins, ses premiers clients, ses virements.
+            </p>
+
+            <div className="mt-8 grid w-full max-w-[760px] grid-cols-3 gap-3 md:gap-4">
+              <CenterStat value="+1 018" label="élèves accompagnés" />
+              <CenterStat value="4,7/5" label="sur Trustpilot" />
+              <CenterStat value="N°1" label="en France" />
+            </div>
           </div>
         </section>
 
