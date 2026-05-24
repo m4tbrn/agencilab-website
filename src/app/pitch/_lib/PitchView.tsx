@@ -768,7 +768,7 @@ export default function PitchView() {
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 backdrop-blur">
                   <UsersThree size={15} weight="fill" className="text-gold-400" />
                   <span className="text-[0.85rem] font-medium text-white/80">
-                    <span className="font-bold text-white">+1 018</span> élèves accompagnés
+                    <span className="font-bold text-white">+1 018</span> membres accompagnés
                   </span>
                 </span>
               </div>
@@ -776,7 +776,7 @@ export default function PitchView() {
 
             {/* Image — bien visible */}
             <div className="relative min-h-[340px] md:min-h-[620px]">
-              <Image src="/images/hero-group.jpg" alt="L'équipe et les élèves Agencilab" fill priority className="object-cover object-center" sizes="(max-width:768px) 100vw, 750px" unoptimized />
+              <Image src="/images/hero-group.jpg" alt="L'équipe et les membres Agencilab" fill priority className="object-cover object-center" sizes="(max-width:768px) 100vw, 750px" unoptimized />
               <div className="absolute inset-0 bg-gradient-to-r from-navy-950/60 via-transparent to-transparent" />
             </div>
           </div>
@@ -1055,9 +1055,9 @@ export default function PitchView() {
               La culture de la <span className="gradient-text" style={{ textShadow: "none" }}>réussite</span>
             </h2>
             <div className="mt-8 grid w-full max-w-[760px] grid-cols-3 gap-3 md:gap-4">
-              <CenterStat value="+2 987€" label="par mois en moyenne / élève" />
+              <CenterStat value="+2 987€" label="par mois en moyenne / membre" />
               <CenterStat value="4,7/5" label="sur Trustpilot" />
-              <CenterStat value="+1,2M€" label="générés par nos élèves / an" />
+              <CenterStat value="+1,2M€" label="générés par nos membres / an" />
             </div>
           </div>
         </section>
@@ -1147,7 +1147,7 @@ export default function PitchView() {
                 </div>
                 <ul className="mt-1.5 space-y-1 text-[0.85rem] leading-snug text-white/75">
                   <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>L&apos;accès à la communauté Agencilab</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Le réseau d&apos;élèves qui réussissent</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Le réseau de membres qui réussissent</span></li>
                   <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Le mur des victoires comme moteur quotidien</span></li>
                 </ul>
               </div>
