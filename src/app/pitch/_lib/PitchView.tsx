@@ -93,62 +93,57 @@ function StepSchema({ schema }: { schema?: SchemaKey }) {
   const wrap = "mt-5 flex flex-1 flex-col";
 
   if (schema === "setup-ia") {
+    // Mockup visuel d'un "Plan d'action personnalisé" généré pendant la semaine 1
     return (
       <div className={`${wrap}`}>
-        {/* Barre de progression : 3/3 complétés */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1">
-            <div className="flex items-center justify-between text-[0.72rem] font-bold uppercase tracking-wide">
-              <span className="text-accent-400">Setup</span>
-              <span className="text-[#a3e635]">3/3 ✓</span>
+        <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-accent-400/30 bg-gradient-to-b from-accent-400/[0.06] to-transparent">
+          {/* Header style document */}
+          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.04] px-4 py-3 md:px-5">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-accent-400 text-navy-950" style={{ boxShadow: "0 0 14px rgba(1,95,255,0.6)" }}>
+                <Sparkle size={16} weight="fill" />
+              </span>
+              <div>
+                <p className="text-[0.85rem] font-bold leading-tight text-white">Ton plan d&apos;action — personnalisé</p>
+                <p className="text-[0.7rem] leading-tight text-white/45">Généré par Alic.ia · à l&apos;instant</p>
+              </div>
             </div>
-            <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-full rounded-full bg-gradient-to-r from-accent-400 to-[#a3e635]" />
+            <span className="inline-flex items-center gap-1 rounded-full bg-accent-400/15 px-2.5 py-1 text-[0.7rem] font-bold text-accent-400">
+              <CheckCircle size={11} weight="fill" /> Prêt
+            </span>
+          </div>
+
+          {/* Contenu du plan */}
+          <div className="grid gap-3 p-4 md:grid-cols-3 md:p-5">
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5">
+              <p className="text-[0.62rem] font-bold uppercase tracking-wider text-white/40">Objectif</p>
+              <p className="mt-0.5 text-[0.95rem] font-bold leading-tight text-white">+2 987€/mois</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5">
+              <p className="text-[0.62rem] font-bold uppercase tracking-wider text-white/40">Délai</p>
+              <p className="mt-0.5 text-[0.95rem] font-bold leading-tight text-white">90 jours</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5">
+              <p className="text-[0.62rem] font-bold uppercase tracking-wider text-white/40">1ᵉʳ client visé</p>
+              <p className="mt-0.5 text-[0.95rem] font-bold leading-tight text-white">Semaine 5</p>
             </div>
           </div>
-          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#a3e635]/35 bg-[#a3e635]/10 px-3 py-1.5 text-[0.72rem] font-bold text-[#a3e635]">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#a3e635] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#a3e635]" />
-            </span>
-            Tout est prêt
-          </span>
-        </div>
 
-        {/* 3 cartes — chaque outil activé */}
-        <div className="mt-5 grid flex-1 grid-cols-3 gap-3">
-          {[
-            { name: "Notion", status: "Espace prêt", featured: false },
-            { name: "Outils", status: "Connectés", featured: false },
-            { name: "Alic.ia", status: "IA chargée", featured: true },
-          ].map((t) => (
-            <div
-              key={t.name}
-              className={`flex flex-col justify-between rounded-2xl border p-4 md:p-5 ${
-                t.featured
-                  ? "border-accent-400/45 bg-accent-400/[0.08]"
-                  : "border-white/10 bg-white/[0.04]"
-              }`}
-              style={t.featured ? { boxShadow: "0 0 24px rgba(1,95,255,0.18)" } : undefined}
-            >
-              <div className="flex items-center justify-between">
-                <span
-                  className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${
-                    t.featured ? "bg-accent-400 text-navy-950" : "border border-white/15 bg-white/[0.06] text-white/80"
-                  }`}
-                >
-                  <CheckCircle size={20} weight="fill" />
-                </span>
-                <span className="inline-flex items-center gap-1 text-[0.62rem] font-bold uppercase tracking-wider text-[#a3e635]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#a3e635]" /> Actif
-                </span>
+          {/* Checklist — ce qui est fait cette semaine */}
+          <div className="flex flex-1 flex-col gap-1.5 border-t border-white/8 px-4 py-3.5 md:px-5 md:py-4">
+            <p className="text-[0.62rem] font-bold uppercase tracking-wider text-white/40">Cette semaine, on a calé</p>
+            {[
+              "Ton espace de travail Notion",
+              "Tes outils IA (Alic.ia, Cursor, v0)",
+              "Ton planning hebdo (soir + week-end)",
+              "Ta première compétence à apprendre",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2 text-[0.85rem] leading-snug text-white/80">
+                <CheckCircle size={16} weight="fill" className="shrink-0 text-[#a3e635]" />
+                <span>{item}</span>
               </div>
-              <div className="mt-4">
-                <p className="text-[1rem] font-bold tracking-tight text-white">{t.name}</p>
-                <p className="mt-1 text-[0.78rem] text-white/55">✓ {t.status}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
