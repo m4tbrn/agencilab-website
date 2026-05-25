@@ -1156,7 +1156,8 @@ export default function PitchView() {
                 <ul className="mt-1.5 space-y-1 text-[0.85rem] leading-snug text-white/75">
                   <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Coaching de groupe en direct chaque semaine</span></li>
                   <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>4 coachs experts : Nathan, Tino, Mathis, Louis</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Séminaires et événements en présentiel</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Cours en présentiel inclus</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Séminaires accessibles au <span className="font-semibold text-white">prix membre</span></span></li>
                 </ul>
               </div>
             </div>
@@ -1174,7 +1175,6 @@ export default function PitchView() {
                 <ul className="mt-1.5 space-y-1 text-[0.85rem] leading-snug text-white/75">
                   <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>L&apos;accès à la communauté Agencilab</span></li>
                   <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Le réseau de membres qui réussissent</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle size={14} weight="fill" className="mt-[3px] shrink-0 text-accent-400" /><span>Le mur des victoires comme moteur quotidien</span></li>
                 </ul>
               </div>
             </div>
