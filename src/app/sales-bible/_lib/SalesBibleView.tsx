@@ -1142,31 +1142,58 @@ function CallsTino() {
     "https://fathom.video/share/eGANBsF6tvJyBxJAJfknxdwstYTszNVE",
     "https://fathom.video/share/dzBJfenFi8TDmBAHzCbhSxXsJjMY3ryx",
   ];
+  const fups = [
+    "https://fathom.video/share/sJsSdRsUhXzouAqJ5RYzzwaLyc62ZqiA",
+    "https://fathom.video/share/iH2_eLz5Z1Xs7xoXdh65_HvQVx-T7x4c",
+  ];
+
+  const CallLink = ({ url, label }: { url: string; label: string }) => (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-accent-400/30 hover:bg-white/[0.06]"
+    >
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent-400/40 bg-accent-400/10 text-accent-400">
+        <Phone size={22} weight="duotone" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <p className="text-[1rem] font-bold tracking-tight text-white">{label}</p>
+          <ArrowSquareOut size={14} weight="bold" className="text-white/40 transition group-hover:text-accent-400" />
+        </div>
+        <p className="mt-0.5 truncate font-mono text-[0.78rem] text-accent-400/70">{url.replace("https://", "")}</p>
+      </div>
+    </a>
+  );
+
   return (
-    <div className="space-y-4">
-      <p className="text-[0.95rem] leading-relaxed text-white/65">
-        Trois appels de Tino à regarder en priorité pour t'imprégner du ton, du rythme, du traitement d'objections et du close.
-      </p>
-      {calls.map((url, i) => (
-        <a
-          key={url}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-accent-400/30 hover:bg-white/[0.06]"
-        >
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent-400/40 bg-accent-400/10 text-accent-400">
-            <Phone size={22} weight="duotone" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <p className="text-[1rem] font-bold tracking-tight text-white">Call de Tino #{i + 1}</p>
-              <ArrowSquareOut size={14} weight="bold" className="text-white/40 transition group-hover:text-accent-400" />
-            </div>
-            <p className="mt-0.5 truncate font-mono text-[0.78rem] text-accent-400/70">{url.replace("https://", "")}</p>
-          </div>
-        </a>
-      ))}
+    <div className="space-y-10">
+      <div className="space-y-4">
+        <div>
+          <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-accent-400">Appels de vente</p>
+          <h2 className="mt-1 text-[1.3rem] font-extrabold tracking-tight text-white">Trois calls à voir en priorité</h2>
+          <p className="mt-2 text-[0.95rem] leading-relaxed text-white/65">
+            Pour t'imprégner du ton, du rythme, du traitement d'objections et du close.
+          </p>
+        </div>
+        {calls.map((url, i) => (
+          <CallLink key={url} url={url} label={`Call de Tino #${i + 1}`} />
+        ))}
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-gold-400">Follow-up</p>
+          <h2 className="mt-1 text-[1.3rem] font-extrabold tracking-tight text-white">FUP de Tino</h2>
+          <p className="mt-2 text-[0.95rem] leading-relaxed text-white/65">
+            Comment Tino reprend contact, traite les "j'y réfléchis", et reverrouille la décision.
+          </p>
+        </div>
+        {fups.map((url, i) => (
+          <CallLink key={url} url={url} label={`FUP de Tino #${i + 1}`} />
+        ))}
+      </div>
     </div>
   );
 }
