@@ -993,19 +993,30 @@ function PrixOffres() {
         </span>
       </div>
 
-      {/* Liste des liens pour la combinaison */}
+      {/* Liste des liens pour la combinaison · couleur selon programme */}
       <div className="space-y-3">
-        {offres.map((o) => (
+        {offres.map((o) => {
+          const cardBorder =
+            programme === "incubateur"
+              ? "border-accent-400/30 bg-accent-400/[0.04]"
+              : "border-gold-400/30 bg-gold-400/[0.04]";
+          const urlColor =
+            programme === "incubateur" ? "text-accent-400/70" : "text-gold-400/70";
+          const btnClass =
+            programme === "incubateur"
+              ? "border-accent-400/40 bg-accent-400/[0.12] text-accent-400 hover:bg-accent-400/[0.2]"
+              : "border-gold-400/40 bg-gold-400/[0.12] text-gold-400 hover:bg-gold-400/[0.2]";
+          return (
           <div
             key={o.url}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
+            className={`rounded-2xl border p-5 md:p-6 ${cardBorder}`}
           >
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="min-w-0 flex-1">
                 <h3 className="text-[1.05rem] font-extrabold tracking-tight text-white">
                   {o.label}
                 </h3>
-                <p className="mt-1 truncate font-mono text-[0.78rem] text-accent-400/70">
+                <p className={`mt-1 truncate font-mono text-[0.78rem] ${urlColor}`}>
                   {o.url.replace("https://", "")}
                 </p>
                 {o.note && (
@@ -1030,16 +1041,65 @@ function PrixOffres() {
                   href={o.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-accent-400/40 bg-accent-400/[0.12] px-4 py-2.5 text-[0.85rem] font-bold text-accent-400 transition hover:bg-accent-400/[0.2]"
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 text-[0.85rem] font-bold transition ${btnClass}`}
                 >
                   Ouvrir <ArrowSquareOut size={14} weight="bold" />
                 </a>
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
+
+      {/* IBAN · alternative virement bancaire */}
+      <IbanCard />
     </div>
+  );
+}
+
+/* ============================================================
+ * IbanCard — coordonnées bancaires pour paiement par virement
+ * ============================================================ */
+function IbanCard() {
+  const IBAN = "FR7628233000010790913192186";
+  const BIC = "REVOFRP2";
+  const BENEFICIAIRE = "ESQ. AGENCY";
+  const ADRESSE = "45 Quai Docteur Gailleton, Rhône, 69002, Lyon, France";
+
+  const Row = ({ label, value }: { label: string; value: string }) => (
+    <div className="flex flex-wrap items-center gap-3 border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+      <span className="w-28 shrink-0 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/45">
+        {label}
+      </span>
+      <span className="min-w-0 flex-1 font-mono text-[0.875rem] text-white/85">
+        {value}
+      </span>
+      <CopyButton value={value} />
+    </div>
+  );
+
+  return (
+    <section className="rounded-3xl border border-white/10 bg-white/[0.025] p-6 md:p-8">
+      <div className="mb-1 flex items-center gap-2">
+        <span className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-accent-400">
+          Alternative au lien Stripe
+        </span>
+      </div>
+      <h3 className="mb-1 text-[1.35rem] font-extrabold tracking-tight text-white">
+        Virement bancaire
+      </h3>
+      <p className="mb-5 text-[0.875rem] leading-[1.55] text-white/60">
+        À envoyer au client qui préfère payer par virement.
+      </p>
+
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+        <Row label="IBAN" value={IBAN} />
+        <Row label="BIC" value={BIC} />
+        <Row label="Bénéficiaire" value={BENEFICIAIRE} />
+        <Row label="Adresse" value={ADRESSE} />
+      </div>
+    </section>
   );
 }
 
