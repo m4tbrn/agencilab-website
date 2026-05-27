@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import FunnelFooter from "./FunnelFooter";
+import CalEmbed from "./CalEmbed";
 import { PROGRAMMES, INTEGRATIONS, type ProgrammeKey } from "./programmes";
 
 /**
  * Page post-onboarding : le formulaire est rempli, le client réserve son
- * appel d'intégration avec l'équipe. Le calendrier iClosed est rendu via
- * widget.js (chargé dans le root layout, observe les `.iclosed-widget`).
+ * appel d'intégration avec l'équipe. Calendrier Cal.com inline (namespacé
+ * par programme).
  */
 export default function AppelContent({
   programme,
@@ -14,16 +15,11 @@ export default function AppelContent({
   programme: ProgrammeKey;
 }) {
   const p = PROGRAMMES[programme];
-  const { appelIclosedUrl } = INTEGRATIONS[programme];
+  const { appelCalLink, appelCalNamespace } = INTEGRATIONS[programme];
 
   const notes = [
     {
       label: "PS",
-      texte:
-        "Un cadeau de bienvenue t'attend, on te l'envoie directement par la poste.",
-    },
-    {
-      label: "PPS",
       texte:
         "Tes accès arrivent par email. Pense à vérifier tes spams, et écris-nous si tu ne les vois pas.",
     },
@@ -77,32 +73,30 @@ export default function AppelContent({
 
         {/* RÉSERVATION APPEL D'INTÉGRATION */}
         <section className="relative z-10 pt-10 md:pt-12">
-          <div className="mx-auto max-w-[820px] px-5 sm:px-6">
-            <div className="glass-card rounded-2xl p-5 md:p-8">
-              <p className="mb-2 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400">
-                Dernière étape
-              </p>
-              <h2 className="mb-2 text-[1.5rem] font-bold leading-[1.2] text-white md:text-[1.875rem]">
-                Réserve ton appel d&apos;intégration
-              </h2>
-              <p className="mb-6 text-[0.9375rem] leading-[1.6] text-white/60 md:text-[1rem]">
-                Cet appel avec ton équipe sert à faire connaissance, valider tes
-                accès et te lancer dans les meilleures conditions. Choisis le
-                créneau qui te convient.
-              </p>
+          <div className="mx-auto max-w-[820px] px-5 text-center sm:px-6">
+            <p className="mb-2 text-[0.75rem] font-bold uppercase tracking-[0.12em] text-gold-400">
+              Dernière étape
+            </p>
+            <h2 className="mb-2 text-[1.5rem] font-bold leading-[1.2] text-white md:text-[1.875rem]">
+              Réserve ton appel d&apos;intégration
+            </h2>
+            <p className="mb-8 text-[0.9375rem] leading-[1.6] text-white/60 md:text-[1rem]">
+              Cet appel avec ton équipe sert à faire connaissance, valider tes
+              accès et te lancer dans les meilleures conditions. Choisis le
+              créneau qui te convient.
+            </p>
+          </div>
 
-              {appelIclosedUrl.includes("PLACEHOLDER") ? (
-                <div className="flex min-h-[320px] items-center justify-center rounded-xl border border-dashed border-white/15 bg-navy-900/50 px-6 text-center text-[0.875rem] text-white/40">
-                  [Calendrier iClosed d&apos;intégration {p.nom} à brancher]
-                </div>
-              ) : (
-                <div
-                  className="iclosed-widget w-full"
-                  data-url={appelIclosedUrl}
-                  data-title={`Appel d'intégration ${p.nom} Agencilab`}
-                  style={{ width: "100%" }}
-                />
-              )}
+          <div className="mx-auto w-full max-w-[1280px] px-3 sm:px-6">
+            <div className="glass-card overflow-hidden rounded-2xl p-2 md:p-3">
+              <CalEmbed
+                calLink={appelCalLink}
+                namespace={appelCalNamespace}
+                height="calc(100vh - 80px)"
+              />
+              <span className="sr-only">
+                Appel d&apos;intégration {p.nom} Agencilab
+              </span>
             </div>
           </div>
         </section>

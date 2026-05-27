@@ -38,8 +38,10 @@ export const INTEGRATIONS: Record<
     whatsappConseiller: string;
     /** Form Tally d'onboarding — src complet de l'embed */
     onboardingTallySrc: string;
-    /** URL iClosed du calendrier d'appel d'intégration */
-    appelIclosedUrl: string;
+    /** Slug calLink Cal.com pour l'appel d'intégration */
+    appelCalLink: string;
+    /** Namespace Cal.com (isolé par programme) */
+    appelCalNamespace: string;
   }
 > = {
   incubateur: {
@@ -48,9 +50,8 @@ export const INTEGRATIONS: Record<
     // Form Tally d'onboarding Incubateur (https://tally.so/r/jaegxR)
     onboardingTallySrc:
       "https://tally.so/embed/jaegxR?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1",
-    // TODO : remplacer par la vraie URL iClosed du call d'intégration Incubateur
-    appelIclosedUrl:
-      "https://app.iclosed.io/e/fit-mass-formation/PLACEHOLDER-integration-incubateur",
+    appelCalLink: "team/agencilab/onboarding",
+    appelCalNamespace: "onboarding",
   },
   mentorat: {
     // TODO : remplacer par le vrai lien WhatsApp du conseiller Mentorat
@@ -58,8 +59,7 @@ export const INTEGRATIONS: Record<
     // Form Tally d'onboarding Mentorat (https://tally.so/r/81Ny8k)
     onboardingTallySrc:
       "https://tally.so/embed/81Ny8k?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1",
-    // TODO : remplacer par la vraie URL iClosed du call d'intégration Mentorat
-    appelIclosedUrl:
-      "https://app.iclosed.io/e/fit-mass-formation/PLACEHOLDER-integration-mentorat",
+    appelCalLink: "team/agencilab/onboarding-mentorat",
+    appelCalNamespace: "onboarding-mentorat",
   },
 };
