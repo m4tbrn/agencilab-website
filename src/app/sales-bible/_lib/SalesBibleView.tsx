@@ -10,6 +10,12 @@ import {
   ChatTeardropText,
   Phone,
   Presentation,
+  Handshake,
+  CurrencyEur,
+  Toolbox,
+  Copy,
+  Check,
+  FilePdf,
   YoutubeLogo,
   InstagramLogo,
   ArrowSquareOut,
@@ -20,7 +26,7 @@ import {
   XCircle,
 } from "@phosphor-icons/react/dist/ssr";
 
-type SectionId = "icp" | "site" | "funnel-meta" | "reseaux" | "script-closing" | "pitch-deck" | "calls-tino";
+type SectionId = "icp" | "site" | "funnel-meta" | "onboarding" | "prix" | "ressources" | "contrats" | "reseaux" | "script-closing" | "pitch-deck" | "calls-tino";
 
 type Section = {
   id: SectionId;
@@ -32,6 +38,10 @@ const SECTIONS: Section[] = [
   { id: "icp", label: "L'ICP", Icon: User },
   { id: "site", label: "Le site", Icon: Globe },
   { id: "funnel-meta", label: "Funnel Meta", Icon: Funnel },
+  { id: "onboarding", label: "Onboarding post-vente", Icon: Handshake },
+  { id: "prix", label: "Prix & offres", Icon: CurrencyEur },
+  { id: "ressources", label: "Ressources de vente", Icon: Toolbox },
+  { id: "contrats", label: "Contrats", Icon: FilePdf },
   { id: "reseaux", label: "Les réseaux de Louis", Icon: LinkSimple },
   { id: "script-closing", label: "Script de closing", Icon: ChatTeardropText },
   { id: "pitch-deck", label: "Pitch deck", Icon: Presentation },
@@ -106,6 +116,10 @@ export default function SalesBibleView() {
           {activeId === "icp" && <ICP />}
           {activeId === "site" && <Site />}
           {activeId === "funnel-meta" && <FunnelMeta />}
+          {activeId === "onboarding" && <OnboardingPostVente />}
+          {activeId === "prix" && <PrixOffres />}
+          {activeId === "ressources" && <RessourcesVente />}
+          {activeId === "contrats" && <Contrats />}
           {activeId === "reseaux" && <Reseaux />}
           {activeId === "script-closing" && <ScriptClosing />}
           {activeId === "pitch-deck" && <PitchDeck />}
@@ -755,6 +769,399 @@ function FunnelMeta() {
         description="Si le formulaire détecte un profil non qualifié (revenus trop bas, hors cible, etc.), le lead est redirigé ici au lieu de la VSL. Pas d'appel programmé."
         tag="Hors funnel"
       />
+    </div>
+  );
+}
+
+/* ============================================================
+ * Onboarding post-vente — Tally + Cal.com par programme
+ * ============================================================ */
+function OnboardingPostVente() {
+  return (
+    <div className="space-y-4">
+      <p className="mb-2 text-[0.95rem] leading-[1.65] text-white/65">
+        Après la signature, on envoie au client le lien d&apos;onboarding
+        correspondant à son programme. Tout le parcours (formulaire + réservation
+        d&apos;appel) se déroule sur le site Agencilab.
+      </p>
+
+      <StepCard
+        step="1"
+        title="Page d'onboarding Incubateur"
+        url="agencilab.com/onboarding-incubateur"
+        description="Lien à envoyer aux nouveaux clients Incubateur juste après le paiement."
+        tag="Incubateur"
+      />
+      <StepCard
+        step="2"
+        title="Page d'onboarding Mentorat"
+        url="agencilab.com/onboarding-mentorat"
+        description="Lien à envoyer aux nouveaux clients Mentorat juste après le paiement."
+        tag="Mentorat"
+      />
+    </div>
+  );
+}
+
+/* ============================================================
+ * CopyButton — bouton "copier" partagé (URL → presse-papier)
+ * ============================================================ */
+function CopyButton({ value, label = "Copier" }: { value: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // fallback silencieux
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      className={`inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 text-[0.85rem] font-bold transition ${
+        copied
+          ? "border-emerald-400/40 bg-emerald-400/[0.12] text-emerald-300"
+          : "border-white/15 bg-white/[0.04] text-white/75 hover:bg-white/[0.08]"
+      }`}
+      aria-label={copied ? "Lien copié" : label}
+    >
+      {copied ? (
+        <>
+          Copié <Check size={14} weight="bold" />
+        </>
+      ) : (
+        <>
+          {label} <Copy size={14} weight="bold" />
+        </>
+      )}
+    </button>
+  );
+}
+
+/* ============================================================
+ * Prix & offres — sélecteur Programme × Type de paiement
+ * ============================================================ */
+type ProgrammeKey = "incubateur" | "mentorat";
+type PaiementKey = "acompte" | "programme";
+
+type OffreLink = {
+  label: string;
+  url: string;
+  /** Code de réduction à appliquer après le paiement de l'acompte */
+  code?: string;
+  note?: string;
+};
+
+const OFFRES: Record<ProgrammeKey, Record<PaiementKey, OffreLink[]>> = {
+  incubateur: {
+    acompte: [
+      {
+        label: "Acompte Incubateur",
+        url: "https://join.agencilab.com/acompte/",
+        note: "Acompte standard pour réserver une place en Incubateur.",
+      },
+    ],
+    programme: [
+      { label: "Paiement en 1 fois", url: "https://join.agencilab.com/lincubateur-1-tva/" },
+      { label: "Paiement en 2 fois", url: "https://join.agencilab.com/lincubateur-2-tva/" },
+      { label: "Paiement en 3 fois", url: "https://join.agencilab.com/lincubateur-3-tva/" },
+      { label: "Paiement en 4 fois", url: "https://join.agencilab.com/lincubateur-4-tva/" },
+      { label: "Paiement en 5 fois", url: "https://join.agencilab.com/lincubateur-5-tva/" },
+      { label: "Paiement en 6 fois", url: "https://join.agencilab.com/lincubateur-6-tva/" },
+    ],
+  },
+  mentorat: {
+    acompte: [
+      {
+        label: "Acompte Mentorat · 200€",
+        url: "https://join.agencilab.com/acompte-mentorat-200/",
+        code: "ACOMPTE-AGENCILAB",
+        note: "Code à appliquer sur le programme complet une fois l'acompte payé.",
+      },
+      {
+        label: "Acompte Mentorat · 500€",
+        url: "https://join.agencilab.com/acompte-mentorat-500/",
+        code: "ACOMPTE-MENTORAT",
+        note: "Code à appliquer sur le programme complet une fois l'acompte payé.",
+      },
+    ],
+    programme: [
+      { label: "Paiement en 1 fois", url: "https://join.agencilab.com/le-mentorat-1-tva/" },
+      { label: "Paiement en 2 fois", url: "https://join.agencilab.com/le-mentorat-2-tva/" },
+      { label: "Paiement en 3 fois", url: "https://join.agencilab.com/le-mentorat-3-tva/" },
+      { label: "Paiement en 4 fois", url: "https://join.agencilab.com/le-mentorat-4-tva/" },
+      { label: "Paiement en 5 fois", url: "https://join.agencilab.com/le-mentorat-5-tva/" },
+      { label: "Paiement en 6 fois", url: "https://join.agencilab.com/le-mentorat-6-tva/" },
+    ],
+  },
+};
+
+function PrixOffres() {
+  const [programme, setProgramme] = useState<ProgrammeKey>("incubateur");
+  const [paiement, setPaiement] = useState<PaiementKey>("acompte");
+
+  const offres = OFFRES[programme][paiement];
+
+  const TogglePair = <K extends string>({
+    value,
+    onChange,
+    options,
+  }: {
+    value: K;
+    onChange: (v: K) => void;
+    options: { key: K; label: string }[];
+  }) => (
+    <div className="inline-flex rounded-full border border-white/15 bg-white/[0.04] p-1">
+      {options.map((opt) => {
+        const active = value === opt.key;
+        return (
+          <button
+            key={opt.key}
+            type="button"
+            onClick={() => onChange(opt.key)}
+            className={`rounded-full px-5 py-2 text-[0.875rem] font-bold transition ${
+              active
+                ? "bg-accent-400 text-white shadow-[0_0_20px_rgba(1,95,255,0.4)]"
+                : "text-white/60 hover:text-white"
+            }`}
+          >
+            {opt.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div className="space-y-8">
+      <p className="text-[0.95rem] leading-[1.65] text-white/65">
+        Sélectionne le programme et le type de paiement pour récupérer le bon
+        lien de checkout à envoyer au prospect.
+      </p>
+
+      <div className="flex flex-col gap-4">
+        <div>
+          <p className="mb-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/45">
+            Programme
+          </p>
+          <TogglePair
+            value={programme}
+            onChange={setProgramme}
+            options={[
+              { key: "incubateur", label: "Incubateur" },
+              { key: "mentorat", label: "Mentorat" },
+            ]}
+          />
+        </div>
+        <div>
+          <p className="mb-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/45">
+            Type de paiement
+          </p>
+          <TogglePair
+            value={paiement}
+            onChange={setPaiement}
+            options={[
+              { key: "acompte", label: "Acompte" },
+              { key: "programme", label: "Programme complet" },
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* Bandeau contexte */}
+      <div className="flex flex-wrap items-center gap-3">
+        <span
+          className={`inline-flex h-8 items-center rounded-full px-3 text-[0.65rem] font-bold uppercase tracking-[0.18em] ${
+            programme === "incubateur"
+              ? "border border-accent-400/40 bg-accent-400/[0.1] text-accent-400"
+              : "border border-gold-400/40 bg-gold-400/[0.1] text-gold-400"
+          }`}
+        >
+          {programme === "incubateur" ? "Incubateur" : "Mentorat"}
+        </span>
+        <span className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/[0.05] px-3 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/65">
+          {paiement === "acompte" ? "Acompte" : "Programme complet"}
+        </span>
+        <span className="text-[0.78rem] text-white/45">
+          {offres.length} lien{offres.length > 1 ? "s" : ""} disponible
+          {offres.length > 1 ? "s" : ""}
+        </span>
+      </div>
+
+      {/* Liste des liens pour la combinaison */}
+      <div className="space-y-3">
+        {offres.map((o) => (
+          <div
+            key={o.url}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-[1.05rem] font-extrabold tracking-tight text-white">
+                  {o.label}
+                </h3>
+                <p className="mt-1 truncate font-mono text-[0.78rem] text-accent-400/70">
+                  {o.url.replace("https://", "")}
+                </p>
+                {o.note && (
+                  <p className="mt-3 text-[0.875rem] leading-[1.55] text-white/65">
+                    {o.note}
+                  </p>
+                )}
+                {o.code && (
+                  <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-gold-400/40 bg-gold-400/[0.1] px-3 py-1.5 text-[0.8rem]">
+                    <span className="font-bold uppercase tracking-[0.16em] text-gold-400">
+                      Code
+                    </span>
+                    <span className="font-mono font-bold text-white">
+                      {o.code}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <CopyButton value={o.url} />
+                <a
+                  href={o.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-accent-400/40 bg-accent-400/[0.12] px-4 py-2.5 text-[0.85rem] font-bold text-accent-400 transition hover:bg-accent-400/[0.2]"
+                >
+                  Ouvrir <ArrowSquareOut size={14} weight="bold" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * Ressources de vente — témoignages, vidéo de valeur, contrats
+ * ============================================================ */
+type RessourceLink = {
+  label: string;
+  url: string;
+  description: string;
+  badge?: string;
+  badgeColor?: "accent" | "gold";
+};
+
+const RESSOURCES_PITCH: RessourceLink[] = [
+  {
+    label: "Page de témoignages",
+    url: "https://blog.agencilab.com/temoignages",
+    description:
+      "Page publique avec tous les témoignages clients. À envoyer au prospect en cours de cycle pour rassurer.",
+  },
+  {
+    label: "Vidéo de valeur",
+    url: "https://blog.agencilab.com/valeur",
+    description:
+      "Contenu offert qui démontre l'expertise. À envoyer en preuve de valeur avant l'appel ou en relance.",
+  },
+];
+
+const RESSOURCES_CONTRATS: RessourceLink[] = [
+  {
+    label: "Contrat Incubateur",
+    url: "https://sendlink.co/documents/doc-form/683dd3ec158a102e5194b074?locale=en_US",
+    description:
+      "Lien Sendlink du contrat Incubateur à envoyer au client après signature de la vente.",
+    badge: "Incubateur",
+    badgeColor: "accent",
+  },
+  {
+    label: "Contrat Mentorat",
+    url: "https://sendlink.co/documents/doc-form/686b8cb7b2ede003f0cd9c8a?locale=en_US",
+    description:
+      "Lien Sendlink du contrat Mentorat à envoyer au client après signature de la vente.",
+    badge: "Mentorat",
+    badgeColor: "gold",
+  },
+];
+
+function RessourceCard({ r }: { r: RessourceLink }) {
+  const badgeClass =
+    r.badgeColor === "gold"
+      ? "border border-gold-400/40 bg-gold-400/[0.1] text-gold-400"
+      : "border border-accent-400/40 bg-accent-400/[0.1] text-accent-400";
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <h3 className="text-[1.05rem] font-extrabold tracking-tight text-white">
+              {r.label}
+            </h3>
+            {r.badge && (
+              <span
+                className={`inline-flex h-6 items-center rounded-full px-2.5 text-[0.6rem] font-bold uppercase tracking-[0.18em] ${badgeClass}`}
+              >
+                {r.badge}
+              </span>
+            )}
+          </div>
+          <p className="truncate font-mono text-[0.78rem] text-accent-400/70">
+            {r.url.replace("https://", "")}
+          </p>
+          <p className="mt-3 text-[0.875rem] leading-[1.55] text-white/65">
+            {r.description}
+          </p>
+        </div>
+        <div className="flex shrink-0 flex-wrap gap-2">
+          <CopyButton value={r.url} />
+          <a
+            href={r.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-accent-400/40 bg-accent-400/[0.12] px-4 py-2.5 text-[0.85rem] font-bold text-accent-400 transition hover:bg-accent-400/[0.2]"
+          >
+            Ouvrir <ArrowSquareOut size={14} weight="bold" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RessourcesVente() {
+  return (
+    <div className="space-y-6">
+      <p className="text-[0.95rem] leading-[1.65] text-white/65">
+        Les contenus à dégainer pendant le cycle de vente pour rassurer le prospect.
+      </p>
+      <div className="space-y-3">
+        {RESSOURCES_PITCH.map((r) => (
+          <RessourceCard key={r.url} r={r} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * Contrats — Sendlink Incubateur + Mentorat
+ * ============================================================ */
+function Contrats() {
+  return (
+    <div className="space-y-6">
+      <p className="text-[0.95rem] leading-[1.65] text-white/65">
+        Liens Sendlink à envoyer au client juste après la signature de la vente.
+        Le contrat correspond au programme acheté.
+      </p>
+      <div className="space-y-3">
+        {RESSOURCES_CONTRATS.map((r) => (
+          <RessourceCard key={r.url} r={r} />
+        ))}
+      </div>
     </div>
   );
 }
