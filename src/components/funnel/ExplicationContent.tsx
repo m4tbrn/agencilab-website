@@ -17,6 +17,7 @@ export default function ExplicationContent({
   iClosedTitle,
   source = "yt",
   revealAfterSeconds = 18 * 60,
+  disablePixel = false,
 }: {
   vslId: string;
   iClosedUrl: string;
@@ -29,6 +30,12 @@ export default function ExplicationContent({
   source?: Source;
   /** Délai (en secondes) avant reveal du calendrier iClosed. Default 18min. */
   revealAfterSeconds?: number;
+  /**
+   * Si true · ne fire aucun event Meta Pixel sur cette page, même si la
+   * source est "meta". Utilisé pour la VSL des leads non qualifiés
+   * (`/explication-m-n`) qu'on ne veut pas remonter à Meta.
+   */
+  disablePixel?: boolean;
 }) {
   return (
     <>
@@ -235,7 +242,7 @@ export default function ExplicationContent({
 
       <FunnelFooter />
       <ExitIntentPopupVSL />
-      {source === "meta" && <MetaPixelEvent event="Lead" />}
+      {source === "meta" && !disablePixel && <MetaPixelEvent event="Lead" />}
     </>
   );
 }
