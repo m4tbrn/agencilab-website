@@ -68,14 +68,15 @@ const FORMAT_DATE = new Intl.DateTimeFormat("fr-FR", {
 
 function buildMessage({
   closerPrenom,
-  prospectPrenom,
+  prospectFullName,
   dateText,
 }: {
   closerPrenom: string;
-  prospectPrenom: string;
+  /** Prénom + Nom du prospect tel qu'envoyé par iClosed (déjà nettoyé) */
+  prospectFullName: string;
   dateText: string | null;
 }): string {
-  const start = `Salut ${closerPrenom}, c'est ${prospectPrenom}.`;
+  const start = `Salut ${closerPrenom}, c'est ${prospectFullName}.`;
   const ctx = dateText
     ? ` Je viens de réserver notre appel pour ${dateText}.`
     : ` Je viens de réserver notre appel via iClosed.`;
@@ -101,7 +102,7 @@ export default function CloserWhatsAppCTA() {
       if (!c) return;
 
       const firstName = fullName ? fullName.split(/\s+/)[0] : "";
-      const safePrenom = firstName || "moi";
+      const safeFullName = fullName || "moi";
 
       let safeDate: string | null = null;
       if (startIso) {
@@ -111,13 +112,14 @@ export default function CloserWhatsAppCTA() {
 
       const msg = buildMessage({
         closerPrenom: c.prenom,
-        prospectPrenom: safePrenom,
+        prospectFullName: safeFullName,
         dateText: safeDate,
       });
       const url = `https://wa.me/${c.phone}?text=${encodeURIComponent(msg)}`;
 
       setCloser(c);
-      setPrenom(safePrenom === "moi" ? null : safePrenom);
+      // Le titre du bandeau utilise toujours le prénom seul · plus naturel
+      setPrenom(firstName || null);
       setDateText(safeDate);
       setWaUrl(url);
     } catch {
