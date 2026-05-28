@@ -28,28 +28,26 @@ type Closer = {
 };
 
 /**
- * Mapping closer → infos. La clé doit correspondre à la valeur EXACTE
- * envoyée par iClosed dans `assigned_to` (en minuscules · matching
- * insensible à la casse côté code).
- *
- * TODO · remplacer les phones placeholder par les vrais numéros et
- * déposer les photos dans /public/images/closers/.
+ * Mapping closer → infos. La clé est la valeur normalisée de `assigned_to`
+ * (lowercase, trim). Le matching côté code essaie d'abord un match exact
+ * puis fallback sur le prénom seul · donc `prenom` suffit à matcher si
+ * iClosed envoie "Martin Lagache" ou similaire.
  */
 const CLOSERS: Record<string, Closer> = {
-  "dorian": {
-    phone: "33761112535",
-    prenom: "Dorian",
-    photo: "/images/closers/dorian.png",
+  "martin lagache": {
+    phone: "33651077659",
+    prenom: "Martin",
+    photo: "/images/closers/martin.png",
   },
   "tino rocher": {
     phone: "33673369330",
     prenom: "Tino",
     photo: "/images/closers/tino.png",
   },
-  "martin": {
-    phone: "33651077659",
-    prenom: "Martin",
-    photo: "/images/closers/martin.png",
+  "dorian": {
+    phone: "33761112535",
+    prenom: "Dorian",
+    photo: "/images/closers/dorian.png",
   },
   "dominika": {
     phone: "33620927231",
@@ -65,6 +63,29 @@ const FORMAT_DATE = new Intl.DateTimeFormat("fr-FR", {
   hour: "2-digit",
   minute: "2-digit",
 });
+
+/**
+ * Trouve le closer correspondant à la valeur `assigned_to` envoyée par
+ * iClosed. iClosed envoie le nom complet ("Martin Lagache", "Tino Rocher",
+ * etc.) · on essaie d'abord un match exact (sur clé normalisée), puis on
+ * fallback sur le prénom seul. Comparaison case-insensitive.
+ */
+function findCloser(assignedRaw: string): Closer | null {
+  if (!assignedRaw) return null;
+  const normalized = assignedRaw.trim().toLowerCase().replace(/\s+/g, " ");
+  if (!normalized) return null;
+
+  // 1. Exact match sur la clé du mapping
+  if (CLOSERS[normalized]) return CLOSERS[normalized];
+
+  // 2. Fallback · premier mot = prénom connu d'un closer
+  const firstWord = normalized.split(" ")[0];
+  for (const c of Object.values(CLOSERS)) {
+    if (c.prenom.toLowerCase() === firstWord) return c;
+  }
+
+  return null;
+}
 
 function buildMessage({
   closerPrenom,
@@ -97,8 +118,7 @@ export default function CloserWhatsAppCTA() {
       const fullName = (params.get("invitee_full_name") || "").trim();
       const startIso = (params.get("event_start_time") || "").trim();
 
-      const key = assigned.toLowerCase();
-      const c = CLOSERS[key];
+      const c = findCloser(assigned);
       if (!c) return;
 
       const firstName = fullName ? fullName.split(/\s+/)[0] : "";
