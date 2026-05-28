@@ -1,10 +1,9 @@
 import Image from "next/image";
-import {
-  ArrowRight,
-  WhatsappLogo,
-} from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import FunnelFooter from "./FunnelFooter";
 import VidalyticsEmbed from "./VidalyticsEmbed";
+import CloserWhatsAppCTA from "./CloserWhatsAppCTA";
+import ConfirmationHeadline from "./ConfirmationHeadline";
 import MetaPixelEvent from "@/components/analytics/MetaPixelEvent";
 
 export default function ConfirmationContent({
@@ -40,42 +39,12 @@ export default function ConfirmationContent({
         <section className="relative z-10 pb-0 pt-6">
           <div className="mx-auto max-w-[860px] px-6 text-center">
             {/* Badge en cours de validation */}
-            <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-2 shadow-[0_0_30px_rgba(255,122,0,0.15)]">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-gold-400" />
-              </span>
-              <span className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-gold-400 md:text-[0.8125rem]">
-                En cours de validation
-                <span className="animate-pulse-dot text-gold-400" style={{ animationDelay: "0ms" }}>.</span>
-                <span className="animate-pulse-dot text-gold-400" style={{ animationDelay: "200ms" }}>.</span>
-                <span className="animate-pulse-dot text-gold-400" style={{ animationDelay: "400ms" }}>.</span>
-              </span>
-            </div>
-
-            {/* Headline */}
-            <h1 className="mb-10 text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-white">
-              Félicitations, nous sommes en train d&apos;analyser ta
-              candidature à{" "}
-              <span className="gradient-text">Agencilab</span>
-              <span className="animate-pulse-dot text-white" style={{ animationDelay: "0ms" }}>.</span>
-              <span className="animate-pulse-dot text-white" style={{ animationDelay: "200ms" }}>.</span>
-              <span className="animate-pulse-dot text-white" style={{ animationDelay: "400ms" }}>.</span>
-            </h1>
+            {/* Headline · personnalisé avec invitee_full_name si dispo */}
+            <ConfirmationHeadline />
 
             <div className="mx-auto max-w-[720px] space-y-5 text-left md:max-w-none">
-              {/* WhatsApp / SMS */}
-              <div className="flex items-center gap-4 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/5 p-4 md:justify-center md:px-6 md:py-4">
-                <WhatsappLogo
-                  size={28}
-                  weight="fill"
-                  className="shrink-0 text-[#25D366]"
-                />
-                <p className="text-[0.875rem] leading-[1.5] text-white/80 md:whitespace-nowrap md:text-[0.9375rem]">
-                  Pour valider ton rendez-vous, un conseiller va te contacter d&apos;ici peu via{" "}
-                  <strong className="text-white">WhatsApp ou SMS</strong>.
-                </p>
-              </div>
+              {/* WhatsApp · personnalisé si closer mappé, sinon message générique */}
+              <CloserWhatsAppCTA />
 
               {/* Important */}
               <div className="relative rounded-2xl border-2 border-[#ef4444]/50 bg-[#ef4444]/10 p-5 shadow-[0_4px_16px_rgba(239,68,68,0.1)] md:p-6">
