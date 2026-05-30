@@ -14,6 +14,11 @@ const TALLY_TITLE = "Formulaire de capture - VSL Agencilab - Facebook Ads";
 
 export default function DecouvrirM() {
   return (
-    <CoursContent tallySrc={TALLY_SRC} tallyTitle={TALLY_TITLE} source="meta" />
+    <CoursContent
+      tallySrc={TALLY_SRC}
+      tallyTitle={TALLY_TITLE}
+      source="meta"
+      metaVariant="epargne"
+    />
   );
 }
