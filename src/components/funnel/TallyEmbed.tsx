@@ -25,6 +25,7 @@ export default function TallyEmbed({
     // Forward tous les params de la page (UTMs Meta + tout autre) vers
     // l'URL Tally afin que les hidden fields Tally soient pré-remplis.
     // On NE touche PAS aux params déjà présents dans l'embed (alignLeft, dynamicHeight, etc.).
+    let augmentedSrc = tallySrc;
     if (typeof window !== "undefined" && iframeRef.current) {
       const pageParams = new URLSearchParams(window.location.search);
       const tallyUrl = new URL(tallySrc);
@@ -48,7 +49,15 @@ export default function TallyEmbed({
         tallyUrl.searchParams.set("referrer", document.referrer);
       }
 
-      iframeRef.current.setAttribute("data-tally-src", tallyUrl.toString());
+      augmentedSrc = tallyUrl.toString();
+      iframeRef.current.setAttribute("data-tally-src", augmentedSrc);
+
+      // Force la mise à jour du src de l'iframe — Tally a peut-être déjà
+      // appelé loadEmbeds() avec l'URL non-augmentée (script chargé sur une
+      // page précédente). Sans ça, les hidden fields restent vides.
+      if (iframeRef.current.src && iframeRef.current.src !== augmentedSrc) {
+        iframeRef.current.src = augmentedSrc;
+      }
     }
 
     const load = () => {
