@@ -41,8 +41,8 @@ export default function MetaCaptureLayout({
         </span>
         {variant === "epargne" ? (
           <span className="block">
-            Comment cette{" "}
-            <span className="gradient-text">activité méconnue</span>{" "}
+            Comment une{" "}
+            <span className="gradient-text">compétence méconnue</span>{" "}
             peut transformer ton{" "}
             <span className="gradient-text">épargne dormante</span>{" "}
             en{" "}
@@ -68,11 +68,13 @@ export default function MetaCaptureLayout({
             <strong className="text-white">bourse</strong>, ni de la{" "}
             <strong className="text-white">crypto</strong>, ni un{" "}
             <strong className="text-white">placement risqué</strong>, ni du{" "}
-            <strong className="text-white">trading</strong>. Tu vas voir,{" "}
-            <strong className="text-white">c&apos;est bien plus simple</strong>. Au lieu de
-            laisser ton argent dormir et perdre de la valeur, tu apprends à le{" "}
-            <strong className="text-white">faire travailler pour toi</strong>, le soir
-            après le boulot — sans toucher à ta sécurité.
+            <strong className="text-white">trading</strong>. Tu prends une fraction
+            de ce qui dort sur ton épargne, tu l&apos;investis dans une{" "}
+            <strong className="text-white">compétence rare</strong> qui s&apos;apprend
+            en quelques semaines, et tu la mets ensuite à profit pour des entreprises qui
+            te paient{" "}
+            <strong className="text-white">tous les mois</strong>. Le soir, après le boulot,
+            comme un épisode de série.
           </>
         ) : (
           <>
