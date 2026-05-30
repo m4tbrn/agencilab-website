@@ -64,10 +64,8 @@ export default function MetaCaptureLayout({
       <p className="mx-auto mb-7 max-w-[680px] text-[0.875rem] leading-[1.55] text-white/80 md:text-[0.9375rem]">
         {variant === "epargne" ? (
           <>
-            Ce n&apos;est ni de la <strong className="text-white">bourse</strong>, ni de
-            la <strong className="text-white">crypto</strong>, ni du{" "}
-            <strong className="text-white">trading</strong>. Tu investis une fraction de
-            ton épargne dans une <strong className="text-white">compétence rare</strong>{" "}
+            Tu investis une partie de ton épargne dans une{" "}
+            <strong className="text-white">compétence rare</strong>{" "}
             qui s&apos;apprend le soir, après le boulot, comme un{" "}
             <strong className="text-white">épisode de série</strong>, et qui te paie
             chaque mois pour{" "}
