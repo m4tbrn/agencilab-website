@@ -9,6 +9,7 @@ export default function CoursContent({
   tallySrc,
   tallyTitle,
   source = "yt",
+  metaVariant = "default",
 }: {
   tallySrc: string;
   tallyTitle: string;
@@ -19,6 +20,8 @@ export default function CoursContent({
    * - "meta" : autorité Louis ("Documentaire exclusif de Louis Esquier, +270k abonnés sur YouTube")
    */
   source?: "yt" | "ig" | "meta";
+  /** A/B variant pour la copy Meta — "epargne" cible l'épargne dormante (Batch #5) */
+  metaVariant?: "default" | "epargne";
 }) {
   return (
     <>
@@ -38,7 +41,7 @@ export default function CoursContent({
 
         <section className="relative z-10 pt-4 pb-10 md:pt-6 md:pb-16">
           {source === "meta" ? (
-            <MetaCaptureLayout tallySrc={tallySrc} tallyTitle={tallyTitle} />
+            <MetaCaptureLayout tallySrc={tallySrc} tallyTitle={tallyTitle} variant={metaVariant} />
           ) : (
           <div className="mx-auto max-w-[920px] px-6 text-center">
             {/* Logo Agencilab */}

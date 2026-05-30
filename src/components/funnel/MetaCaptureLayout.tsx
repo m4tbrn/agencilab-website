@@ -20,9 +20,12 @@ import TallyEmbed from "./TallyEmbed";
 export default function MetaCaptureLayout({
   tallySrc,
   tallyTitle,
+  variant = "default",
 }: {
   tallySrc: string;
   tallyTitle: string;
+  /** A/B variant — "default" = salaire, "epargne" = épargne dormante (Batch #5) */
+  variant?: "default" | "epargne";
 }) {
   return (
     <div className="mx-auto max-w-[760px] px-6 text-center">
@@ -36,29 +39,57 @@ export default function MetaCaptureLayout({
         <span className="mb-3 block text-[0.45em] font-semibold uppercase tracking-[0.16em] text-white/70">
           Documentaire privé :
         </span>
-        <span className="block">
-          Comment cette{" "}
-          <span className="gradient-text">activité méconnue</span>{" "}
-          peut ajouter{" "}
-          <span className="gradient-text">+2 987€/mois</span>{" "}
-          à ton salaire (depuis n&apos;importe où dans le monde 😎)&nbsp;?
-        </span>
+        {variant === "epargne" ? (
+          <span className="block">
+            Comment cette{" "}
+            <span className="gradient-text">activité méconnue</span>{" "}
+            peut transformer ton{" "}
+            <span className="gradient-text">épargne dormante</span>{" "}
+            en{" "}
+            <span className="gradient-text">+2 987€/mois</span>{" "}
+            de complément de revenus&nbsp;?
+          </span>
+        ) : (
+          <span className="block">
+            Comment cette{" "}
+            <span className="gradient-text">activité méconnue</span>{" "}
+            peut ajouter{" "}
+            <span className="gradient-text">+2 987€/mois</span>{" "}
+            à ton salaire (depuis n&apos;importe où dans le monde 😎)&nbsp;?
+          </span>
+        )}
       </h1>
 
       {/* Sub-headline */}
       <p className="mx-auto mb-7 max-w-[680px] text-[0.875rem] leading-[1.55] text-white/80 md:text-[0.9375rem]">
-        Ce n&apos;est pas du{" "}
-        <strong className="text-white">Dropshipping</strong>, ni du{" "}
-        <strong className="text-white">SMMA</strong>, ni du{" "}
-        <strong className="text-white">Trading</strong>, ni du{" "}
-        <strong className="text-white">MLM</strong>. Tu vas voir,{" "}
-        <strong className="text-white">c&apos;est bien plus simple</strong>.
-        Tu peux le faire le soir, après le boulot, comme un épisode de série,
-        et{" "}
-        <strong className="text-white">
-          profiter pleinement de ta famille, ta copine, ton copain ou de tes enfants
-        </strong>
-        .
+        {variant === "epargne" ? (
+          <>
+            Ce n&apos;est ni de la{" "}
+            <strong className="text-white">bourse</strong>, ni de la{" "}
+            <strong className="text-white">crypto</strong>, ni un{" "}
+            <strong className="text-white">placement risqué</strong>, ni du{" "}
+            <strong className="text-white">trading</strong>. Tu vas voir,{" "}
+            <strong className="text-white">c&apos;est bien plus simple</strong>. Au lieu de
+            laisser ton argent dormir et perdre de la valeur, tu apprends à le{" "}
+            <strong className="text-white">faire travailler pour toi</strong>, le soir
+            après le boulot — sans toucher à ta sécurité.
+          </>
+        ) : (
+          <>
+            Ce n&apos;est pas du{" "}
+            <strong className="text-white">Dropshipping</strong>, ni du{" "}
+            <strong className="text-white">SMMA</strong>, ni du{" "}
+            <strong className="text-white">Trading</strong>, ni du{" "}
+            <strong className="text-white">MLM</strong>. Tu vas voir,{" "}
+            <strong className="text-white">c&apos;est bien plus simple</strong>.
+            Tu peux le faire le soir, après le boulot, comme un épisode de série,
+            et{" "}
+            <strong className="text-white">
+              profiter pleinement de ta famille, ta copine, ton copain ou de tes enfants
+            </strong>
+            .
+          </>
+        )}
       </p>
 
       {/* Petit guide au-dessus du form */}
