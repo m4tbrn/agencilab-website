@@ -43,9 +43,9 @@ export default function MetaCaptureLayout({
           <span className="block">
             Comment une{" "}
             <span className="gradient-text">compétence méconnue</span>{" "}
-            peut transformer ton{" "}
-            <span className="gradient-text">épargne dormante</span>{" "}
-            en{" "}
+            peut transformer{" "}
+            <span className="gradient-text">3 000€</span>{" "}
+            d&apos;épargne dormante en{" "}
             <span className="gradient-text">+2 987€/mois</span>{" "}
             de complément de revenus&nbsp;?
           </span>
