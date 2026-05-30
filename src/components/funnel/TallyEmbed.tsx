@@ -22,6 +22,22 @@ export default function TallyEmbed({
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
+    // Forward tous les params de la page (UTMs Meta + tout autre) vers
+    // l'URL Tally afin que les hidden fields Tally soient pré-remplis.
+    // On NE touche PAS aux params déjà présents dans l'embed (alignLeft, dynamicHeight, etc.).
+    if (typeof window !== "undefined" && iframeRef.current) {
+      const pageParams = new URLSearchParams(window.location.search);
+      if (pageParams.toString()) {
+        const tallyUrl = new URL(tallySrc);
+        pageParams.forEach((value, key) => {
+          if (!tallyUrl.searchParams.has(key)) {
+            tallyUrl.searchParams.set(key, value);
+          }
+        });
+        iframeRef.current.setAttribute("data-tally-src", tallyUrl.toString());
+      }
+    }
+
     const load = () => {
       if (typeof window !== "undefined" && window.Tally) {
         window.Tally.loadEmbeds();
