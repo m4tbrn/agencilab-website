@@ -27,15 +27,28 @@ export default function TallyEmbed({
     // On NE touche PAS aux params déjà présents dans l'embed (alignLeft, dynamicHeight, etc.).
     if (typeof window !== "undefined" && iframeRef.current) {
       const pageParams = new URLSearchParams(window.location.search);
-      if (pageParams.toString()) {
-        const tallyUrl = new URL(tallySrc);
-        pageParams.forEach((value, key) => {
-          if (!tallyUrl.searchParams.has(key)) {
-            tallyUrl.searchParams.set(key, value);
-          }
-        });
-        iframeRef.current.setAttribute("data-tally-src", tallyUrl.toString());
+      const tallyUrl = new URL(tallySrc);
+
+      // 1. UTM + tout autre param de la page
+      pageParams.forEach((value, key) => {
+        if (!tallyUrl.searchParams.has(key)) {
+          tallyUrl.searchParams.set(key, value);
+        }
+      });
+
+      // 2. URL complète de la submission (page + UTMs) — capturée dans un hidden
+      //    field Tally nommé "page_url". Pratique pour reconstruire la source.
+      if (!tallyUrl.searchParams.has("page_url")) {
+        tallyUrl.searchParams.set("page_url", window.location.href);
       }
+      if (!tallyUrl.searchParams.has("page_path")) {
+        tallyUrl.searchParams.set("page_path", window.location.pathname);
+      }
+      if (!tallyUrl.searchParams.has("referrer") && document.referrer) {
+        tallyUrl.searchParams.set("referrer", document.referrer);
+      }
+
+      iframeRef.current.setAttribute("data-tally-src", tallyUrl.toString());
     }
 
     const load = () => {
