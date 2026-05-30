@@ -71,10 +71,14 @@ export default function MetaCaptureLayout({
             <strong className="text-white">trading</strong>. Tu prends une fraction
             de ce qui dort sur ton épargne, tu l&apos;investis dans une{" "}
             <strong className="text-white">compétence rare</strong> qui s&apos;apprend
-            en quelques semaines, et tu la mets ensuite à profit pour des entreprises qui
-            te paient{" "}
-            <strong className="text-white">tous les mois</strong>. Le soir, après le boulot,
-            comme un épisode de série.
+            en quelques semaines —{" "}
+            <strong className="text-white">le soir, après le boulot, comme un épisode de série</strong>.
+            Et au bout de quelques mois, tu te crées un complément de revenus qui te
+            permet de{" "}
+            <strong className="text-white">
+              profiter pleinement de ta famille, ta copine, ton copain ou de tes enfants
+            </strong>
+            .
           </>
         ) : (
           <>
