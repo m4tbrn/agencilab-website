@@ -13,7 +13,7 @@ const TALLY_SRC =
   "https://tally.so/embed/w4ZOZ5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
 const TALLY_TITLE = "Formulaire de capture - VSL Agencilab - Facebook Ads (variant épargne)";
 
-export default function DecouvrirEpargne() {
+export default function DecouvrirM2() {
   return (
     <CoursContent
       tallySrc={TALLY_SRC}
