@@ -29,9 +29,9 @@ export async function createLancementCheckout() {
             currency: "eur",
             unit_amount: 99700, // 997,00 €
             product_data: {
-              name: "Agencilab — Offre de lancement -70%",
+              name: "Agencilab — Offre promotionnelle exclusive -70%",
               description:
-                "Accès complet à l'incubateur Agencilab au tarif de lancement, une seule fois.",
+                "Accès complet à l'incubateur Agencilab au tarif promotionnel exclusif, une seule fois.",
             },
           },
         },
@@ -81,7 +81,7 @@ export async function createLancement5xCheckout() {
             unit_amount: 23900, // 239,00 € x 5 mois (total 1 195€)
             recurring: { interval: "month" },
             product_data: {
-              name: "Agencilab — Offre de lancement -70% (5 fois)",
+              name: "Agencilab — Offre promotionnelle exclusive -70% (5 fois)",
               description:
                 "Accès complet à l'incubateur Agencilab, réglé en 5 mensualités.",
             },

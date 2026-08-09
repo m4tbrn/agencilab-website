@@ -48,7 +48,7 @@ export default function CountdownBar() {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-navy-950" />
           </span>
           <span className="text-[0.6875rem] font-extrabold uppercase tracking-[0.14em] sm:text-[0.75rem]">
-            Offre de lancement · -70%
+            Offre exclusive · -70%
           </span>
         </span>
 

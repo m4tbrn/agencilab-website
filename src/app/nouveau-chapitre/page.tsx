@@ -19,7 +19,7 @@ import TempsRestant from "./_lib/TempsRestant";
 import { PRIX_NORMAL, PRIX_PROMO } from "./_lib/config";
 
 export const metadata: Metadata = {
-  title: "Agencilab à -70% | Offre de lancement 48h",
+  title: "Agencilab à -70% | Offre exclusive 48h",
   description:
     "Pour son nouveau départ, Agencilab ouvre à -70%, une seule fois, pendant 48 heures.",
   robots: { index: false, follow: false },
@@ -54,7 +54,7 @@ const FAQ_LANCEMENT = [
   {
     question: "Pourquoi -70%, et pourquoi seulement 48 heures ?",
     answer:
-      "Parce que c'est le lancement de mon nouveau départ, et je le fais une seule fois. Mes autres business tournent très bien, je ne fais pas ça par besoin. Je le fais pour embarquer le maximum de monde dans ce nouveau chapitre. Quand le compte à rebours tombe à zéro, le prix repasse au tarif normal et je ne rouvre pas à ce tarif.",
+      "Parce que c'est une promotion exclusive que je fais une seule fois, pour marquer mon nouveau départ. Mes autres business tournent très bien, je ne fais pas ça par besoin. Je le fais pour embarquer le maximum de monde dans ce nouveau chapitre. Quand le compte à rebours tombe à zéro, le prix repasse au tarif normal et je ne rouvre pas à ce tarif.",
   },
   {
     question: "Je peux payer en plusieurs fois ?",
@@ -134,7 +134,7 @@ export default function LancementPage() {
                   <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/10 px-4 py-2">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-gold-400" />
                     <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-gold-400">
-                      Offre de lancement · Une seule fois · 48h
+                      Offre promotionnelle exclusive · 48h
                     </span>
                   </div>
 
@@ -346,7 +346,7 @@ export default function LancementPage() {
                 <div className="animate-gold-gradient rounded-3xl p-[2px] shadow-[0_8px_40px_rgba(255,122,0,0.25)]">
                   <div className="rounded-[22px] bg-navy-950 px-6 py-10 text-center md:px-12">
                     <span className="mb-3 inline-block rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wide text-gold-400">
-                      Offre de lancement · 48h seulement
+                      Offre exclusive · 48h seulement
                     </span>
                     <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.15] tracking-tight text-white">
                       Rejoins Agencilab à{" "}
@@ -424,7 +424,7 @@ export default function LancementPage() {
             <OffreRoiSection
               prix={PRIX_PROMO}
               prixSuffix=" une seule fois"
-              prixNote={`-70% pendant le lancement, au lieu de ${PRIX_NORMAL}`}
+              prixNote={`-70% en promotion exclusive, au lieu de ${PRIX_NORMAL}`}
             />
 
             {/* 6. FAQ — gestion des objections */}
