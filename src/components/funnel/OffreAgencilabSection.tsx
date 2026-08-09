@@ -57,14 +57,19 @@ const CREDENTIALS = [
   "Basé à Lyon, France",
 ];
 
-export default function OffreAgencilabSection() {
+export default function OffreAgencilabSection({
+  programName = "Cash Cow Express",
+}: {
+  /** Nom du programme affiché dans le titre de section. */
+  programName?: string;
+} = {}) {
   return (
     <section className="mt-14 md:mt-20">
       {/* ===== Ce que tu obtiens ===== */}
       <div className="mx-auto mb-10 max-w-[760px] text-center md:mb-14">
         <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.15] tracking-tight text-white">
           Ce que tu obtiens en rejoignant{" "}
-          <span className="gradient-text">Cash Cow Express</span>
+          <span className="gradient-text">{programName}</span>
         </h2>
         <p className="mx-auto mt-4 max-w-[620px] text-[0.9375rem] leading-[1.6] text-white/65 md:text-[1rem]">
           Un accompagnement complet, de tes premières compétences jusqu&apos;à

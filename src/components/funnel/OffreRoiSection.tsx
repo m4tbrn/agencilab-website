@@ -5,7 +5,16 @@ import { ArrowRight, TrendUp } from "@phosphor-icons/react/dist/ssr";
  * Oppose l'investissement (179€/mois) au premier client (1 000-2 000€)
  * pour montrer que c'est l'investissement le plus rentable possible.
  */
-export default function OffreRoiSection() {
+export default function OffreRoiSection({
+  prix = "179€",
+  prixSuffix = "/mois",
+  prixNote = "Sans engagement, tu arrêtes quand tu veux",
+}: {
+  /** Montant investi affiché dans la carte "Tu investis". */
+  prix?: string;
+  prixSuffix?: string;
+  prixNote?: string;
+} = {}) {
   return (
     <section className="mt-14 md:mt-20">
       <div className="mx-auto max-w-[760px] text-center">
@@ -23,11 +32,10 @@ export default function OffreRoiSection() {
             Tu investis
           </p>
           <p className="text-[1.75rem] font-extrabold tracking-tight text-white md:text-[2rem]">
-            179€<span className="text-[1rem] text-white/50">/mois</span>
+            {prix}
+            <span className="text-[1rem] text-white/50">{prixSuffix}</span>
           </p>
-          <p className="mt-1 text-[0.8125rem] text-white/55">
-            Sans engagement, tu arrêtes quand tu veux
-          </p>
+          <p className="mt-1 text-[0.8125rem] text-white/55">{prixNote}</p>
         </div>
 
         {/* Flèche + ROI */}

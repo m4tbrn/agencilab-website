@@ -236,7 +236,12 @@ const REVE = [
   },
 ];
 
-export default function OffreReveSection() {
+export default function OffreReveSection({
+  ctaLabel = "Voir ce qu'il y a dans Cash Cow Express",
+}: {
+  /** Libellé du CTA de fin de section (ancre #inclus). */
+  ctaLabel?: string;
+} = {}) {
   return (
     <section className="mt-14 md:mt-20">
       {/* Promesse */}
@@ -354,7 +359,7 @@ export default function OffreReveSection() {
           href="#inclus"
           className="cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 px-9 py-4 text-[1rem] font-bold tracking-tight text-navy-950 shadow-lg shadow-gold-400/30"
         >
-          Voir ce qu&apos;il y a dans Cash Cow Express
+          {ctaLabel}
           <ArrowRight size={18} weight="bold" />
         </a>
       </div>
