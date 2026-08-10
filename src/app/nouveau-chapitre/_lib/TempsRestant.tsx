@@ -5,7 +5,7 @@ import { LANCEMENT_FIN } from "./config";
 
 /** Temps restant en toutes lettres ("46 heures et 12 minutes"), mis à jour chaque minute. */
 export default function TempsRestant() {
-  const [txt, setTxt] = useState("48 heures");
+  const [txt, setTxt] = useState("quelques heures");
 
   useEffect(() => {
     const maj = () => {

@@ -248,26 +248,31 @@ export default function OffreReveSection({
       <div className="mx-auto max-w-[820px] text-center">
         {/* Notif de virement — hero */}
         <div
-          className="mx-auto mb-8 flex max-w-[440px] items-center gap-4 rounded-2xl border-2 border-[#a3e635]/40 bg-gradient-to-b from-[#181820] to-[#0d0d11] px-5 py-4 text-left"
+          className="mx-auto mb-8 flex max-w-[440px] items-center gap-3 rounded-2xl border-2 border-[#a3e635]/40 bg-gradient-to-b from-[#181820] to-[#0d0d11] px-4 py-3.5 text-left sm:gap-4 sm:px-5 sm:py-4"
           style={{ boxShadow: "0 0 50px rgba(163, 230, 53, 0.16)" }}
         >
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#a3e635]/40 bg-[#a3e635]/12 text-[#a3e635]">
-            <CurrencyEur size={24} weight="bold" />
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#a3e635]/40 bg-[#a3e635]/12 text-[#a3e635] sm:h-12 sm:w-12">
+            <CurrencyEur size={22} weight="bold" />
           </span>
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-2">
-              <p className="text-[0.8125rem] font-semibold text-white/55">
+              <p className="whitespace-nowrap text-[0.8125rem] font-semibold text-white/55">
                 Virement reçu
               </p>
-              <span className="text-[0.6875rem] text-white/35">
+              {/* Masqué sous 640px : la ligne n'a pas la place et se coupait en deux. */}
+              <span className="hidden whitespace-nowrap text-[0.6875rem] text-white/35 sm:inline">
                 à l&apos;instant
               </span>
             </div>
             <p className="truncate text-[0.875rem] font-medium text-white">
-              Client · Abonnement mensuel
+              {/* Libellé raccourci sous 640px, sinon il se faisait couper. */}
+              <span className="sm:hidden">Client · Abonnement</span>
+              <span className="hidden sm:inline">
+                Client · Abonnement mensuel
+              </span>
             </p>
           </div>
-          <p className="shrink-0 text-[1.375rem] font-extrabold tracking-tight text-[#a3e635] md:text-[1.5rem]">
+          <p className="shrink-0 whitespace-nowrap text-[1.125rem] font-extrabold tracking-tight text-[#a3e635] sm:text-[1.375rem] md:text-[1.5rem]">
             +2 987 €
           </p>
         </div>

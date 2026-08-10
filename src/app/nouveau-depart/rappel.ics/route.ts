@@ -9,7 +9,7 @@ function icsDate(d: Date) {
 }
 
 /**
- * Fichier .ics "Ouverture Agencilab -70%" pour Apple Calendar / Outlook.
+ * Fichier .ics "Ouverture Agencilab -72%" pour Apple Calendar / Outlook.
  * Événement d'une heure au moment de l'ouverture, avec le lien de la page.
  */
 export function GET(request: Request) {
@@ -28,13 +28,13 @@ export function GET(request: Request) {
     `DTSTAMP:${icsDate(new Date(0))}`,
     `DTSTART:${icsDate(debut)}`,
     `DTEND:${icsDate(fin)}`,
-    "SUMMARY:Ouverture Agencilab à -70% (48h seulement)",
+    "SUMMARY:Ouverture Agencilab à -72%",
     `DESCRIPTION:Les portes ouvrent. Une seule fois\\, 48 heures. ${url}`,
     `URL:${url}`,
     "BEGIN:VALARM",
     "TRIGGER:-PT15M",
     "ACTION:DISPLAY",
-    "DESCRIPTION:Agencilab ouvre à -70% dans 15 minutes",
+    "DESCRIPTION:Agencilab ouvre à -72% dans 15 minutes",
     "END:VALARM",
     "END:VEVENT",
     "END:VCALENDAR",

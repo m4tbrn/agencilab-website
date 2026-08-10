@@ -4,7 +4,7 @@ import Stripe from "stripe";
 import { redirect } from "next/navigation";
 
 /**
- * Checkout Stripe HÉBERGÉ pour l'offre de lancement Agencilab à -70% (997€, paiement unique).
+ * Checkout Stripe HÉBERGÉ pour l'offre de lancement Agencilab à -72% (997€, paiement unique).
  *
  * Fonctionne avec juste STRIPE_SECRET_KEY dans .env.local (prix construit à la volée).
  * Si tu préfères un Price Stripe déjà créé, mets son id dans STRIPE_PRICE_AGENCILAB_LANCEMENT
@@ -29,7 +29,7 @@ export async function createLancementCheckout() {
             currency: "eur",
             unit_amount: 99700, // 997,00 €
             product_data: {
-              name: "Agencilab — Offre promotionnelle exclusive -70%",
+              name: "Agencilab — Offre promotionnelle exclusive -72%",
               description:
                 "Accès complet à l'incubateur Agencilab au tarif promotionnel exclusif, une seule fois.",
             },
@@ -40,8 +40,7 @@ export async function createLancementCheckout() {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items,
-    allow_promotion_codes: true,
-    success_url: `${baseUrl}/nouveau-chapitre/merci?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${baseUrl}/onboarding-incubateur?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${baseUrl}/nouveau-chapitre`,
     metadata: { produit: "agencilab-lancement-70" },
   });
@@ -81,7 +80,7 @@ export async function createLancement5xCheckout() {
             unit_amount: 23900, // 239,00 € x 5 mois (total 1 195€)
             recurring: { interval: "month" },
             product_data: {
-              name: "Agencilab — Offre promotionnelle exclusive -70% (5 fois)",
+              name: "Agencilab — Offre promotionnelle exclusive -72% (5 fois)",
               description:
                 "Accès complet à l'incubateur Agencilab, réglé en 5 mensualités.",
             },
@@ -92,7 +91,7 @@ export async function createLancement5xCheckout() {
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
     line_items,
-    success_url: `${baseUrl}/nouveau-chapitre/merci?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${baseUrl}/onboarding-incubateur?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${baseUrl}/nouveau-chapitre`,
     metadata: { produit: "agencilab-lancement-70-5x" },
     subscription_data: {

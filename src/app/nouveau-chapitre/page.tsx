@@ -10,18 +10,18 @@ import OffreAgencilabSection from "@/components/funnel/OffreAgencilabSection";
 import WarmTrustSection from "@/components/funnel/WarmTrustSection";
 import OffreRoiSection from "@/components/funnel/OffreRoiSection";
 import OffreTrustpilot from "@/components/funnel/OffreTrustpilot";
-import OffreSocialNotif from "@/components/funnel/OffreSocialNotif";
 import FaqBnAccordion from "@/components/funnel/FaqBnAccordion";
+import VentesNotif from "./_lib/VentesNotif";
 import CountdownBar from "./_lib/CountdownBar";
 import BuyButton from "./_lib/BuyButton";
-import Buy5xButton from "./_lib/Buy5xButton";
+import OffrePopup from "./_lib/OffrePopup";
 import TempsRestant from "./_lib/TempsRestant";
 import { PRIX_NORMAL, PRIX_PROMO } from "./_lib/config";
 
 export const metadata: Metadata = {
-  title: "Agencilab à -70% | Offre exclusive 48h",
+  title: "Agencilab à -72% | Offre exclusive",
   description:
-    "Pour son nouveau départ, Agencilab ouvre à -70%, une seule fois, pendant 48 heures.",
+    "Pour son nouveau départ, Agencilab ouvre à -72%, une seule fois, jusqu'à mardi soir minuit.",
   robots: { index: false, follow: false },
 };
 
@@ -52,9 +52,9 @@ const FAQ_LANCEMENT = [
       "Oui, c'est le but. Tu construis ton activité à côté, à ton rythme, et tu décides plus tard si tu veux en faire ton activité principale.",
   },
   {
-    question: "Pourquoi -70%, et pourquoi seulement 48 heures ?",
+    question: "Pourquoi -72%, et pourquoi si peu de temps ?",
     answer:
-      "Parce que c'est une promotion exclusive que je fais une seule fois, pour marquer mon nouveau départ. Mes autres business tournent très bien, je ne fais pas ça par besoin. Je le fais pour embarquer le maximum de monde dans ce nouveau chapitre. Quand le compte à rebours tombe à zéro, le prix repasse au tarif normal et je ne rouvre pas à ce tarif.",
+      "Parce que c'est une promotion exclusive que je fais une seule fois, pour marquer mon nouveau départ et embarquer le maximum de monde avec moi. Elle s'arrête mardi soir à minuit. Quand le compte à rebours tombe à zéro, le prix repasse au tarif normal et je ne rouvre pas à ce tarif.",
   },
   {
     question: "Je peux payer en plusieurs fois ?",
@@ -64,17 +64,17 @@ const FAQ_LANCEMENT = [
   {
     question: "Et si ça ne marche pas pour moi ?",
     answer:
-      "Tu es couvert par la garantie contractuelle : si tu suis la méthode et que tu n'atteins pas les résultats, on te donne un client. Le risque est de notre côté.",
+      "Tu es couvert par la garantie : si tu suis la méthode et que tu n'atteins pas les résultats, on te donne un client. Le risque est de notre côté.",
   },
   {
     question: "J'ai accès pendant combien de temps ?",
     answer:
-      "[DURÉE D'ACCÈS : à confirmer, par exemple accès à vie aux contenus et à la communauté]",
+      "Tu as un accès à vie aux contenus et à la communauté. Tu avances à ton rythme, tu reviens quand tu veux, et tu profites de toutes les mises à jour.",
   },
   {
     question: "Je peux le faire plus tard, quand ce sera le bon moment ?",
     answer:
-      "L'offre à -70%, non. Elle ferme quand le compte à rebours tombe à zéro et elle ne reviendra pas. Et pour le reste, le bon moment n'arrive jamais tout seul : la plupart de nos élèves ont commencé en travaillant à côté, avec une heure ou deux par jour.",
+      "L'offre à -72%, non. Elle ferme quand le compte à rebours tombe à zéro et elle ne reviendra pas. Et pour le reste, le bon moment n'arrive jamais tout seul : la plupart de nos élèves ont commencé en travaillant à côté, avec une heure ou deux par jour.",
   },
 ];
 
@@ -115,6 +115,7 @@ export default function LancementPage() {
   const banSrc = screenshotYoutube();
   return (
     <>
+      <OffrePopup />
       <CountdownBar />
 
       <main className="relative flex-1 overflow-hidden">
@@ -131,25 +132,18 @@ export default function LancementPage() {
               <div className="grid lg:grid-cols-[1.2fr_1fr]">
                 {/* Gauche — texte */}
                 <div className="flex flex-col justify-center p-5 sm:p-8 lg:p-10">
-                  <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/10 px-4 py-2">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-gold-400" />
-                    <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-gold-400">
-                      Offre promotionnelle exclusive · 48h
-                    </span>
-                  </div>
-
                   <h1 className="mb-5 text-3xl font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-[2.5rem]">
                     Pour son nouveau départ, l&apos;incubateur{" "}
                     <span className="gradient-text">Agencilab</span> ouvre à{" "}
-                    <span className="gradient-text">-70%</span> pendant 48
-                    heures.
+                    <span className="gradient-text">-72%</span>{" "}
+                    jusqu&apos;à mardi soir minuit.
                   </h1>
 
                   <p className="mb-8 max-w-md text-base leading-relaxed tracking-tight text-white/50">
                     Je n&apos;ai jamais baissé ce prix depuis que je l&apos;ai
                     créé. Je le fais une seule fois, pour embarquer le maximum
                     de personnes dans ce nouveau chapitre. Quand le compte à
-                    rebours tombe à zéro, c&apos;est terminé.
+                    rebours tombera à zéro, ça sera terminé.
                   </p>
 
                   {/* Visages empilés */}
@@ -175,8 +169,6 @@ export default function LancementPage() {
                     </div>
                     <p className="text-xs tracking-tight text-white/30">
                       Ils ont changé de vie grâce à Agencilab.
-                      <br />
-                      Eux ont payé plein tarif.
                     </p>
                   </div>
                 </div>
@@ -198,7 +190,7 @@ export default function LancementPage() {
               </div>
             </div>
 
-            {/* ===== POURQUOI -70% (l'histoire qui justifie la promo) ===== */}
+            {/* ===== POURQUOI -72% (l'histoire qui justifie la promo) ===== */}
             <section className="mt-14 md:mt-20">
               <div className="mx-auto mb-10 max-w-[760px] text-center md:mb-12">
                 <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.15] tracking-tight text-white">
@@ -217,8 +209,9 @@ export default function LancementPage() {
                   <div className="mt-3 space-y-3 text-[1rem] leading-[1.75] text-white/70 md:text-[1.0625rem]">
                     <p>YouTube a supprimé ma chaîne à 273 000 abonnés.</p>
                     <p>
-                      Quatre ans de travail effacés en une nuit... sans un mot
-                      d&apos;explication.
+                      Quatre ans de travail effacés en une nuit, sur une
+                      décision automatique, sans jamais pouvoir en parler à
+                      quelqu&apos;un.
                     </p>
                   </div>
 
@@ -235,7 +228,7 @@ export default function LancementPage() {
                         />
                       </div>
                       <figcaption className="mt-2 text-[0.8125rem] text-white/40">
-                        Le message que j&apos;ai reçu.
+                        Le message que j&apos;ai reçu le 3 juin.
                       </figcaption>
                     </figure>
                   )}
@@ -257,9 +250,10 @@ export default function LancementPage() {
                     </p>
                     <p>
                       Et je te rassure tout de suite, mes autres business
-                      tournent très bien. J&apos;aurais pu continuer comme
-                      avant sans rien changer, l&apos;argent rentrait. Mais je
-                      n&apos;y trouvais plus de sens.
+                      tournent bien. J&apos;ai même de nouvelles idées de
+                      projets dont je te parlerai bientôt. C&apos;est
+                      justement en prenant du recul que j&apos;ai commencé à
+                      voir les choses différemment pour Agencilab.
                     </p>
                     <p>
                       Aujourd&apos;hui, ce qui me porte vraiment, c&apos;est
@@ -282,7 +276,7 @@ export default function LancementPage() {
                       J&apos;ouvre exceptionnellement
                       <br />
                       l&apos;incubateur à{" "}
-                      <span className="text-gold-400">-70%</span>.
+                      <span className="text-gold-400">-72%</span>.
                     </p>
                     <div className="mx-auto mt-6 max-w-[520px] space-y-4 text-[1.0625rem] leading-[1.7] text-white/70 md:text-[1.125rem]">
                       <p>
@@ -327,6 +321,10 @@ export default function LancementPage() {
                 >
                   Louis, fondateur d&apos;Agencilab
                 </p>
+
+                <div className="mt-10 flex justify-center">
+                  <BuyButton />
+                </div>
               </div>
             </section>
 
@@ -335,24 +333,40 @@ export default function LancementPage() {
             <OffreReveSection ctaLabel="Voir ce qu'il y a dans Agencilab" />
             {/* 1b. Schéma : le modèle économique (bras droit marketing) */}
             <BrasDroitSchema />
+            <div className="mt-10 flex justify-center md:mt-12">
+              <BuyButton />
+            </div>
             {/* 2. Vendre Agencilab et l'accompagnement + fondateur */}
             <OffreAgencilabSection programName="Agencilab" />
             {/* 3. Trust : témoignages écrits + chiffres */}
             <WarmTrustSection />
+            <div className="mt-10 flex justify-center md:mt-12">
+              <BuyButton />
+            </div>
 
-            {/* ===== 4. BLOC OFFRE DE LANCEMENT -70% ===== */}
+            {/* ===== 4. BLOC OFFRE DE LANCEMENT -72% ===== */}
             <section id="offre" className="mt-14 scroll-mt-24 md:mt-20">
               <div className="mx-auto max-w-[760px]">
                 <div className="animate-gold-gradient rounded-3xl p-[2px] shadow-[0_8px_40px_rgba(255,122,0,0.25)]">
                   <div className="rounded-[22px] bg-navy-950 px-6 py-10 text-center md:px-12">
                     <span className="mb-3 inline-block rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wide text-gold-400">
-                      Offre exclusive · 48h seulement
+                      Offre exclusive · jusqu&apos;à mardi minuit
                     </span>
                     <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.15] tracking-tight text-white">
                       Rejoins Agencilab à{" "}
-                      <span className="gradient-text">-70%</span>
+                      <span className="gradient-text">-72%</span>
                     </h2>
-                    <p className="mx-auto mt-4 max-w-[560px] text-[0.9375rem] leading-[1.6] text-white/65 md:text-[1rem]">
+                    <div className="mx-auto mt-5 inline-flex items-center gap-2.5 rounded-xl border-2 border-gold-400 bg-gold-400/15 px-5 py-3 shadow-[0_0_30px_rgba(255,122,0,0.25)]">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-70" />
+                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold-400" />
+                      </span>
+                      <span className="text-[1rem] font-bold tracking-tight text-gold-300 md:text-[1.125rem]">
+                        Il reste <TempsRestant /> pour en profiter
+                      </span>
+                    </div>
+
+                    <p className="mx-auto mt-5 max-w-[560px] text-[0.9375rem] leading-[1.6] text-white/65 md:text-[1rem]">
                       La seule fois où l&apos;incubateur ouvre à ce prix. Tout
                       est compris, sans frais cachés.
                     </p>
@@ -381,7 +395,7 @@ export default function LancementPage() {
                     >
                       <p className="text-[0.9375rem] leading-[1.6] text-white/85">
                         <span className="font-bold text-accent-300">
-                          Garantie contractuelle
+                          Garantie
                         </span>{" "}
                         : si tu suis la méthode et que tu n&apos;atteins pas
                         les résultats, on te donne un client.
@@ -396,21 +410,17 @@ export default function LancementPage() {
                       <p className="mt-1 text-[2.5rem] font-extrabold tracking-tight text-white md:text-[3rem]">
                         {PRIX_PROMO}{" "}
                         <span className="align-middle text-[1.125rem] font-bold text-gold-400">
-                          -70%
+                          -72%
                         </span>
                       </p>
                       <p className="mt-1 text-[0.8125rem] text-white/50">
                         En une fois ou en 5 fois. Quand le compte à rebours
                         tombe à zéro, le prix repasse à {PRIX_NORMAL}.
                       </p>
-                      <p className="mt-3 text-[0.9375rem] font-semibold text-gold-400">
-                        Il reste <TempsRestant /> pour en profiter.
-                      </p>
                     </div>
 
-                    <div className="mt-7 flex flex-col items-center">
+                    <div className="mt-7 flex justify-center">
                       <BuyButton />
-                      <Buy5xButton />
                     </div>
                     <p className="mt-4 text-[0.8125rem] text-white/45">
                       Paiement sécurisé par Stripe · Accès immédiat
@@ -424,8 +434,12 @@ export default function LancementPage() {
             <OffreRoiSection
               prix={PRIX_PROMO}
               prixSuffix=" une seule fois"
-              prixNote={`-70% en promotion exclusive, au lieu de ${PRIX_NORMAL}`}
+              prixNote={`-72% en promotion exclusive, au lieu de ${PRIX_NORMAL}`}
             />
+
+            <div className="mt-10 flex justify-center md:mt-12">
+              <BuyButton />
+            </div>
 
             {/* 6. FAQ — gestion des objections */}
             <div className="mt-14 md:mt-20">
@@ -443,6 +457,10 @@ export default function LancementPage() {
               </div>
             </div>
 
+            <div className="mt-10 flex justify-center md:mt-12">
+              <BuyButton />
+            </div>
+
             {/* 7. Avis Trustpilot — les avis vérifiés */}
             <OffreTrustpilot />
 
@@ -450,7 +468,7 @@ export default function LancementPage() {
             <div className="mt-14 text-center md:mt-20">
               <h2 className="mx-auto max-w-[640px] text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.18] tracking-tight text-white">
                 Rejoins Agencilab à{" "}
-                <span className="gradient-text">-70%</span> avant la fermeture
+                <span className="gradient-text">-72%</span> avant la fermeture
                 des portes.
               </h2>
               <p className="mx-auto mt-3 max-w-[520px] text-[0.9375rem] leading-[1.6] text-white/65 md:text-[1rem]">
@@ -463,8 +481,8 @@ export default function LancementPage() {
               </div>
               <p className="mt-4 text-[0.8125rem] text-white/45">
                 {PRIX_PROMO} au lieu de{" "}
-                <span className="line-through">{PRIX_NORMAL}</span> · 48h
-                seulement · Accès immédiat
+                <span className="line-through">{PRIX_NORMAL}</span> ·
+                Jusqu&apos;à mardi minuit · Accès immédiat
               </p>
             </div>
           </div>
@@ -472,7 +490,7 @@ export default function LancementPage() {
       </main>
 
       <FunnelFooter />
-      <OffreSocialNotif />
+      <VentesNotif />
     </>
   );
 }

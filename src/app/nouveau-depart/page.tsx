@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { CalendarPlus, GoogleLogo } from "@phosphor-icons/react/dist/ssr";
 import TeaseCountdown from "./_lib/TeaseCountdown";
 import { LANCEMENT_OUVERTURE } from "@/app/nouveau-chapitre/_lib/config";
+
+/** La page doit être évaluée à chaque visite pour comparer l'heure d'ouverture. */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "La promotion arrive | Agencilab",
@@ -32,7 +36,7 @@ function googleCalendarUrl() {
       .replace(/\.\d{3}Z$/, "Z");
   const params = new URLSearchParams({
     action: "TEMPLATE",
-    text: "Ouverture Agencilab à -70% (48h seulement)",
+    text: "Ouverture Agencilab à -72% (48h seulement)",
     dates: `${fmt(debut)}/${fmt(fin)}`,
     details:
       "Les portes ouvrent. Une seule fois, 48 heures. https://agencilab.com/nouveau-chapitre",
@@ -41,6 +45,12 @@ function googleCalendarUrl() {
 }
 
 export default function BientotPage() {
+  // Les emails de teasing pointent tous ici. Une fois les portes ouvertes, cette
+  // page n'a plus de raison d'être : on envoie le visiteur sur la page de vente.
+  if (Date.now() >= new Date(LANCEMENT_OUVERTURE).getTime()) {
+    redirect("/nouveau-chapitre");
+  }
+
   return (
     <main className="relative flex min-h-screen flex-col items-center overflow-hidden px-6 py-12 text-center md:py-16">
       {/* Background gradient orbs */}
@@ -131,10 +141,7 @@ export default function BientotPage() {
           </div>
           <p className="max-w-md text-[0.875rem] leading-[1.5] text-white/55">
             <strong className="text-gold-400">+1 018 personnes</strong> ont déjà
-            changé de vie avec Agencilab.{" "}
-            <strong className="text-white/80">
-              Eux ont payé plein tarif.
-            </strong>
+            changé de vie avec Agencilab.
           </p>
         </div>
 

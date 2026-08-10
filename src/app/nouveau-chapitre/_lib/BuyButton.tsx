@@ -1,23 +1,28 @@
 "use client";
 
-import { useTransition } from "react";
-import { createLancementCheckout } from "./actions";
+import { ouvrirOffre } from "./OffrePopup";
 
-/** Bouton d'achat unique de la page : même texte partout, va au checkout Stripe. */
-export default function BuyButton({ large = false }: { large?: boolean }) {
-  const [pending, startTransition] = useTransition();
-
+/**
+ * Bouton d'achat unique de la page : ouvre la popup de choix du mode de
+ * paiement (une fois ou 5 fois) plutôt que d'envoyer directement au comptant.
+ */
+export default function BuyButton({
+  large = false,
+  label = "Rejoindre Agencilab à -72%",
+}: {
+  large?: boolean;
+  label?: string;
+}) {
   return (
     <button
-      onClick={() => startTransition(() => createLancementCheckout())}
-      disabled={pending}
-      className={`cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 font-bold tracking-tight text-navy-950 disabled:opacity-60 ${
+      onClick={ouvrirOffre}
+      className={`cta-button glow-gold inline-flex items-center gap-3 rounded-xl bg-gold-400 font-bold tracking-tight text-navy-950 ${
         large
           ? "px-10 py-5 text-lg sm:px-14 sm:py-6 sm:text-xl"
           : "px-9 py-4 text-base sm:text-lg"
       }`}
     >
-      {pending ? "Redirection vers le paiement..." : "Rejoindre Agencilab à -70%"}
+      {label}
       <svg
         className="h-5 w-5 sm:h-6 sm:w-6"
         fill="none"

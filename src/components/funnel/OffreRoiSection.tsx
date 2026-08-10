@@ -82,7 +82,7 @@ export default function OffreRoiSection({
           En moyenne, nos membres signent leur premier client en{" "}
           <strong className="text-white">moins de 52 jours</strong>. Soit{" "}
           <strong className="text-gold-400">
-            jusqu&apos;à 10 fois ta mise récupérée
+            jusqu&apos;à 2 fois ta mise récupérée
           </strong>{" "}
           dès le premier contrat, et un revenu qui revient ensuite{" "}
           <strong className="text-white">chaque mois</strong>. Aucun
