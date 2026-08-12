@@ -72,7 +72,7 @@ export default function CountdownBar() {
 
         {t === null ? (
           <span className="text-[0.8125rem] font-bold sm:text-sm">
-            Jusqu&apos;à mardi minuit
+            Jusqu&apos;à ce soir minuit
           </span>
         ) : t.fini ? (
           <span className="text-[0.8125rem] font-bold sm:text-sm">

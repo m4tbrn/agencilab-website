@@ -11,17 +11,28 @@ import WarmTrustSection from "@/components/funnel/WarmTrustSection";
 import OffreRoiSection from "@/components/funnel/OffreRoiSection";
 import OffreTrustpilot from "@/components/funnel/OffreTrustpilot";
 import FaqBnAccordion from "@/components/funnel/FaqBnAccordion";
-import VentesNotif from "./_lib/VentesNotif";
-import CountdownBar from "./_lib/CountdownBar";
-import BuyButton from "./_lib/BuyButton";
-import OffrePopup from "./_lib/OffrePopup";
-import TempsRestant from "./_lib/TempsRestant";
-import { PRIX_NORMAL, PRIX_PROMO } from "./_lib/config";
+import VentesNotif from "../nouveau-chapitre/_lib/VentesNotif";
+import CountdownBar from "../nouveau-chapitre/_lib/CountdownBar";
+import BuyButton from "../nouveau-chapitre/_lib/BuyButton";
+import OffrePopup from "../nouveau-chapitre/_lib/OffrePopup";
+import TempsRestant from "../nouveau-chapitre/_lib/TempsRestant";
+import { PRIX_NORMAL, PRIX_PROMO } from "../nouveau-chapitre/_lib/config";
+
+/**
+ * Page dédiée à la réouverture de 24h, réservée aux 500 abonnés les plus
+ * engagés de la newsletter. Elle double /nouveau-chapitre volontairement au
+ * lieu de la remplacer : la page d'origine reste intacte pour ceux qui l'ont
+ * déjà en favori, et celle-ci porte l'angle de la sélection annoncé dans les
+ * emails du Jour 9. Tout le reste (offre, prix, garantie, composants) est
+ * strictement identique, y compris les Payment Links Stripe.
+ *
+ * À supprimer après la fermeture, en même temps que la promotion.
+ */
 
 export const metadata: Metadata = {
-  title: "Agencilab à -72% | Offre exclusive",
+  title: "Tu es dans les 500 | Agencilab à -72%",
   description:
-    "Je rouvre 24 heures de plus. L'incubateur Agencilab à -72% jusqu'à ce soir minuit.",
+    "Sur 40 000 inscrits, vous êtes environ 500 à me lire à chaque fois. Cette page ferme ce soir à minuit.",
   robots: { index: false, follow: false },
 };
 
@@ -52,9 +63,9 @@ const FAQ_LANCEMENT = [
       "Oui, c'est le but. Tu construis ton activité à côté, à ton rythme, et tu décides plus tard si tu veux en faire ton activité principale.",
   },
   {
-    question: "Pourquoi -72%, et pourquoi si peu de temps ?",
+    question: "Pourquoi -72%, et pourquoi seulement pour 500 personnes ?",
     answer:
-      "Parce que c'est une promotion exclusive que je fais pour marquer mon nouveau départ, et je ne la referai pas à ce montant. Elle devait fermer hier soir, mais j'ai reçu trop de messages de gens qui l'avaient ratée de quelques heures. Je rouvre donc 24 heures, jusqu'à ce soir minuit. Après, le prix repasse au tarif normal.",
+      "Parce que je veux frapper beaucoup plus fort. 1 018 personnes sont passées par Agencilab depuis le début, et mon objectif est de doubler ce chiffre. La seule chose qui m'en empêche, c'est le prix : des gens sérieux, qui feraient le travail, n'ont pas 3 600€ disponibles sur un compte. Alors je retire l'obstacle pendant 24 heures, et je le fais pour ceux qui me lisent vraiment. Après ce soir, le prix repasse au tarif normal.",
   },
   {
     question: "Je peux payer en plusieurs fois ?",
@@ -111,7 +122,7 @@ function screenshotYoutube(): string | null {
   return null;
 }
 
-export default function LancementPage() {
+export default function Les500Page() {
   const banSrc = screenshotYoutube();
   return (
     <>
@@ -127,25 +138,31 @@ export default function LancementPage() {
 
         <section className="relative z-10 pb-12 pt-8 md:pb-20 md:pt-12">
           <div className="mx-auto max-w-[1100px] px-6">
-            {/* ===== HERO LANCEMENT — split texte gauche + photo droite (comme le site) ===== */}
+            {/* ===== HERO — l'angle de la sélection des 500 ===== */}
             <div className="hero-border rounded-2xl border border-white/10 bg-white/[0.03] sm:rounded-3xl">
               <div className="grid lg:grid-cols-[1.2fr_1fr]">
                 {/* Gauche — texte */}
                 <div className="flex flex-col justify-center p-5 sm:p-8 lg:p-10">
+                  <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wide text-gold-400">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-70" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-gold-400" />
+                    </span>
+                    Réservé aux 500
+                  </span>
+
                   <h1 className="mb-5 text-3xl font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-[2.5rem]">
-                    Pour son nouveau départ, l&apos;incubateur{" "}
+                    Tu fais partie des 500 : l&apos;incubateur{" "}
                     <span className="gradient-text">Agencilab</span> ouvre à{" "}
                     <span className="gradient-text">-72%</span>{" "}
                     jusqu&apos;à ce soir minuit.
                   </h1>
 
                   <p className="mb-8 max-w-md text-base leading-relaxed tracking-tight text-white/50">
-                    Je n&apos;ai jamais baissé ce prix depuis que je l&apos;ai
-                    créé. Cette offre devait fermer hier soir, sauf que j&apos;ai
-                    reçu trop de messages de gens qui l&apos;avaient ratée de
-                    quelques heures. Je rouvre donc 24 heures, jusqu&apos;à ce
-                    soir minuit, et cette fois il n&apos;y aura pas de
-                    rattrapage.
+                    Sur les 40 000 inscrits à ma newsletter, vous êtes environ
+                    500 à ouvrir chaque email et à prendre le temps de me
+                    répondre. Cette page n&apos;existe que pour vous, elle ferme
+                    ce soir à minuit, et il n&apos;y aura pas de rattrapage.
                   </p>
 
                   {/* Visages empilés */}
@@ -236,7 +253,7 @@ export default function LancementPage() {
                   )}
                 </div>
 
-                {/* Acte 2 : la pause et le réalignement */}
+                {/* Acte 2 : la pause, le réalignement et l'ambition */}
                 <div className="mt-8 border-l-2 border-white/10 pl-5 sm:pl-7">
                   <div className="space-y-3 text-[1rem] leading-[1.75] text-white/70 md:text-[1.0625rem]">
                     <p>
@@ -246,9 +263,10 @@ export default function LancementPage() {
                       vie.
                     </p>
                     <p>
-                      Pendant cette pause, j&apos;ai compris que je ne voulais
-                      plus passer mes journées à courir après des vues ou des
-                      likes.
+                      Pendant quatre ans, j&apos;ai fait des vidéos qui
+                      motivaient les gens deux minutes. Ils regardaient, ils
+                      trouvaient ça bien, et le lendemain leur vie était
+                      exactement la même. J&apos;ai fini par trouver ça vide.
                     </p>
                     <p>
                       Et je te rassure tout de suite, mes autres business
@@ -258,15 +276,21 @@ export default function LancementPage() {
                       voir les choses différemment pour Agencilab.
                     </p>
                     <p>
-                      Aujourd&apos;hui, ce qui me porte vraiment, c&apos;est
-                      d&apos;aider le maximum de personnes à sortir de ce
-                      cercle infernal de Métro-Boulot-Dodo en créant un revenu
-                      qui leur appartient.
+                      Maintenant je veux frapper beaucoup plus fort. 1 018
+                      personnes sont passées par l&apos;incubateur depuis le
+                      début, et mon objectif est de doubler ce chiffre.
                     </p>
                     <p>
-                      Alors pour marquer ce nouveau départ, j&apos;ai décidé
-                      de faire une chose que je n&apos;ai jamais faite depuis
-                      que j&apos;ai créé Agencilab.
+                      La seule chose qui m&apos;en empêche, c&apos;est le prix.
+                      Des gens m&apos;écrivent depuis des mois qu&apos;ils
+                      veulent entrer et qu&apos;ils n&apos;ont pas {PRIX_NORMAL}{" "}
+                      disponibles sur un compte. Ce sont des gens sérieux, qui
+                      feraient le travail, et ça fait des mois que je les laisse
+                      dehors.
+                    </p>
+                    <p>
+                      Alors je retire l&apos;obstacle pendant 24 heures, et je
+                      le fais d&apos;abord pour ceux qui me lisent vraiment.
                     </p>
                   </div>
                 </div>
@@ -297,12 +321,12 @@ export default function LancementPage() {
                         maintenant.
                       </p>
                       <p>
-                        Je la réserve aux abonnés de ma liste email, cette
-                        offre n&apos;existe{" "}
+                        Je la réserve aux{" "}
                         <span className="font-bold text-white">
-                          nulle part ailleurs
-                        </span>
-                        .
+                          500 abonnés
+                        </span>{" "}
+                        qui me lisent à chaque fois, et elle n&apos;existe nulle
+                        part ailleurs.
                       </p>
                       <p>
                         Et quand le compte à rebours tombera à zéro, le prix
@@ -353,7 +377,7 @@ export default function LancementPage() {
                 <div className="animate-gold-gradient rounded-3xl p-[2px] shadow-[0_8px_40px_rgba(255,122,0,0.25)]">
                   <div className="rounded-[22px] bg-navy-950 px-6 py-10 text-center md:px-12">
                     <span className="mb-3 inline-block rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wide text-gold-400">
-                      Offre exclusive · jusqu&apos;à ce soir minuit
+                      Réservé aux 500 · jusqu&apos;à ce soir minuit
                     </span>
                     <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold leading-[1.15] tracking-tight text-white">
                       Rejoins Agencilab à{" "}
