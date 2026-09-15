@@ -14,7 +14,6 @@ const steps = [
 const stats = [
   { value: "1 018+", label: "Salariés accompagnés" },
   { value: "2 987€", label: "Revenu moyen généré/mois" },
-  { value: "4.7/5", label: "Sur Trustpilot" },
 ];
 
 export default function FinalCTA() {

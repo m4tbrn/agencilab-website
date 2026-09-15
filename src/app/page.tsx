@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import ReviewsMarquee from "@/components/ReviewsMarquee";
 import Problem from "@/components/Problem";
 import IncomeComparison from "@/components/IncomeComparison";
 import Solution from "@/components/Solution";
@@ -12,7 +11,6 @@ import Comparison from "@/components/Comparison";
 import Presentiel from "@/components/Presentiel";
 import FinalCTA from "@/components/FinalCTA";
 import VideoWall from "@/components/VideoWall";
-import Testimonials from "@/components/Testimonials";
 import Founder from "@/components/Founder";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -29,7 +27,6 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
-        <ReviewsMarquee />
         <Problem />
         <IncomeComparison />
         <Solution />
@@ -41,7 +38,6 @@ export default function Home() {
         <Presentiel />
         <FinalCTA />
         {/* <VideoWall /> */}
-        <Testimonials />
         <FAQ />
         {/* CTA final en bas */}
         <section className="relative py-20 lg:py-28 overflow-hidden" id="cta-final">

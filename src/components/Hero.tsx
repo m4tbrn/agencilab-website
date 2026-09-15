@@ -131,10 +131,6 @@ export default function Hero() {
                     <p className="text-[9px] text-white/50 sm:text-[10px]">accompagnés</p>
                   </div>
                   <div className="px-4 text-center">
-                    <p className="text-sm font-bold tracking-tight text-accent-400 sm:text-base">4.7/5</p>
-                    <p className="text-[9px] text-white/50 sm:text-[10px]">Trustpilot</p>
-                  </div>
-                  <div className="px-4 text-center">
                     <p className="text-sm font-bold tracking-tight text-accent-400 sm:text-base">2 987€</p>
                     <p className="text-[9px] text-white/50 sm:text-[10px]">revenu moyen</p>
                   </div>

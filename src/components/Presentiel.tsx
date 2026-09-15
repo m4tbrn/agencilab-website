@@ -132,8 +132,6 @@ export default function Presentiel() {
         >
           <p className="text-sm text-white/30">
             Basé en France, à Lyon.
-            <br />
-            Noté <span className="font-semibold text-white/50">4.7/5 sur Trustpilot</span> — 74 avis vérifiés.
           </p>
         </motion.div>
       </div>
